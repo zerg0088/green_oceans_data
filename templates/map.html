@@ -272,7 +272,7 @@
             $('.plus_button_3d').click(function() {
                 if(selectedOister == null) return;
                 
-                load3D("{{ my_url_for(request, 'static', path='/data/obj/')}}" + selectedOister.file_name + "-mesh.obj", "{{ my_url_for(request, 'static', path='/data/obj/')}}" + selectedOister.file_name + "-mesh.mtl");
+                load3D("{{ my_url_for(request, 'static', path='/data/obj/obj/')}}" + selectedOister.file_name + "-mesh.obj", "{{ my_url_for(request, 'static', path='/data/obj/obj/')}}" + selectedOister.file_name + "-mesh.mtl");
                 $('#map_image').hide();
                 $('#canvas_3d').show();
             });
