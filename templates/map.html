@@ -274,7 +274,7 @@
                 
                 //s3://green-oceans-3d/obj/001-002-mesh.jpg
 
-                load3D("s3://green-oceans-3d/obj/" + selectedOister.file_name + "-mesh.obj", "s3://green-oceans-3d/obj/" + selectedOister.file_name + "-mesh.mtl");
+                load3D("https://green-oceans-3d.s3.ap-northeast-2.amazonaws.com/obj/" + selectedOister.file_name + "-mesh.obj", "https://green-oceans-3d.s3.ap-northeast-2.amazonaws.com/obj/" + selectedOister.file_name + "-mesh.mtl");
                 $('#map_image').hide();
                 $('#canvas_3d').show();
             });
