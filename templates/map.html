@@ -6,10 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
    
-    <script src="{{ url_for('static', path='/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{ url_for('static', path='/js/jquery.easing.min.js')}}"></script>
+    <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
     
-    <script src="{{ url_for('static', path='/js/custom2.js?v=2022041')}}"></script>
+    <script src="{{ my_url_for(request, 'static', path='/js/custom2.js?v=2022041')}}"></script>
 
     <!-- <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/three.min.js"></script>
     <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
@@ -21,17 +21,17 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <!--   CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css?v=2022041')}}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/responsive.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/responsive.css?v=2022041')}}">
     <!-- HEADER CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/h-style.css?v=2022056')}}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/h-responsive.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/h-style.css?v=2022056')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/h-responsive.css?v=2022041')}}">
     <!-- FOOTER CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/f-style.css?v=2022041')}}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/f-responsive.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/f-style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/f-responsive.css?v=2022041')}}">
     <!-- PLUGIN CSS -->
 
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/xeicon.min.css')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/xeicon.min.css')}}">
     
     <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 
@@ -205,18 +205,18 @@
         {% endif %}
 
 
-        const tempLoadImage = "{{ url_for('static', path='/data/position_image/1.png')}}"
-        const tempPositionImage = "{{ url_for('static', path='/data/load_image/1.png')}}"
-        const temp3DImage = "{{ url_for('static', path='/data/3d_image/1.png')}}"
+        const tempLoadImage = "{{ my_url_for(request, 'static', path='/data/position_image/1.png')}}"
+        const tempPositionImage = "{{ my_url_for(request, 'static', path='/data/load_image/1.png')}}"
+        const temp3DImage = "{{ my_url_for(request, 'static', path='/data/3d_image/1.png')}}"
         var map;
         var selectedOister;
         
         const allList = [
             {% for result in list %}
                 {index: "{{ result[0] }}",name: "{{ result[1] }}", address: "{{ result[2] }}", lat: {{ result[3] }}, lng: {{ result[4] }}, year21 : {{ result[5] }}, year22 : {{ result[6] }}, file_name : "{{ result[7] }}"
-                , loadPath : "{{ url_for('static', path='/data/load_image/')}}{{ result[7] }}.png" 
-                , threePath : "{{ url_for('static', path='/data/3d_image/')}}{{ result[7] }}.png" 
-                , positionPath : "{{ url_for('static', path='/data/position_image/')}}{{ result[7] }}.png" },
+                , loadPath : "{{ my_url_for(request, 'static', path='/data/load_image/')}}{{ result[7] }}.png" 
+                , threePath : "{{ my_url_for(request, 'static', path='/data/3d_image/')}}{{ result[7] }}.png" 
+                , positionPath : "{{ my_url_for(request, 'static', path='/data/position_image/')}}{{ result[7] }}.png" },
             {% endfor %}
         ];
 
@@ -272,7 +272,7 @@
             $('.plus_button_3d').click(function() {
                 if(selectedOister == null) return;
                 
-                load3D("{{ url_for('static', path='/data/obj/')}}" + selectedOister.file_name + "-mesh.obj", "{{ url_for('static', path='/data/obj/')}}" + selectedOister.file_name + "-mesh.mtl");
+                load3D("{{ my_url_for(request, 'static', path='/data/obj/')}}" + selectedOister.file_name + "-mesh.obj", "{{ my_url_for(request, 'static', path='/data/obj/')}}" + selectedOister.file_name + "-mesh.mtl");
                 $('#map_image').hide();
                 $('#canvas_3d').show();
             });
@@ -333,7 +333,7 @@
                         "<div>"+
                             "<span class='index_cell_top_span' style='margin-right: 21px;'>순번 " + makeIndex(index) + "</span>" +                
                             "<span class='index_cell_top_span' style='margin-right: 21px;'>사업자 " + oister.name + "</span>" +
-                            "<span id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ url_for('static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>"+
+                            "<span id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ my_url_for(request, 'static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>"+
                         "</div>"+
                         "<span class='index_cell_title'>" + oister.address + "</span>"+
                         
@@ -457,7 +457,7 @@
                         "<div>"+
                             "<span class='index_cell_top_span' style='margin-right: 21px;'>순번 " + makeIndex(index) + "</span>" +
                             "<span class='index_cell_top_span' style='margin-right: 21px;'>사업자 " + oister.name + "</span>" +
-                            "<span index='" + oister.index + "' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ url_for('static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>"+
+                            "<span index='" + oister.index + "' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ my_url_for(request, 'static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>"+
                         "</div>"+
                         "<span class='index_cell_title'>" + oister.address + "</span>"+
                         "<div class='index_cell_title_splitter'></div>"+
@@ -548,7 +548,7 @@
             });
 
             const pin = {
-                url: "{{ url_for('static', path='/images/popup.svg')}}",
+                url: "{{ my_url_for(request, 'static', path='/images/popup.svg')}}",
             };
 
             const markers = oisterList.map((position, i) => {
@@ -628,20 +628,20 @@
     <style>
     @font-face {
         font-family: omni_040;
-        src: url('{{ url_for('static', path='/fonts/omnigothic_040.woff') }}') format('woff');
-        src: url('{{ url_for('static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.woff') }}') format('woff');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
     }
 
     @font-face {
         font-family: omni_020;
-        src: url('{{ url_for('static', path='/fonts/omnigothic_020.woff') }}') format('woff');
-        src: url('{{ url_for('static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.woff') }}') format('woff');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
     }
 
     @font-face {
         font-family: apple_gothic;
-        src: url('{{ url_for('static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
-        src: url('{{ url_for('static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
     }
 
     * {
@@ -982,7 +982,7 @@
         margin-right: 20px;
         width : 20px;
         height : 20px;
-        content: url('{{ url_for('static', path='/images/x.svg') }}');
+        content: url('{{ my_url_for(request, 'static', path='/images/x.svg') }}');
     }
 
     #map_image_dialog {
@@ -1020,7 +1020,7 @@
 
     <body>
         <div class="topnav">
-            <img alt="Logo" src="{{ url_for('static', path='/images/green_logo.png') }}"/>
+            <img alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}"/>
             <div id="menu_text_wrapper">
                 <a class="top_menu" href="/map">Map</a>
                 <a class="top_menu" href="/project">Project</a>
@@ -1063,14 +1063,14 @@
     
         <div id="zoom_wrapper">
             <div id="zoom_plus" style="height: 50%;border-bottom: 1.6px solid #B2B2B2;cursor:pointer;padding-top:14px">
-                <img src="{{ url_for('static', path='/images/plus.svg') }}" style="margin-left: auto;
+                <img src="{{ my_url_for(request, 'static', path='/images/plus.svg') }}" style="margin-left: auto;
                     margin-right: auto;
                     width : 21px;
                     height : 21px;
                     display: block;"/>
             </div>
             <div id="zoom_minus" style="height: 50%;cursor:pointer;padding-top:21px">
-                <img src="{{ url_for('static', path='/images/minus.svg') }}" style="margin-left: auto;
+                <img src="{{ my_url_for(request, 'static', path='/images/minus.svg') }}" style="margin-left: auto;
                     width : 22px;
                     height : 3px;
                     margin-right: auto;
@@ -1084,19 +1084,19 @@
 
         <div id="dsv_container" class="dsv-container">
             <div id="drawer_div">
-                <img id="drawer_div_arrow_left" src="{{ url_for('static', path='/images/left_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px"/>
-                <img id="drawer_div_arrow_right" src="{{ url_for('static', path='/images/right_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px; display:none"/>
+                <img id="drawer_div_arrow_left" src="{{ my_url_for(request, 'static', path='/images/left_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px"/>
+                <img id="drawer_div_arrow_right" src="{{ my_url_for(request, 'static', path='/images/right_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px; display:none"/>
             </div>    
             <div class="dsv-top-ui">
-                <img id="home_back_button" src="{{ url_for('static', path='/images/home_back.svg') }}" style="width: 24px; height:23px; cursor: pointer; align-self: center;visibility: hidden;"/>
-                <img src="{{ url_for('static', path='/images/left_logo.png') }}" style="width: 258px; height:33px;align-self: center;"/>
+                <img id="home_back_button" src="{{ my_url_for(request, 'static', path='/images/home_back.svg') }}" style="width: 24px; height:23px; cursor: pointer; align-self: center;visibility: hidden;"/>
+                <img src="{{ my_url_for(request, 'static', path='/images/left_logo.png') }}" style="width: 258px; height:33px;align-self: center;"/>
                 <div></div>
             </div>
 
             <ul class="tabs">
                 <li class="tab-link current" data-tab="tab-1">홈</li>
-                <li class="tab-link" data-tab="tab-2" style="padding-top: 5px;"><img src="{{ url_for('static', path='/images/vv.svg') }}"/></li>
-                <li class="tab-link" data-tab="tab-3" style="padding-top: 5px;"><img src="{{ url_for('static', path='/images/vv2.svg') }}"/></li>
+                <li class="tab-link" data-tab="tab-2" style="padding-top: 5px;"><img src="{{ my_url_for(request, 'static', path='/images/vv.svg') }}"/></li>
+                <li class="tab-link" data-tab="tab-3" style="padding-top: 5px;"><img src="{{ my_url_for(request, 'static', path='/images/vv2.svg') }}"/></li>
             </ul>
             
 
@@ -1197,7 +1197,7 @@
                     display: block;
                     width : 21px;
                     height : 21px;
-                    content: url('{{ url_for('static', path='/images/plus.svg') }}');
+                    content: url('{{ my_url_for(request, 'static', path='/images/plus.svg') }}');
                 }
 
             </style>
@@ -1253,7 +1253,7 @@
                         <div>
                             <span class="index_cell_top_span" style="margin-right: 21px;">순번 01</span>
                             <span id="home_name" class="index_cell_top_span" style="margin-right: 21px;">사업자 전상수</span>
-                            <span id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ url_for('static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>
+                            <span id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ my_url_for(request, 'static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>
                         </div>
                         <span class='index_cell_title' id="home_address" class="index_cell_title">통영시 평인 일주로 1093-26번지 일대</span>
                         <div class="index_cell_title_splitter"></div>

@@ -6,25 +6,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     
-    <script src="{{ url_for('static', path='/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{ url_for('static', path='/js/jquery.easing.min.js')}}"></script>
-    <script src="{{ url_for('static', path='/js/magnific-popup.min.js')}}"></script>
-    <script src="{{ url_for('static', path='/js/custom2.js?v=2022041')}}"></script>
+    <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
+    <script src="{{ my_url_for(request, 'static', path='/js/magnific-popup.min.js')}}"></script>
+    <script src="{{ my_url_for(request, 'static', path='/js/custom2.js?v=2022041')}}"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112403815-1"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <!--   CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css?v=2022041')}}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/responsive.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/responsive.css?v=2022041')}}">
     <!-- HEADER CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/h-style.css?v=2022056')}}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/h-responsive.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/h-style.css?v=2022056')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/h-responsive.css?v=2022041')}}">
     <!-- FOOTER CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/f-style.css?v=2022041')}}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/f-responsive.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/f-style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/f-responsive.css?v=2022041')}}">
     <!-- PLUGIN CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/xeicon.min.css')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/xeicon.min.css')}}">
 
 
     <script type="module">
@@ -79,20 +79,20 @@
 <style>
     @font-face {
         font-family: omni_040;
-        src: url('{{ url_for('static', path='/fonts/omnigothic_040.woff') }}') format('woff');
-        src: url('{{ url_for('static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.woff') }}') format('woff');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
     }
 
     @font-face {
         font-family: omni_020;
-        src: url('{{ url_for('static', path='/fonts/omnigothic_020.woff') }}') format('woff');
-        src: url('{{ url_for('static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.woff') }}') format('woff');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
     }
 
     @font-face {
         font-family: apple_gothic;
-        src: url('{{ url_for('static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
-        src: url('{{ url_for('static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
     }
 
     * {
@@ -228,7 +228,7 @@
 <body>
 
     <div class="topnav">
-        <img alt="Logo" src="{{ url_for('static', path='/images/green_logo.png') }}"/>
+        <img alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}"/>
         <div id="menu_text_wrapper">
             <a class="top_menu" href="/map">Map</a>
             <a class="top_menu" href="/project">Project</a>
