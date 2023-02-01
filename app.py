@@ -24,6 +24,11 @@ templates = Jinja2Templates(directory="templates")
 templates.env.globals['my_url_for'] = my_url_for
 
 
+@app.get('/') 
+async def redirect():
+    response = RedirectResponse(url='/about')
+    return response
+
 @app.get("/about", response_class=HTMLResponse) 
 def about(request: Request): 
 	return templates.TemplateResponse("about.html", {"request": request}) 
