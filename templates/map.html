@@ -1,0 +1,1310 @@
+<html>
+    <head>
+
+    <title>Green Oceans</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+   
+    <script src="{{ url_for('static', path='/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ url_for('static', path='/js/jquery.easing.min.js')}}"></script>
+    
+    <script src="{{ url_for('static', path='/js/custom2.js?v=2022041')}}"></script>
+
+    <!-- <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/three.min.js"></script>
+    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
+    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/LoaderSupport.js"></script>
+    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/OBJLoader2.js"></script>
+    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/MTLLoader.js"></script> -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112403815-1"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <!--   CUSTOM CSS   -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/responsive.css?v=2022041')}}">
+    <!-- HEADER CUSTOM CSS   -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/h-style.css?v=2022056')}}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/h-responsive.css?v=2022041')}}">
+    <!-- FOOTER CUSTOM CSS   -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/f-style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/f-responsive.css?v=2022041')}}">
+    <!-- PLUGIN CSS -->
+
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/xeicon.min.css')}}">
+    
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "https://unpkg.com/three@0.149.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.149.0/examples/jsm/"
+        }
+        }
+    </script>
+
+    <script type="module">
+        import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.0.3";
+        import * as THREE from 'three';
+        import { OrbitControls } from "https://unpkg.com/three@0.149.0/examples/jsm/controls/OrbitControls.js";
+        import { OBJLoader } from "https://unpkg.com/three@0.149.0/examples/jsm/loaders/OBJLoader.js";
+        import { MTLLoader } from "https://unpkg.com/three@0.149.0/examples/jsm/loaders/MTLLoader.js";
+
+        function drawerOpen() {
+            $('#map').css('width','calc(100% - 27%)');
+            $('#dsv_container').css('width','27%');
+            $('#drawer_div').css('left','27%');
+
+            $('#drawer_div_arrow_left').show();
+            $('#drawer_div_arrow_right').hide();
+
+            $('#map_style').css('left','calc(27% + 32px)');
+        }
+
+        function drawerClose() {
+            $('#map').css('width','100%');
+            $('#dsv_container').css('width','0px');
+            $('#drawer_div').css('left','0px');
+            
+            $('#drawer_div_arrow_left').hide();
+            $('#drawer_div_arrow_right').show();
+
+            $('#map_style').css('left','32px');
+        }
+
+        $(document).ready(function(){
+            $('#menu_btn').click(function() {
+                $('#dsv_container').hide();
+                $('#map').css('width','100%');
+                $('#map').css('float','left');
+            });
+
+            $('#detail_first_button').click(function() {
+                
+            });
+
+            $('#detail_second_button').click(function() {
+                
+            });
+
+            $('#detail_third_button').click(function() {
+                
+            });
+
+            $('#drawer_div').click(function() {
+                
+                if ($('#drawer_div').offset().left == 0) {
+                    drawerOpen();
+                } else {
+                    drawerClose();
+                }
+            });
+
+            $('#map_image_x').click(function() {
+                $('#map_image_wrapper').hide();
+            });
+        });
+
+        function copyToClipboard(text) {
+            var sampleTextarea = document.createElement("textarea");
+            document.body.appendChild(sampleTextarea);
+            sampleTextarea.value = text; //save main text in it
+            sampleTextarea.select(); //select textarea contenrs
+            document.execCommand("copy");
+            document.body.removeChild(sampleTextarea);
+        }
+
+        function load3D(objPath, mtlPath) {
+            const canvas = document.querySelector('#canvas_3d');
+            const renderer = new THREE.WebGLRenderer({canvas});
+          
+            const fov = 40;
+            const aspect = 2;  // the canvas default
+            const near = 1;
+            const far = 1000;
+            const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+            camera.position.set(0, 100, 500);
+          
+            const controls = new OrbitControls(camera, canvas);
+            controls.target.set(0, 5, 0);
+            controls.update();
+          
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color('black');
+          
+            {
+                const skyColor = 0xB1E1FF;  // light blue
+                const groundColor = 0xB97A20;  // brownish orange
+                const intensity = 1;
+                const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+                scene.add(light);
+            }
+          
+            {
+                const color = 0xFFFFFF;
+                const intensity = 0.8;
+                const light = new THREE.DirectionalLight(color, intensity);
+                light.position.set(500, 500, 500);
+                scene.add(light);
+                scene.add(light.target);
+            }
+          
+            {
+                const mtlLoader = new MTLLoader();
+                const objLoader = new OBJLoader();
+
+                mtlLoader.load(mtlPath, (mtl) => {
+                    mtl.preload()
+                    objLoader.setMaterials(mtl);
+
+                    objLoader.load(
+                        objPath,
+                        (object) => {
+                            scene.add(object)
+                        },
+                        (xhr) => {
+                            //console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+                        },
+                        (error) => {
+                            //console.log('An error happened')
+                        }
+                    )
+                });
+            }
+          
+            function resizeRendererToDisplaySize(renderer) {
+                const canvas = renderer.domElement;
+                const width = canvas.clientWidth;
+                const height = canvas.clientHeight;
+                const needResize = canvas.width !== width || canvas.height !== height;
+                if (needResize) {
+                    renderer.setSize(width, height, false);
+                }
+                return needResize;
+            }
+          
+            function render() {
+          
+                if (resizeRendererToDisplaySize(renderer)) {
+                    const canvas = renderer.domElement;
+                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                }
+                renderer.render(scene, camera);
+                requestAnimationFrame(render);
+            }
+          
+            requestAnimationFrame(render);
+        }
+
+        {% if index|length %}
+            var directIndex = {{ index }}
+        {% else %}
+            var directIndex = -1
+        {% endif %}
+
+
+        const tempLoadImage = "{{ url_for('static', path='/data/position_image/1.png')}}"
+        const tempPositionImage = "{{ url_for('static', path='/data/load_image/1.png')}}"
+        const temp3DImage = "{{ url_for('static', path='/data/3d_image/1.png')}}"
+        var map;
+        var selectedOister;
+        
+        const allList = [
+            {% for result in list %}
+                {index: "{{ result[0] }}",name: "{{ result[1] }}", address: "{{ result[2] }}", lat: {{ result[3] }}, lng: {{ result[4] }}, year21 : {{ result[5] }}, year22 : {{ result[6] }}, file_name : "{{ result[7] }}"
+                , loadPath : "{{ url_for('static', path='/data/load_image/')}}{{ result[7] }}.png" 
+                , threePath : "{{ url_for('static', path='/data/3d_image/')}}{{ result[7] }}.png" 
+                , positionPath : "{{ url_for('static', path='/data/position_image/')}}{{ result[7] }}.png" },
+            {% endfor %}
+        ];
+
+
+        const oisterList = [
+            {% for result in list %}{lat: {{ result[3] }}, lng: {{ result[4] }}},{% endfor %}
+        ];
+
+        $(document).ready(function(){
+            
+            $('ul.tabs li').click(function(){
+                var tab_id = $(this).attr('data-tab');
+
+                $('ul.tabs li').removeClass('current');
+                $('.tab-content').removeClass('current');
+
+                $(this).addClass('current');
+                $("#"+tab_id).addClass('current');
+
+                
+                if (tab_id == 'tab-1') {
+                    $("#volume_sort_high").show();
+                    $("#dsv_home").hide();
+
+                    listOrder = 1;
+                    oisterListDisplay(listRangeStart,listRangeEnd,listOrder);
+                } else if(tab_id == 'tab-2') { // 오름 
+                    $("#volume_sort_high").show();
+                    $("#dsv_home").hide();
+                    listOrder = 0;
+                    oisterListDisplay(listRangeStart,listRangeEnd,listOrder);
+                } else if(tab_id == 'tab-3') { // 내림
+                    $("#volume_sort_high").show();
+                    $("#dsv_home").hide();
+                    listOrder = 1;
+                    oisterListDisplay(listRangeStart,listRangeEnd,listOrder);
+                }
+            });
+
+            $('#home_back_button').click(function() {
+                $("#dsv_home").hide();
+                $("#volume_sort_high").show();
+                $('#home_back_button').css('visibility','hidden');
+            });
+
+            $('.image_plus_button_wrapper').click(function() {
+                $('#map_image').css('content',$(this).parent().css("background-image"))
+                $('#map_image_wrapper').show();
+                $('#map_image').show();
+                $('#canvas_3d').hide();
+            });
+
+            $('.plus_button_3d').click(function() {
+                if(selectedOister == null) return;
+                
+                load3D("{{ url_for('static', path='/data/obj/')}}" + selectedOister.file_name + "-mesh.obj", "{{ url_for('static', path='/data/obj/')}}" + selectedOister.file_name + "-mesh.mtl");
+                $('#map_image').hide();
+                $('#canvas_3d').show();
+            });
+
+        });
+
+        function changeMapType(type) {
+            if (map != null) {
+                map.setMapTypeId(type);
+            }
+        }
+
+        function makeIndex(num) {
+            if (num < 10) return "0" + num;
+            else return num.toString();
+        }
+
+        function zeroTextCheck(num) {
+            if(num == 0) {
+                return "-";
+            } else {
+                return num.toString() + " ton";
+            }
+        }
+
+        var listOrder = 0; // 0 : 오름, 1 : 내림
+        var listRangeStart;
+        var listRangeEnd;
+
+        function homeListDisplay(start, end) {
+            var index = 1;
+            
+            listRangeStart = start;
+            listRangeEnd = end;
+        
+            $('#home_single_wrapper').hide();
+            $('#home_list_wrapper').show();
+            
+            $('#home_list_wrapper').html("");
+            
+            allList.sort(function(a, b) {
+                return b.year22 - a.year22;
+            });
+            
+            var isFirst = true;
+
+            for(const oister of allList) {
+
+                if((start.lat() < oister.lat && end.lat() > oister.lat) && 
+                    (start.lng() < oister.lng && end.lng() > oister.lng)) {
+                        if(isFirst) {
+                            isFirst = false;
+                            firstOister = oister;
+                        }
+
+                    var child = 
+                    "<div class='index_cell' style='border-top: 2px solid #D6D6D6;'>" +
+                        "<div>"+
+                            "<span class='index_cell_top_span' style='margin-right: 21px;'>순번 " + makeIndex(index) + "</span>" +                
+                            "<span class='index_cell_top_span' style='margin-right: 21px;'>사업자 " + oister.name + "</span>" +
+                            "<span id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ url_for('static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>"+
+                        "</div>"+
+                        "<span class='index_cell_title'>" + oister.address + "</span>"+
+                        
+                        "<div class='index_cell_title_splitter'></div>"+
+                        "<span class='home_span'>로드뷰(3D 맵핑)</span>"+
+                        "<div id='home_load_image' class='home_image_wrapper' style='background-image: url("  + tempPositionImage + "')>"+
+                            "<div class='image_plus_button_wrapper plus_button_3d'>"+
+                                "<img class='image_plus_button_image'/>"+
+                            "</div>"+
+                        "</div>"+
+                        "<span class='index_cell_table_title'>굴 껍데기 야적 물량</span>"+
+                        "<table class='index_cell_table'>"+
+                            "<th>연도</th>"+
+                            "<th>야적량 (ton)</th>"+
+                                "<th>비고</th>"+
+                            "<tr>"+
+                                "<td>2022</td>"+
+                                "<td>" + zeroTextCheck(oister.year22) + "</td>"+
+                            "</tr>"+
+                            "<tr>"+
+                                "<td>2021</td>"+
+                                "<td>" + zeroTextCheck(oister.year21) + "</td>"+
+                            "</tr>"+
+
+
+                        "</table>"+
+                        "<span class='home_span'>야적지 위치</span>"+
+                        "<div class='home_image_wrapper' style='background-image: url(" + tempLoadImage + "')>"+
+                            "<div class='image_plus_button_wrapper'>"+
+                                "<img class='image_plus_button_image'/>"+
+                            "</div>"+
+                        "</div>"+        
+                        "<div class='index_cell_title_splitter'></div>"+
+                        "<span class='home_span'>부피측정</span>"+
+                        "<div class='home_image_wrapper' style='background-image: url(" + temp3DImage + "')>"+
+                            "<div class='image_plus_button_wrapper '>"+
+                                "<img class='image_plus_button_image'/>"+
+                            "</div>"+
+                        "</div>"+
+                    "</div>";
+
+                    
+
+                    index++;
+                
+                    $('#home_list_wrapper').append(child);
+                }
+            }
+
+            $('#home_index_cell_share_button').click(function() {
+                $('#toast').show();
+                $('#toast').delay(2000).hide(0);
+
+                var getUrl = window.location;
+                var baseUrl = getUrl.protocol + "//" + getUrl.host + "/map/"
+                copyToClipboard(baseUrl + oister.index);
+            });
+
+        }
+
+        function homeDisplay(oister) {
+            // sssss
+            $('#home_single_wrapper').show();
+            $('#home_list_wrapper').hide();
+            
+            selectedOister = oister;
+        
+            /*$("#home_load_image").css({'background-image': "url(" + oister.loadPath + ")" });
+            $("#home_position_image").css({'background-image': "url(" + oister.positionPath + ")"});
+            $("#home_3d_image").css({'background-image': "url(" + oister.threePath + ")" });
+            */
+            
+            // for temp
+
+            $("#home_name").text("사업자 " + oister.name);
+            $("#home_address").text(oister.address);
+
+            $("#home_position_image").css({'background-image': "url(" + tempLoadImage + ")"});
+            $("#home_load_image").css({'background-image': "url(" + tempPositionImage + ")"});
+            $("#home_3d_image").css({'background-image': "url(" + temp3DImage + ")"});
+        }
+
+
+        var firstOister;
+        function oisterListDisplay(start, end, order) {
+            var index = 1;
+            var total21 = 0;
+            var total22 = 0;
+            
+            listRangeStart = start;
+            listRangeEnd = end;
+            listOrder = order;
+
+            $('#oister_list').html("");
+            
+            if(order == 0) {
+                allList.sort(function(a, b) {
+                    return a.year22 - b.year22;
+                });
+            }
+
+            if(order == 1) {
+                allList.sort(function(a, b) {
+                    return b.year22 - a.year22;
+                });
+            }
+            
+            var isFirst = true;
+
+            for(const oister of allList) {
+
+                if((start.lat() < oister.lat && end.lat() > oister.lat) && 
+                    (start.lng() < oister.lng && end.lng() > oister.lng)) {
+                        if(isFirst) {
+                            isFirst = false;
+                            firstOister = oister;
+                        }
+                    
+                    var child = 
+                    "<div index='" + oister.index + "' class='index_cell'>"+
+                        "<div>"+
+                            "<span class='index_cell_top_span' style='margin-right: 21px;'>순번 " + makeIndex(index) + "</span>" +
+                            "<span class='index_cell_top_span' style='margin-right: 21px;'>사업자 " + oister.name + "</span>" +
+                            "<span index='" + oister.index + "' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ url_for('static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>"+
+                        "</div>"+
+                        "<span class='index_cell_title'>" + oister.address + "</span>"+
+                        "<div class='index_cell_title_splitter'></div>"+
+                        "<span class='index_cell_table_title'>굴 껍데기 야적 물량</span>"+
+                        "<table class='index_cell_table'>"+
+                            "<th>연도</th>"+
+                            "<th>야적량 (ton)</th>"+
+                            "<th>비고</th>"+
+                            "<tr>"+
+                                "<td>2022</td>"+
+                                "<td>" + zeroTextCheck(oister.year22) + "</td>"+
+                            "</tr>"+
+                            "<tr>"+
+                                "<td>2021</td>"+
+                                "<td>" + zeroTextCheck(oister.year21) + "</td>"+
+                            "</tr>"+
+                        "</table>"+
+                    "</div>";
+                
+                    total22 += oister.year22;
+                    total21 += oister.year21;
+
+                    index++;
+                
+                    $('#oister_list').append(child);
+                }
+            }
+
+            $('.index_cell').click(function() {
+                var index = $(this).attr("index");
+                const oister = allList.filter(v => v.index == index)[0];
+                homeDisplay(oister);
+                $("#dsv_home").show();
+                $("#volume_sort_high").hide();
+                $('#home_back_button').css('visibility','visible');
+            });
+
+            $(".index_cell_share_button").click(function() {
+                var index = $(this).attr("index");
+                $('#toast').show();
+                $('#toast').delay(2000).hide(0);
+                var getUrl = window.location;
+                var baseUrl = getUrl.protocol + "//" + getUrl.host + "/map/"
+                copyToClipboard(baseUrl + index);
+            });
+            
+            $("#total_21_ton").text(total21.toFixed(1) + " ton");
+            $("#total_22_ton").text(total22.toFixed(1) + " ton");
+            $("#total_ton").text((total22 + total21).toFixed(1) + " ton");
+        }
+
+        function initMap() {
+            
+            const tong = { lat: 34.8544269, lng: 128.4331799 };
+            
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13,
+                center: tong,
+                disableDefaultUI: true,
+                mapId: "4504f8b37365c3d0",
+            });
+
+            google.maps.event.addListenerOnce(map, 'idle', function(){
+                var bounds =  map.getBounds();
+                var endLo = bounds.getNorthEast();
+                var startLo = bounds.getSouthWest();
+
+                oisterListDisplay(startLo,endLo,listOrder);
+                //homeListDisplay(startLo,endLo,listOrder);
+            });
+
+            google.maps.event.addListener(map, 'zoom_changed', function() {
+                var bounds =  map.getBounds();
+                var endLo = bounds.getNorthEast();
+                var startLo = bounds.getSouthWest();
+
+                oisterListDisplay(startLo,endLo,listOrder);
+                //homeListDisplay(startLo,endLo,listOrder);
+            });
+            
+            google.maps.event.addListener(map, 'dragend', function(evt){
+                var bounds =  map.getBounds();
+                var endLo = bounds.getNorthEast();
+                var startLo = bounds.getSouthWest();
+                
+                oisterListDisplay(startLo,endLo,listOrder);
+                //homeListDisplay(startLo,endLo,listOrder);
+            });
+
+            const pin = {
+                url: "{{ url_for('static', path='/images/popup.svg')}}",
+            };
+
+            const markers = oisterList.map((position, i) => {
+
+                const areaTag = document.createElement("div");
+                areaTag.innerHTML = "<span style='color:black;display:block;font-size: 14px;line-height: 16px;text-align: center;'>야적량</span>"+
+                                    "<span style='color:#0064FF;display:block;font-size: 16px;line-height: 18px;text-align: center;'>" + allList[i].year22 +"ton</span>"
+                areaTag.className = "area_tag";
+                
+
+                const marker = new google.maps.marker.AdvancedMarkerView({
+                    map,
+                    position: position,
+                    content: areaTag
+                });
+
+                marker.addListener("click", () => {        
+                    const oister = allList.filter(v => v.lat == marker.position.lat && v.lng == marker.position.lng)[0];
+                
+                    drawerOpen();
+                    $('ul.tabs li:first').trigger("click");
+                    
+                    homeDisplay(oister);
+                    
+                    $("#dsv_home").show();
+                    $("#volume_sort_high").hide();
+                    $('#home_back_button').css('visibility','visible');
+
+                    /*$('#dsv_container').show();
+                    $('#map').css('width','calc(100% - 529px)');
+                    $('#map').css('float','right');
+                    $('#oister_list').hide();
+                    $('#oister_detail').show();*/
+                });            
+                return marker;
+            });
+        
+            $('#map_style').click(function() {
+                if(map.getMapTypeId() == "satellite") {
+                    changeMapType("roadmap");
+                    $('#map_style > span').text('지도');
+                } else {
+                    changeMapType("satellite");
+                    $('#map_style > span').text('위성');
+                }
+            });
+
+            $('#zoom_plus').click(function() {
+                map.setZoom(map.getZoom() + 1); 
+            });
+
+            $('#zoom_minus').click(function() {
+                map.setZoom(map.getZoom() - 1);
+            });
+        }
+        
+        window.initMap = initMap;
+        $(window).on('load',function() {
+
+            if(directIndex != -1) {                    
+                const oister = allList.filter(v => v.index == directIndex)[0];
+                if(oister != null) {
+                    homeDisplay(oister);
+                }
+            
+                drawerOpen();
+                //$('ul.tabs li:first').trigger("click");
+                $("#dsv_home").show();
+                $("#volume_sort_high").hide();
+                $('#home_back_button').css('visibility','visible');
+            }
+        });
+          
+    </script>
+    
+    </head>
+    <style>
+    @font-face {
+        font-family: omni_040;
+        src: url('{{ url_for('static', path='/fonts/omnigothic_040.woff') }}') format('woff');
+        src: url('{{ url_for('static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+    }
+
+    @font-face {
+        font-family: omni_020;
+        src: url('{{ url_for('static', path='/fonts/omnigothic_020.woff') }}') format('woff');
+        src: url('{{ url_for('static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+    }
+
+    @font-face {
+        font-family: apple_gothic;
+        src: url('{{ url_for('static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
+        src: url('{{ url_for('static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
+    }
+
+    * {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+    }
+    body
+    {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+        margin:0px auto;
+        padding:0px;
+        text-align:center;
+        width:100%;
+        background-color:#A9D0F5;
+    }
+
+    span {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    a {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    .share_img {            
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height : 21px;
+    }
+
+    .area_tag {
+        background-color: #ffffff;
+        border-radius: 60px;
+        color: #FFFFFF;
+        min-width: 100px;
+        font-size: 14px;
+        padding: 10px 15px;
+        position: relative;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+      
+    .area_tag::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        transform: translate(-50%, 0);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid #ffffff;
+        filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
+        
+    }
+
+    li.active
+    {
+        border: solid;
+        border-color: black;
+        border-width: 1px;   
+        padding: 10px;
+    }
+
+    .dsv-container {
+        background: #fff;
+        display: inline;
+        float: left;
+        width: 27%;
+        height: calc(100%);
+        overflow: scroll;
+        z-index: 1025;
+        text-align: center;
+        box-shadow: 1px 0 2px 0 rgb(0 0 0 / 15%);
+    }
+
+    .dsv-content-section {
+        width: 100%;
+        height: calc(100% - 8px);
+        position: relative;
+        margin-top: 0;
+    }
+
+    .dsv-top-ui {
+        left: 0;
+        width: 100%;
+        height: 90px;
+        display: flex;
+        padding-left: 18px;
+        padding-right: 18px;
+        justify-content: space-between;
+        z-index: 5;
+        box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%);
+    }
+    
+    .dsc-visible-scrollbar {
+        overflow-y: auto;
+        overflow-y: overlay;
+    }
+    .dsv-scroll-section {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow-x: visible;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #map_title 
+    {
+        margin-left: 396px;
+        width: calc(100% - 396px);
+        height:40px;
+        background-color: #00000077;
+        position: absolute;
+    }
+
+    #map_wrapper {
+        height: calc(100% - 105px);
+        width: 100%;
+        margin : 0px;
+        padding : 0px;
+    }
+
+    #map {
+        height:100%;
+        width: calc(100% - 27%);
+        margin : 0px;
+        padding : 0px;
+        display: inline;
+        float: right;
+    }
+
+    .left_oister_house_cell {
+        width: 100%;
+        background-color:white
+    }
+
+    .left_oister_house_cell_header {
+        width: 100%;
+        height: 40px;
+        background-color:#0066f9
+    }
+
+    .left_oister_house_cell_header_title {
+        color: white;
+        display: block;
+        padding-top: 10px;
+    }
+
+    .left_oister_house_cell_content {
+        width: 100%;
+    }
+
+    .left_oister_house_cell_dummy {
+        height: 20px;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: white;
+        height: 105px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;;
+    }
+    
+    .topnav a {
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 400;
+    }
+    
+    .topnav img {
+        margin-left: 5%;
+        width : 189px;
+        height: 71px;
+        align-self: center;
+    }
+
+    #menu_text_wrapper {
+        inherits: true;
+        flex: none;
+        align-self: center;
+    }
+
+    .top_menu {
+        text-align: center;
+        text-decoration: none;
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
+        color: #0064FF;
+        align-self: center;
+        margin-right: 136px;
+    }
+
+    .top_menu:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    ul.tabs{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        height: 74px;
+        display:flex;
+        justify-content: space-around;
+    }
+
+    ul.tabs li{
+        width: 33%;
+        height: 74px;
+        background: none;
+        color: #222;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 74px;
+        align-self: center;
+    }
+    
+    ul.tabs li.current{
+        color: #0064FF;
+        filter: invert(26%) sepia(84%) saturate(4280%) hue-rotate(212deg) brightness(101%) contrast(107%);
+        align-self: center;
+        line-height: 74px;
+        background-color: #A9D0F511;
+        border-bottom: 2px solid #0064FF;
+    }
+
+    .ton_table {
+        width: 100%;
+        border-bottom: 4px solid #D6D6D6;
+        font-size: 14px;
+        margin-top: 24px;
+        padding-bottom: 33px;
+    }
+
+    .ton_table th {
+        color: #595959;
+        text-align: left;
+        padding-left: 50px;
+        
+    }
+
+    .ton_table td {
+        text-align: left;
+        padding-left: 50px;
+        padding-top: 20px;
+    }
+
+    .index_cell_share_button {
+        cursor:pointer;
+    }
+
+    #zoom_wrapper {
+        width: 50px;
+        height: 101px;
+        border: 1px solid black;  
+        position:absolute;
+        top : 50%;
+        right : 32px;
+        background-color: white;
+        box-sizing: border-box;
+        border: 1.6px solid #B2B2B2;
+        border-radius: 4px;
+    }
+
+    #map_style {
+        width: 50px;
+        height: 50px;
+        top : 50%;            
+        position: absolute;
+        left: calc(27% + 32px);
+        background: #FFFFFF;
+        border: 1.6px solid #B2B2B2;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    #drawer_div {
+        position: absolute;
+        width: 22px;
+        height: 51px;
+        left: 27%;
+        top: 164px;
+        background: #000000;
+        border-radius: 0px 12px 12px 0px;   
+        cursor: pointer;
+    }
+
+    #toast {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: #333333aa;
+        z-index: 10000;
+    }
+    
+    #map_image_wrapper {
+        display:none;
+        height: calc(100% - 141px);
+        width: calc(100% - 27%);
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        z-index: 10002;
+        padding-left: 33px;
+        padding-right: 33px;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+
+    #map_image_title {
+        font-size: 22px;
+        line-height: 25px;
+        padding-top: 30px;
+        color: #000000;
+        display: inline-block;
+    }
+
+    #map_image_x {
+        display: inline-block;
+        float: right;
+        margin-top: 20px;
+        margin-right: 20px;
+        width : 20px;
+        height : 20px;
+        content: url('{{ url_for('static', path='/images/x.svg') }}');
+    }
+
+    #map_image_dialog {
+        width: 100%; 
+        height: 100%; 
+        background-color:white;
+        display:flex;
+        flex-direction: column;
+    }
+
+    #map_image {
+        flex: 1;
+        margin: 20px;
+        object-fit: cover;
+        height: 0;
+    }
+
+
+    #map_image {
+        flex: 1;
+        margin: 20px;
+        object-fit: cover;
+        height: 0;
+    }
+
+    #canvas_3d {
+        flex: 1;
+        padding:20px;
+        width:100%; 
+        height:70%;
+        display:block;
+    }
+
+    </style>
+
+    <body>
+        <div class="topnav">
+            <img alt="Logo" src="{{ url_for('static', path='/images/green_logo.png') }}"/>
+            <div id="menu_text_wrapper">
+                <a class="top_menu" href="/map">Map</a>
+                <a class="top_menu" href="/project">Project</a>
+                <a class="top_menu" href="/about">About</a>
+                <a class="top_menu" href="/contact" style="margin-right: 171px;">Contact</a>
+            </div>
+        </div>
+    <div id="toast">
+        <span style="box-sizing: border-box;
+            position: absolute;
+            top:50%;
+            width: 500px;
+            height: 56px;
+            color : #ffffff;
+            font-size:14px;
+            background: rgba(0, 0, 0, 1);
+            border: 1.2px solid #E8E6E6;
+            line-height:56px;
+            border-radius: 10px;">주소가 복사되었습니다. 원하는 곳에 붙여넣기를 하십시오.</div>
+    </div>
+
+    <div id="map_wrapper">  
+        <div id="map"></div>   
+
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCj_fxHTdVdYjCl6udpP_GbWUGfW9SVV8&callback=initMap&libraries=marker&v=beta"
+        defer></script>
+
+        <div id="map_image_wrapper">
+            <div id="map_image_dialog">
+                <div>
+                    <span id="map_image_title">로드뷰</span>
+                    <img id="map_image_x"/>
+                </div>
+            
+                <img id="map_image"/>
+                <canvas id="canvas_3d"></canvas>
+            </div>
+        </div> 
+    
+        <div id="zoom_wrapper">
+            <div id="zoom_plus" style="height: 50%;border-bottom: 1.6px solid #B2B2B2;cursor:pointer;padding-top:14px">
+                <img src="{{ url_for('static', path='/images/plus.svg') }}" style="margin-left: auto;
+                    margin-right: auto;
+                    width : 21px;
+                    height : 21px;
+                    display: block;"/>
+            </div>
+            <div id="zoom_minus" style="height: 50%;cursor:pointer;padding-top:21px">
+                <img src="{{ url_for('static', path='/images/minus.svg') }}" style="margin-left: auto;
+                    width : 22px;
+                    height : 3px;
+                    margin-right: auto;
+                    display: block;"/>
+            </div>
+        </div>
+
+        <div id="map_style">
+            <span style="display: block;font-size:15px;line-height:50px">지도</span>
+        </div>
+
+        <div id="dsv_container" class="dsv-container">
+            <div id="drawer_div">
+                <img id="drawer_div_arrow_left" src="{{ url_for('static', path='/images/left_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px"/>
+                <img id="drawer_div_arrow_right" src="{{ url_for('static', path='/images/right_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px; display:none"/>
+            </div>    
+            <div class="dsv-top-ui">
+                <img id="home_back_button" src="{{ url_for('static', path='/images/home_back.svg') }}" style="width: 24px; height:23px; cursor: pointer; align-self: center;visibility: hidden;"/>
+                <img src="{{ url_for('static', path='/images/left_logo.png') }}" style="width: 258px; height:33px;align-self: center;"/>
+                <div></div>
+            </div>
+
+            <ul class="tabs">
+                <li class="tab-link current" data-tab="tab-1">홈</li>
+                <li class="tab-link" data-tab="tab-2" style="padding-top: 5px;"><img src="{{ url_for('static', path='/images/vv.svg') }}"/></li>
+                <li class="tab-link" data-tab="tab-3" style="padding-top: 5px;"><img src="{{ url_for('static', path='/images/vv2.svg') }}"/></li>
+            </ul>
+            
+
+            <style>
+                .index_cell {
+                    padding-top:26px;
+                }
+                .index_cell_header_span {
+                    font-size: 17px;
+                    display: inline-block;
+                    text-align: left;
+                }
+                .index_cell_top_span {
+                    padding-left: 17px;
+                    padding-right: 17px;
+                    font-size: 13px;
+                    color:#595959;
+                    height: 50px;
+                    border: 1.2px solid #E8E6E6;
+                    font-weight: 400;
+                    border-radius: 10px;
+                    line-height: 50px;
+                    display: inline-block;
+                    box-sizing: border-box;
+                    vertical-align: middle;
+                }
+
+                .index_cell_title {
+                    display: block;
+                    font-family: 'omni_040';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 25px;
+                    margin-top:30px;
+                    color: #000000;
+                }
+
+                .index_cell_title_splitter {
+                    width: calc(100% - 42px);
+                    margin-left: 21px;
+                    margin-top: 14px;
+                    border-bottom: 2px solid #D6D6D6;
+                    box-sizing: border-box;
+                }
+
+                .index_cell_table_title {
+                    font-size: 16px;
+                    line-height: 23px;
+
+                    color: #000000;
+                    margin-top: 30px;
+                    display: block;
+                    text-align: left;
+                    padding-left: 45px;
+                }
+
+                .index_cell_table {
+                    margin-top: 20px;
+                }
+
+                .index_cell_table {
+                    width: 100%;
+                    border-bottom: 4px solid #D6D6D6;
+                    font-size: 14px;
+                    padding-bottom: 26px;
+                }
+                .index_cell_table td {
+                    text-align: left;
+                    padding-left: 45px;
+                    padding-top: 8px;
+                }
+            
+                .index_cell_table th {
+                    padding-left: 45px;
+                    text-align: left;
+                    color: #595959;
+                }
+
+                .image_plus_button_wrapper {
+                    cursor: pointer;
+                    margin: 8px;
+                    align-self: flex-end;
+                    box-sizing: border-box;
+                    left:0px;
+                    top:0px;
+                    width: 45px;
+                    height: 45px;
+                    padding-top: 10px;
+                    background: #FFFFFF;
+                    border: 1.6px solid #B2B2B2;
+                    border-radius: 4px; 
+                }
+
+                .image_plus_button_image {
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                    width : 21px;
+                    height : 21px;
+                    content: url('{{ url_for('static', path='/images/plus.svg') }}');
+                }
+
+            </style>
+            
+            <div id="volume_sort_high" class="dsv-content-section"> 
+                <div class="header" style="background-color: #F5F5F5;">
+                    <div style="border-bottom: 2px solid white; padding-top:32px;padding-bottom:20px;text-align: left;">
+                        <span class="index_cell_header_span" style="margin-left:50px">총 야적량</span>
+                        <span id="total_ton" class="index_cell_header_span" style="color: #0064FF;margin-left:100px">4.114 ton</span>
+                    </div>
+                    <table class="ton_table">
+                        <th style="width: 40%;">연도</th>
+                        <th>총 조사 야적량 (ton)</th>
+                        <tr>
+                            <td>2022</td>
+                            <td id="total_22_ton">1763.9 ton</td>
+                        </tr>
+                        <tr>
+                            <td>2021</td>
+                            <td id="total_21_ton">2349.6 ton</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="oister_list"></div>
+            </div>
+            
+            <style>
+                .home_span {
+                    margin-left:19px;
+                    margin-top:26px;
+                    text-align: left;
+                    display:block;
+                    font-size: 16px;
+                    line-height: 23px;
+                    color: #595959;
+                }
+
+                .home_image_wrapper {
+                    margin:20px; 
+                    background-size: cover;
+                    background-position: center;
+                    width:92%; 
+                    height: 34%;
+                    display:flex; 
+                    justify-content: flex-end;
+                }
+
+            </style>
+            <div id="dsv_home" class="dsv-content-section" style="display:none" > 
+
+                <div id="home_single_wrapper" style="padding-bottom: 100px;">
+                    <div style="border-top: 2px solid #D6D6D6;padding-top:26px;">
+                        <div>
+                            <span class="index_cell_top_span" style="margin-right: 21px;">순번 01</span>
+                            <span id="home_name" class="index_cell_top_span" style="margin-right: 21px;">사업자 전상수</span>
+                            <span id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ url_for('static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>
+                        </div>
+                        <span class='index_cell_title' id="home_address" class="index_cell_title">통영시 평인 일주로 1093-26번지 일대</span>
+                        <div class="index_cell_title_splitter"></div>
+                        <span class='home_span'>로드뷰(3D 맵핑)</span>
+    
+                        <div id="home_load_image" class="home_image_wrapper">
+                            <div class="image_plus_button_wrapper plus_button_3d">
+                                <img class="image_plus_button_image"/>
+                            </div>    
+                        </div>
+                        <span class="index_cell_table_title">굴 껍데기 야적 물량</span>
+    
+                        <table class="index_cell_table">
+                            <th>연도</th>
+                            <th>야적량 (ton)</th>
+                            <th>비고</th>
+                            <tr>
+                                <td>2022</td>
+                                <td id="home_volume_22">1763.9 ton</td>
+                            </tr>
+                            <tr>
+                                <td>2021</td>
+                                <td id="home_volume_21">2349.6 ton</td>
+                            </tr>
+                        </table>
+    
+                        <span class="home_span">야적지 위치</span>
+    
+                        <div id="home_position_image" class="home_image_wrapper">
+                            <div class="image_plus_button_wrapper">
+                                <img class="image_plus_button_image"/>
+                            </div>    
+                        </div>
+    
+                        <div class="index_cell_title_splitter"></div>
+    
+                        <span class="home_span">부피측정</span>
+    
+                        <div id="home_3d_image" class="home_image_wrapper">
+                            <div class="image_plus_button_wrapper ">
+                                <img class="image_plus_button_image"/>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+
+                <div id="home_list_wrapper" style="padding-bottom: 100px;"></div>         
+
+            </div>
+        </div>   
+    </div> 
+    
+    </body>
+</html>

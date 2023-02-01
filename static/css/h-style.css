@@ -1,0 +1,212 @@
+
+/* Header CSS */
+header {
+    left:0;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    color: #fff;
+}
+
+/* header common CSS */
+.gnb-outer.topmove {
+	position:relative;
+    /* top: -203px; */
+}
+.lnb-outer,
+.gnb-outer {
+    width: 100%;
+    background-color: transparent;
+}
+.lnb-inner,
+.gnb-inner {
+    width: 1600px;
+    margin: auto;
+    position: relative;
+}
+
+/* LNB CSS */
+.lnb-outer {
+    border-bottom: 1px solid rgba(238, 238, 238, 0.15);
+}
+.lnb-outer.active {
+    display: none;
+}
+.lnb-inner {
+    height: 40px;
+}
+.lnb {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: row;
+}
+.lnb > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.lnb > div:first-child {
+    margin-right: 12px;
+}
+.lnb a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.lnb span {
+    color: #fff;
+    font-size: 11px;
+    margin-left: 4px;
+}
+
+/* GNB CSS */
+.gnb-inner {
+    height: 100px;
+}
+.gnb-inner > div {
+    position: absolute;
+}
+.gnb-logo {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.gnb {
+    width: calc(172px*6);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+}
+.gnb-menu li {
+    float: left;
+    width: 172px;
+    height: 100px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+}
+.gnb-menu li:hover {
+    background-color: #1839C2;
+}
+.gnb-menu li > a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    padding-top: 38px;
+}
+.gnb-menu li:first-child > a {
+    padding-top: 33px;
+}
+.gnb-sub {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: #1839C2;
+    border-top: 1px solid #fff;
+    word-break: keep-all;
+}
+.gnb-sub a {
+    display: block;
+    padding: 20px 0;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+}
+.gnb-sub a:hover {
+    text-decoration: underline;
+}
+.gnb-search {
+    width: 80px;
+    height: 24px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.gnb-search > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.gnb-search a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.gnb-search img {
+    margin-right: 8px;
+    line-height: 24px;
+}
+.gnb-search span {
+    color: #fff;
+    font-size: 16px;
+}
+
+/*top_banner*/
+.top_banner{
+    width: 100%;
+    height: 60px;
+    background-color: #E8ECFF;
+    position: fixed;
+    top: 0;
+    z-index: 99999999;
+}
+.top_inner{
+    width: 928px;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.top{
+    display: flex;
+}
+.top_txt2 a{
+    color: #000000;
+    font-size: 17px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    left: 226px;
+}
+.top_txt2 a > img:first-child{
+    margin-right: 8px;
+}
+.top_txt2 a > img:last-child{
+    margin-left: 6px;
+}
+.top_txt3 a{
+    color: #7D84A8;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+}
+.top_txt3 a > img:last-child{
+    margin-left: 4px;
+}
+
+.top_hidden{
+    display: none;
+}
+.container{
+/*    margin-top: 60px;*/
+}

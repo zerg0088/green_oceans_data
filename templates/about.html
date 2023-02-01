@@ -1,0 +1,368 @@
+<html>
+
+<head>
+    <title>Green Oceans</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    
+    <script src="{{ url_for('static', path='/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ url_for('static', path='/js/jquery.easing.min.js')}}"></script>
+    <script src="{{ url_for('static', path='/js/magnific-popup.min.js')}}"></script>
+    <script src="{{ url_for('static', path='/js/custom2.js?v=2022041')}}"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112403815-1"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <!--   CUSTOM CSS   -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/responsive.css?v=2022041')}}">
+    <!-- HEADER CUSTOM CSS   -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/h-style.css?v=2022056')}}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/h-responsive.css?v=2022041')}}">
+    <!-- FOOTER CUSTOM CSS   -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/f-style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/f-responsive.css?v=2022041')}}">
+    <!-- PLUGIN CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/xeicon.min.css')}}">
+
+    <script type="text/javascript">
+
+    </script>
+</head>
+<style>
+    @font-face {
+        font-family: omni_040;
+        src: url('{{ url_for('static', path='/fonts/omnigothic_040.woff') }}') format('woff');
+        src: url('{{ url_for('static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+    }
+
+    @font-face {
+        font-family: omni_020;
+        src: url('{{ url_for('static', path='/fonts/omnigothic_020.woff') }}') format('woff');
+        src: url('{{ url_for('static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+    }
+
+    @font-face {
+        font-family: apple_gothic;
+        src: url('{{ url_for('static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
+        src: url('{{ url_for('static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
+    }
+
+    * {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    body
+    {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+        margin:0px auto;
+        padding:0px;
+        text-align:center;
+        width:100%;
+        background-color: rgb(232, 230, 230);
+    }
+
+    span {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    a {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+
+    span {
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 200;
+    }
+
+    li.active {
+        border: solid;
+        border-color: black;
+        border-width: 1px;
+        padding: 10px;
+    }
+
+    .about_top_wrapper {
+        width: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+
+    .about_top {
+        width: 100%;
+        background-color: white;
+        height: auto;
+        padding: 100px;
+    }
+
+    .about_title {
+        color: black;
+        text-align: left;
+        font-size: 38px;
+        font-weight: bold;
+        margin-bottom: 80px;
+        display:block;
+    }
+
+    .about_content {
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 400;
+
+        margin-top: 80px;
+        text-align: left;
+        display:block;
+
+        font-size: 16px;
+        line-height: 30px;
+        color: #2E2E2E;
+    }
+    
+    .about_youtube_wrapper {
+        width: 100%;
+        height: 1280px;
+        background-color: white;
+        padding-left: 108px;
+        padding-right: 108px;
+    }
+
+    .about_youtube_wrapper_row {
+        width: 100%;
+        display: flex;
+        height: 50%;
+    }
+
+    .dummy {
+        height: 70px
+    }
+
+    .read_more_button {
+        background-color: rgb(99, 181, 169);
+        position: relative;
+        display: block;
+    }
+
+    .read_more_button>span {
+        color: white;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: white;
+        height: 105px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;;
+    }
+    
+    .topnav a {
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    .topnav img {
+        margin-left: 5%;
+        width : 189px;
+        height: 71px;
+        align-self: center;
+    }
+
+    #menu_text_wrapper {
+        inherits: true;
+        flex: none;
+        align-self: center;
+    }
+
+    .top_menu {
+        text-align: center;
+        text-decoration: none;
+        font-family: 'omni_040';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
+        color: #0064FF;
+        align-self: center;
+        margin-right: 136px;
+    }
+
+    /* Change color on hover */
+    .top_menu:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+
+    a.button{
+        cursor: pointer;
+        background-color: rgb(99,181,169);
+        color: white;
+        border: 2px solid rgb(99,181,169);
+        text-align: center;
+        display: inline-block;
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 400;
+    }
+    
+    a.button:hover {
+        background-color: white;
+        color: rgb(99,181,169);
+    }
+  
+    .youtube_title {
+        color: black;
+        text-align: left;
+        font-size: 38px;
+        font-weight: bold;
+        margin-bottom: 56px;
+        display:block;
+    }
+
+    .youtube_subtitle {
+        font-size: 16px;
+        display:block;
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    .press_span {
+        display: block;
+        font-size: 17px;
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 400;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $( window ).resize( function() {
+        init();
+    });
+    
+    $( window ).ready( function() {
+        init();
+    });
+
+    function init() {
+        var height = $('iframe').width() * 3 / 5;
+        $('.about_youtube_wrapper_row').height(height);
+        $('.about_youtube_wrapper').height(height * 2);
+    }
+    
+</script>
+
+</head>
+
+<body>
+
+    <div class="topnav">
+        <img alt="Logo" src="{{ url_for('static', path='/images/green_logo.png') }}"/>
+        <div id="menu_text_wrapper">
+            <a class="top_menu" href="/map">Map</a>
+            <a class="top_menu" href="/project">Project</a>
+            <a class="top_menu" href="/about">About</a>
+            <a class="top_menu" href="/contact" style="margin-right: 171px;">Contact</a>
+        </div>
+    </div>
+
+    <div style="width:100%; height:195px; background-color:#E5E5E5;display:table;">
+        <span style="margin: auto;color:white;font-weight:bold;font-size:55px;display:table-cell;vertical-align:middle;font-family:'apple_gothic'">About</span>
+    </div>
+
+    <div class="about_top_wrapper">
+        <div class="about_top">
+            <span class="about_title">The Founder Story</span>
+            
+            <div style="border-bottom : 1px solid black; width : 40px;"></div>
+
+            <span class="about_content">그린 오션스는 통영에서 발생하는 연간 20만 톤의 굴 껍데기를 친환경 자원화하는 프로젝트를 진행 중에 있습니다.<br>
+                굴 껍데기의 주요성분은 95% 이상이 탄산칼슘으로 우리 생활주변에 빠지지 않는 첨가 소재로 다양하게 쓰이고 있습니다. 우리는 이런 굴 껍데기의처리 장치, 소재의 개발 및 자원화와 지속 가능한 수익창출의 실현을 위해 여러 대학, 연구기관, 전문가들과 함께 검증하고 있습니다.<br> 
+                그린 오션스는 이처럼 버려지는 천연자원과 훼손되는 해양 환경을 보살피기 위해 공학, 화학, AI 등 클린테크를 접목한 우리의 친환경 기술력과 해양의 무한한 생명력을 융복합 하여 로컬의 지속가능성을 고민하고 찾아내어 실현시키는 기업으로 자리매김하고자 합니다.
+                <br><br><br>
+                
+                그린 오션스의 이런 한 걸음이 나아가, 지구환경을 지키는 첫걸음이라고 우리는 믿고 있습니다.
+                <span style="
+                text-align: right;
+                display:block;
+                margin-top:100px;
+                font-family: 'apple_gothic';
+                font-style: normal;
+                font-weight: 400;">그린오션스 대표 문피아</span>
+            </span>
+
+        </div>
+    </div>
+    <div class="dummy"></div>
+    <div class="about_youtube_wrapper">
+        <div class="about_youtube_wrapper_row">
+
+            <iframe src="https://www.youtube.com/embed/UExY6skO9pA"
+                style="width: 60%;height: 100%;" 
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+            <div style="width:40%; padding-left:89px;padding-top:130px;position:relative">
+                <span class="youtube_title" >What work do we do</span>
+                <div style="border-bottom : 1px solid black; width : 40px;margin:0px;padding:0px;"></div>
+                <span class="youtube_subtitle" style="text-align:left; position:absolute;bottom:96px">[소풍벤처스] 굴패각 전처리 과정 효율화 시스템으로 해양자원을 만들다
+                    (2022.10)</span>
+            </div>
+        </div>
+        <div class="about_youtube_wrapper_row" style="flex-direction: row-reverse;">
+            <iframe src="https://www.youtube.com/embed/bUbMdRrZvUc"
+                style="width: 60%; height: 100%;" 
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+            <div style="width:40%;padding-left:89px;padding-top:130px;position:relative">
+                <span class="youtube_title" >Who we are</span>
+                <div style="border-bottom : 1px solid black; width : 40px;margin:0px;padding:0px;"></div>
+                <span class="youtube_subtitle" style="text-align:left; position:absolute;bottom:96px">[소풍벤처스] IMPACT EARTH INVESTORS DAY (2022.11)</span>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <div style="width:100%; height:280px; background-color:#E5E5E5;display:table;">
+        <span style="
+        margin: auto;color:white;
+        font-weight:bold;
+        font-size:55px;
+        display:table-cell;
+        vertical-align:middle;
+        font-family: 'apple_gothic';">Press</span>
+    </div>
+
+    <span class="press_span">[Chosun Media] 해양오염 주범 굴 껍데기, 친환경 자원으로 재탄생 (22.10.28)</span>
+    <a href="https://futurechosun.com/archives/69459" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
+
+    <span class="press_span" style="margin-top: 92px;">[중소기업신문] '강한 소상공인'에 뽑힌 34개팀 어디? (22.07.01)</span>
+    <a href="https://www.smedaily.co.kr/news/articleView.html?idxno=233963" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
+
+    <span class="press_span" style="margin-top: 92px;">[Chosun Media] 농식품 산업 키워드는 ‘운명공동체’… “밸류체인 전반에서 혁신 일어나야” (22.10.28)</span>
+    <a href="https://futurechosun.com/archives/69430" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
+
+    <span class="press_span" style="margin-top: 92px;">[Venture Square] 농식품 산업 키워드는 ‘운명공동체’… “밸류체인 전반에서 혁신 일어나야” (22.10.24)</span>
+    <a href="https://futurechosun.com/archives/69430" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
+
+    <img style="width:100%;margin-top:148px" src="{{ url_for('static', path='/images/bottom.png')}}"/>
+
+</html>
