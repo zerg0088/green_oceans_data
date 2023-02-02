@@ -205,9 +205,6 @@
         {% endif %}
 
 
-        const tempLoadImage = "{{ my_url_for(request, 'static', path='/data/position_image/1.png')}}"
-        const tempPositionImage = "{{ my_url_for(request, 'static', path='/data/load_image/1.png')}}"
-        const temp3DImage = "{{ my_url_for(request, 'static', path='/data/3d_image/1.png')}}"
         var map;
         var selectedOister;
         
@@ -215,8 +212,8 @@
             {% for result in list %}
                 {index: "{{ result[0] }}",name: "{{ result[1] }}", address: "{{ result[2] }}", lat: {{ result[3] }}, lng: {{ result[4] }}, year21 : {{ result[5] }}, year22 : {{ result[6] }}, file_name : "{{ result[7] }}"
                 , loadPath : "{{ my_url_for(request, 'static', path='/data/load_image/')}}{{ result[7] }}.png" 
-                , threePath : "{{ my_url_for(request, 'static', path='/data/3d_image/')}}{{ result[7] }}.png" 
-                , positionPath : "{{ my_url_for(request, 'static', path='/data/position_image/')}}{{ result[7] }}.png" },
+                , threePath : "{{ my_url_for(request, 'static', path='/data/3d_image/')}}{{ result[0] }}.png" 
+                , positionPath : "{{ my_url_for(request, 'static', path='/data/position_image/')}}{{ result[0] }}.png" },
             {% endfor %}
         ];
 
@@ -328,6 +325,11 @@
                             firstOister = oister;
                         }
 
+                        const tempLoadImage = "{{ my_url_for(request, 'static', path='/data/position_image/1.png')}}"
+                        const tempPositionImage = "{{ my_url_for(request, 'static', path='/data/load_image/1.png')}}"
+                        const temp3DImage = "{{ my_url_for(request, 'static', path='/data/3d_image/1.png')}}"
+                        
+
                     var child = 
                     "<div class='index_cell' style='border-top: 2px solid #D6D6D6;'>" +
                         "<div>"+
@@ -395,25 +397,23 @@
         }
 
         function homeDisplay(oister) {
-            // sssss
             $('#home_single_wrapper').show();
             $('#home_list_wrapper').hide();
             
             selectedOister = oister;
         
-            /*$("#home_load_image").css({'background-image': "url(" + oister.loadPath + ")" });
+            $("#home_load_image").css({'background-image': "url(" + oister.loadPath + ")" });
             $("#home_position_image").css({'background-image': "url(" + oister.positionPath + ")"});
             $("#home_3d_image").css({'background-image': "url(" + oister.threePath + ")" });
-            */
             
             // for temp
 
             $("#home_name").text("사업자 " + oister.name);
             $("#home_address").text(oister.address);
 
-            $("#home_position_image").css({'background-image': "url(" + tempLoadImage + ")"});
-            $("#home_load_image").css({'background-image': "url(" + tempPositionImage + ")"});
-            $("#home_3d_image").css({'background-image': "url(" + temp3DImage + ")"});
+            $("#home_volume_22").text(oister.year22 + "ton");
+            $("#home_volume_21").text(oister.year21 + "ton");
+            
         }
 
 
