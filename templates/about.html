@@ -256,6 +256,10 @@
     
     $( window ).ready( function() {
         init();
+
+        $('#logo_img').click(function() {
+            location.href = "/map"
+        });
     });
 
     function init() {
@@ -271,7 +275,7 @@
 <body>
 
     <div class="topnav">
-        <img alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}"/>
+        <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
         <div id="menu_text_wrapper">
             <a class="top_menu" href="/map">Map</a>
             <a class="top_menu" href="/project">Project</a>

@@ -33,6 +33,10 @@
             $('#send_email').click(function() {
                 $('#send_email').attr('href', "mailto:" + $('#input_email').val() + "?body=" + "name : " + $('#input_name').val() + ", message : " + $('#input_content').val());
             });
+
+            $('#logo_img').click(function() {
+                location.href = "/map"
+            });
         });
 
         
@@ -228,7 +232,7 @@
 <body>
 
     <div class="topnav">
-        <img alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}"/>
+        <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
         <div id="menu_text_wrapper">
             <a class="top_menu" href="/map">Map</a>
             <a class="top_menu" href="/project">Project</a>
