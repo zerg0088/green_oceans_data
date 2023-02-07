@@ -45,51 +45,43 @@
     </script>
 
     <script type="module">
-        import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.0.3";
+        
         import * as THREE from 'three';
-        import { OrbitControls } from "https://unpkg.com/three@0.149.0/examples/jsm/controls/OrbitControls.js";
-        import { OBJLoader } from "https://unpkg.com/three@0.149.0/examples/jsm/loaders/OBJLoader.js";
-        import { MTLLoader } from "https://unpkg.com/three@0.149.0/examples/jsm/loaders/MTLLoader.js";
+        import { OrbitControls } from 'https://unpkg.com/three@0.149.0/examples/jsm/controls/OrbitControls.js';
+        import { OBJLoader } from 'https://unpkg.com/three@0.149.0/examples/jsm/loaders/OBJLoader.js';
+        import { MTLLoader } from 'https://unpkg.com/three@0.149.0/examples/jsm/loaders/MTLLoader.js';
 
-        function drawerOpen() {
-            $('#map').css('width','calc(100% - 27%)');
-            $('#dsv_container').css('width','27%');
-            $('#drawer_div').css('left','27%');
+        {% if index|length %}
+        var directIndex = {{ index }}
+        {% else %}
+        var directIndex = -1
+        {% endif %}
 
-            $('#drawer_div_arrow_left').show();
-            $('#drawer_div_arrow_right').hide();
+        var map;
+        var selectedOister;
+        var listOrder = 0; // 0 : 오름, 1 : 내림
+        var listRangeStart = 0;
+        var listRangeEnd = 1;
+        var firstOister;
 
-            $('#map_style').css('left','calc(27% + 32px)');
-        }
+        const allList = [
+            {% for result in list %}
+                {index: "{{ result[0] }}",name: "{{ result[1] }}", address: "{{ result[2] }}", lat: {{ result[3] }}, lng: {{ result[4] }}, year21 : {{ result[5] }}, year22 : {{ result[6] }}, file_name : "{{ result[7] }}"
+                , loadPath : "{{ my_url_for(request, 'static', path='/data/load_image/')}}{{ result[7] }}.png" 
+                , threePath : "{{ my_url_for(request, 'static', path='/data/3d_image/')}}{{ result[0] }}.png" 
+                , positionPath : "{{ my_url_for(request, 'static', path='/data/position_image/')}}{{ result[0] }}.png" },
+            {% endfor %}
+        ];
 
-        function drawerClose() {
-            $('#map').css('width','100%');
-            $('#dsv_container').css('width','0px');
-            $('#drawer_div').css('left','0px');
-            
-            $('#drawer_div_arrow_left').hide();
-            $('#drawer_div_arrow_right').show();
-
-            $('#map_style').css('left','32px');
-        }
-
+        const oisterList = [
+            {% for result in list %}{lat: {{ result[3] }}, lng: {{ result[4] }}},{% endfor %}
+        ];
+        
         $(document).ready(function(){
             $('#menu_btn').click(function() {
                 $('#dsv_container').hide();
                 $('#map').css('width','100%');
                 $('#map').css('float','left');
-            });
-
-            $('#detail_first_button').click(function() {
-                
-            });
-
-            $('#detail_second_button').click(function() {
-                
-            });
-
-            $('#detail_third_button').click(function() {
-                
             });
 
             $('#drawer_div').click(function() {
@@ -108,126 +100,19 @@
             $('#logo_img').click(function() {
                 location.href = "/map"
             });
-        });
 
-        function copyToClipboard(text) {
-            var sampleTextarea = document.createElement("textarea");
-            document.body.appendChild(sampleTextarea);
-            sampleTextarea.value = text; //save main text in it
-            sampleTextarea.select(); //select textarea contenrs
-            document.execCommand("copy");
-            document.body.removeChild(sampleTextarea);
-        }
-
-        function load3D(objPath, mtlPath) {
-            const canvas = document.querySelector('#canvas_3d');
-            const renderer = new THREE.WebGLRenderer({canvas});
-          
-            const fov = 40;
-            const aspect = 2;  // the canvas default
-            const near = 1;
-            const far = 1000;
-            const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-            camera.position.set(0, 100, 500);
-          
-            const controls = new OrbitControls(camera, canvas);
-            controls.target.set(0, 5, 0);
-            controls.update();
-          
-            const scene = new THREE.Scene();
-            scene.background = new THREE.Color('black');
-          
-            {
-                const skyColor = 0xB1E1FF;  // light blue
-                const groundColor = 0xB97A20;  // brownish orange
-                const intensity = 1;
-                const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
-                scene.add(light);
-            }
-          
-            {
-                const color = 0xFFFFFF;
-                const intensity = 0.8;
-                const light = new THREE.DirectionalLight(color, intensity);
-                light.position.set(500, 500, 500);
-                scene.add(light);
-                scene.add(light.target);
-            }
-          
-            {
-                const mtlLoader = new MTLLoader();
-                const objLoader = new OBJLoader();
-
-                mtlLoader.load(mtlPath, (mtl) => {
-                    mtl.preload()
-                    objLoader.setMaterials(mtl);
-
-                    objLoader.load(
-                        objPath,
-                        (object) => {
-                            scene.add(object)
-                        },
-                        (xhr) => {
-                            //console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
-                        },
-                        (error) => {
-                            //console.log('An error happened')
-                        }
-                    )
-                });
-            }
-          
-            function resizeRendererToDisplaySize(renderer) {
-                const canvas = renderer.domElement;
-                const width = canvas.clientWidth;
-                const height = canvas.clientHeight;
-                const needResize = canvas.width !== width || canvas.height !== height;
-                if (needResize) {
-                    renderer.setSize(width, height, false);
+            if(directIndex != -1) {                    
+                const oister = allList.filter(v => v.index == directIndex)[0];
+                if(oister != null) {
+                    homeDisplay(oister);
                 }
-                return needResize;
-            }
-          
-            function render() {
-          
-                if (resizeRendererToDisplaySize(renderer)) {
-                    const canvas = renderer.domElement;
-                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
-                    camera.updateProjectionMatrix();
-                }
-                renderer.render(scene, camera);
-                requestAnimationFrame(render);
-            }
-          
-            requestAnimationFrame(render);
-        }
-
-        {% if index|length %}
-            var directIndex = {{ index }}
-        {% else %}
-            var directIndex = -1
-        {% endif %}
-
-
-        var map;
-        var selectedOister;
-        
-        const allList = [
-            {% for result in list %}
-                {index: "{{ result[0] }}",name: "{{ result[1] }}", address: "{{ result[2] }}", lat: {{ result[3] }}, lng: {{ result[4] }}, year21 : {{ result[5] }}, year22 : {{ result[6] }}, file_name : "{{ result[7] }}"
-                , loadPath : "{{ my_url_for(request, 'static', path='/data/load_image/')}}{{ result[7] }}.png" 
-                , threePath : "{{ my_url_for(request, 'static', path='/data/3d_image/')}}{{ result[0] }}.png" 
-                , positionPath : "{{ my_url_for(request, 'static', path='/data/position_image/')}}{{ result[0] }}.png" },
-            {% endfor %}
-        ];
-
-
-        const oisterList = [
-            {% for result in list %}{lat: {{ result[3] }}, lng: {{ result[4] }}},{% endfor %}
-        ];
-
-        $(document).ready(function(){
             
+                drawerOpen();
+                $("#dsv_home").show();
+                $("#volume_sort_high").hide();
+                $('#home_back_button').css('visibility','visible');
+            }
+
             $('ul.tabs li').click(function(){
                 var tab_id = $(this).attr('data-tab');
 
@@ -277,7 +162,6 @@
                 $('#map_image').hide();
                 $('#canvas_3d').show();
             });
-
         });
 
         function changeMapType(type) {
@@ -299,107 +183,6 @@
             }
         }
 
-        var listOrder = 0; // 0 : 오름, 1 : 내림
-        var listRangeStart;
-        var listRangeEnd;
-
-        function homeListDisplay(start, end) {
-            var index = 1;
-            
-            listRangeStart = start;
-            listRangeEnd = end;
-        
-            $('#home_single_wrapper').hide();
-            $('#home_list_wrapper').show();
-            
-            $('#home_list_wrapper').html("");
-            
-            allList.sort(function(a, b) {
-                return b.year22 - a.year22;
-            });
-            
-            var isFirst = true;
-
-            for(const oister of allList) {
-
-                if((start.lat() < oister.lat && end.lat() > oister.lat) && 
-                    (start.lng() < oister.lng && end.lng() > oister.lng)) {
-                        if(isFirst) {
-                            isFirst = false;
-                            firstOister = oister;
-                        }
-
-                        const tempLoadImage = "{{ my_url_for(request, 'static', path='/data/position_image/1.png')}}"
-                        const tempPositionImage = "{{ my_url_for(request, 'static', path='/data/load_image/1.png')}}"
-                        const temp3DImage = "{{ my_url_for(request, 'static', path='/data/3d_image/1.png')}}"
-                        
-
-                    var child = 
-                    "<div class='index_cell' style='border-top: 2px solid #D6D6D6;'>" +
-                        "<div>"+
-                            "<span class='index_cell_top_span' style='margin-right: 21px;'>순번 " + makeIndex(index) + "</span>" +                
-                            "<span class='index_cell_top_span' style='margin-right: 21px;'>사업자 " + oister.name + "</span>" +
-                            "<span id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ my_url_for(request, 'static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>"+
-                        "</div>"+
-                        "<span class='index_cell_title'>" + oister.address + "</span>"+
-                        
-                        "<div class='index_cell_title_splitter'></div>"+
-                        "<span class='home_span'>로드뷰(3D 맵핑)</span>"+
-                        "<div id='home_load_image' class='home_image_wrapper' style='background-image: url("  + tempPositionImage + "')>"+
-                            "<div class='image_plus_button_wrapper plus_button_3d'>"+
-                                "<img class='image_plus_button_image'/>"+
-                            "</div>"+
-                        "</div>"+
-                        "<span class='index_cell_table_title'>굴 껍데기 야적 물량</span>"+
-                        "<table class='index_cell_table'>"+
-                            "<th>연도</th>"+
-                            "<th>야적량 (ton)</th>"+
-                                "<th>비고</th>"+
-                            "<tr>"+
-                                "<td>2022</td>"+
-                                "<td>" + zeroTextCheck(oister.year22) + "</td>"+
-                            "</tr>"+
-                            "<tr>"+
-                                "<td>2021</td>"+
-                                "<td>" + zeroTextCheck(oister.year21) + "</td>"+
-                            "</tr>"+
-
-
-                        "</table>"+
-                        "<span class='home_span'>야적지 위치</span>"+
-                        "<div class='home_image_wrapper' style='background-image: url(" + tempLoadImage + "')>"+
-                            "<div class='image_plus_button_wrapper'>"+
-                                "<img class='image_plus_button_image'/>"+
-                            "</div>"+
-                        "</div>"+        
-                        "<div class='index_cell_title_splitter'></div>"+
-                        "<span class='home_span'>부피측정</span>"+
-                        "<div class='home_image_wrapper' style='background-image: url(" + temp3DImage + "')>"+
-                            "<div class='image_plus_button_wrapper '>"+
-                                "<img class='image_plus_button_image'/>"+
-                            "</div>"+
-                        "</div>"+
-                    "</div>";
-
-                    
-
-                    index++;
-                
-                    $('#home_list_wrapper').append(child);
-                }
-            }
-
-            $('#home_index_cell_share_button').click(function() {
-                $('#toast').show();
-                $('#toast').delay(2000).hide(0);
-
-                var getUrl = window.location;
-                var baseUrl = getUrl.protocol + "//" + getUrl.host + "/map/"
-                copyToClipboard(baseUrl + oister.index);
-            });
-
-        }
-
         function homeDisplay(oister) {
             $('#home_single_wrapper').show();
             $('#home_list_wrapper').hide();
@@ -410,18 +193,13 @@
             $("#home_position_image").css({'background-image': "url(" + oister.positionPath + ")"});
             $("#home_3d_image").css({'background-image': "url(" + oister.threePath + ")" });
             
-            // for temp
-
             $("#home_name").text("사업자 " + oister.name);
             $("#home_address").text(oister.address);
 
             $("#home_volume_22").text(oister.year22 + "ton");
             $("#home_volume_21").text(oister.year21 + "ton");
-            
         }
 
-
-        var firstOister;
         function oisterListDisplay(start, end, order) {
             var index = 1;
             var total21 = 0;
@@ -510,8 +288,123 @@
             
             $("#total_21_ton").text(total21.toFixed(1) + " ton");
             $("#total_22_ton").text(total22.toFixed(1) + " ton");
-            $("#total_ton").text((total22 + total21).toFixed(1) + " ton");
+            $("#total_ton").text((total22 + total21).toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " ton");
         }
+    
+
+        function copyToClipboard(text) {
+            var sampleTextarea = document.createElement("textarea");
+            document.body.appendChild(sampleTextarea);
+            sampleTextarea.value = text; //save main text in it
+            sampleTextarea.select(); //select textarea contenrs
+            document.execCommand("copy");
+            document.body.removeChild(sampleTextarea);
+        }
+          
+        function load3D(objPath, mtlPath) {
+            const canvas = document.querySelector('#canvas_3d');
+            const renderer = new THREE.WebGLRenderer({canvas});
+          
+            const fov = 40;
+            const aspect = 2;  // the canvas default
+            const near = 1;
+            const far = 1000;
+            const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+            camera.position.set(0, 100, 500);
+          
+            const controls = new OrbitControls(camera, canvas);
+            controls.target.set(0, 5, 0);
+            controls.update();
+          
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color('black');
+          
+            {
+                const skyColor = 0xB1E1FF;  // light blue
+                const groundColor = 0xB97A20;  // brownish orange
+                const intensity = 1;
+                const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+                scene.add(light);
+            }
+          
+            {
+                const color = 0xFFFFFF;
+                const intensity = 0.8;
+                const light = new THREE.DirectionalLight(color, intensity);
+                light.position.set(500, 500, 500);
+                scene.add(light);
+                scene.add(light.target);
+            }
+          
+            {
+                const mtlLoader = new MTLLoader();
+                const objLoader = new OBJLoader();
+
+                mtlLoader.load(mtlPath, (mtl) => {
+                    mtl.preload()
+                    objLoader.setMaterials(mtl);
+
+                    objLoader.load(
+                        objPath,
+                        (object) => {
+                            scene.add(object)
+                        },
+                        (xhr) => {
+                            //console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+                        },
+                        (error) => {
+                            //console.log('An error happened')
+                        }
+                    )
+                });
+            }
+          
+            function resizeRendererToDisplaySize(renderer) {
+                const canvas = renderer.domElement;
+                const width = canvas.clientWidth;
+                const height = canvas.clientHeight;
+                const needResize = canvas.width !== width || canvas.height !== height;
+                if (needResize) {
+                    renderer.setSize(width, height, false);
+                }
+                return needResize;
+            }
+          
+            function render() {
+          
+                if (resizeRendererToDisplaySize(renderer)) {
+                    const canvas = renderer.domElement;
+                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                }
+                renderer.render(scene, camera);
+                requestAnimationFrame(render);
+            }
+          
+            requestAnimationFrame(render);
+        }
+        function drawerOpen() {
+            $('#map').css('width','calc(100% - 27%)');
+            $('#dsv_container').css('width','27%');
+            $('#drawer_div').css('left','27%');
+
+            $('#drawer_div_arrow_left').show();
+            $('#drawer_div_arrow_right').hide();
+
+            $('#map_style').css('left','calc(27% + 32px)');
+        }
+
+        function drawerClose() {
+            $('#map').css('width','100%');
+            $('#dsv_container').css('width','0px');
+            $('#drawer_div').css('left','0px');
+            
+            $('#drawer_div_arrow_left').hide();
+            $('#drawer_div_arrow_right').show();
+
+            $('#map_style').css('left','32px');
+        }
+
 
         function initMap() {
             
@@ -530,7 +423,6 @@
                 var startLo = bounds.getSouthWest();
 
                 oisterListDisplay(startLo,endLo,listOrder);
-                //homeListDisplay(startLo,endLo,listOrder);
             });
 
             google.maps.event.addListener(map, 'zoom_changed', function() {
@@ -539,7 +431,6 @@
                 var startLo = bounds.getSouthWest();
 
                 oisterListDisplay(startLo,endLo,listOrder);
-                //homeListDisplay(startLo,endLo,listOrder);
             });
             
             google.maps.event.addListener(map, 'dragend', function(evt){
@@ -548,7 +439,6 @@
                 var startLo = bounds.getSouthWest();
                 
                 oisterListDisplay(startLo,endLo,listOrder);
-                //homeListDisplay(startLo,endLo,listOrder);
             });
 
             const pin = {
@@ -580,12 +470,6 @@
                     $("#dsv_home").show();
                     $("#volume_sort_high").hide();
                     $('#home_back_button').css('visibility','visible');
-
-                    /*$('#dsv_container').show();
-                    $('#map').css('width','calc(100% - 529px)');
-                    $('#map').css('float','right');
-                    $('#oister_list').hide();
-                    $('#oister_detail').show();*/
                 });            
                 return marker;
             });
@@ -608,44 +492,29 @@
                 map.setZoom(map.getZoom() - 1);
             });
         }
-        
-        window.initMap = initMap;
-        $(window).on('load',function() {
 
-            if(directIndex != -1) {                    
-                const oister = allList.filter(v => v.index == directIndex)[0];
-                if(oister != null) {
-                    homeDisplay(oister);
-                }
-            
-                drawerOpen();
-                //$('ul.tabs li:first').trigger("click");
-                $("#dsv_home").show();
-                $("#volume_sort_high").hide();
-                $('#home_back_button').css('visibility','visible');
-            }
-        });
-          
+        window.initMap = initMap;
     </script>
     
     </head>
     <style>
+
     @font-face {
         font-family: omni_040;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+        src: url("{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.woff') }}") format('woff');
+        src: url("{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}") format('truetype');
     }
 
     @font-face {
         font-family: omni_020;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+        src: url("{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.woff') }}") format('woff');
+        src: url("{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}") format('truetype');
     }
 
     @font-face {
         font-family: apple_gothic;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
+        src: url("{{ my_url_for(request, 'static', path='/fonts/applegothicneo.woff.woff') }}") format('woff');
+        src: url("{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}") format('truetype');
     }
 
     * {
@@ -986,7 +855,7 @@
         margin-right: 20px;
         width : 20px;
         height : 20px;
-        content: url('{{ my_url_for(request, 'static', path='/images/x.svg') }}');
+        content: url("{{ my_url_for(request, 'static', path='/images/x.svg') }}");
     }
 
     #map_image_dialog {
@@ -1049,9 +918,8 @@
     <div id="map_wrapper">  
         <div id="map"></div>   
 
-        <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCj_fxHTdVdYjCl6udpP_GbWUGfW9SVV8&callback=initMap&libraries=marker&v=beta"
-        defer></script>
+        <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCj_fxHTdVdYjCl6udpP_GbWUGfW9SVV8&callback=initMap&libraries=marker&v=beta"></script>
 
         <div id="map_image_wrapper">
             <div id="map_image_dialog">
@@ -1201,7 +1069,7 @@
                     display: block;
                     width : 21px;
                     height : 21px;
-                    content: url('{{ my_url_for(request, 'static', path='/images/plus.svg') }}');
+                    content: url("{{ my_url_for(request, 'static', path='/images/plus.svg') }}");
                 }
 
             </style>
