@@ -2,10 +2,9 @@
 
 <head>
     <title>Green Oceans</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/magnific-popup.min.js')}}"></script>
@@ -95,24 +94,28 @@
 
     .about_top_wrapper {
         width: 100%;
-        padding-left: 160px;
-        padding-right: 160px;
     }
 
     .about_top {
         width: 100%;
         background-color: white;
         height: auto;
-        padding: 100px;
+        padding-top:232px;
+        padding-left: 300px;
+        padding-right: 300px;
     }
 
     .about_title {
         color: black;
-        text-align: left;
-        font-size: 38px;
+        
+        font-size: 80px;
         font-weight: bold;
         margin-bottom: 80px;
         display:block;
+
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 800;
     }
 
     .about_content {
@@ -124,8 +127,8 @@
         text-align: left;
         display:block;
 
-        font-size: 16px;
-        line-height: 30px;
+        font-size: 26px;
+        line-height: 40px;
         color: #2E2E2E;
     }
     
@@ -144,7 +147,8 @@
     }
 
     .dummy {
-        height: 70px
+        height: 464px;
+        background-color:white;
     }
 
     .read_more_button {
@@ -191,17 +195,20 @@
         font-family: 'omni_040';
         font-style: normal;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 20px;
-        color: #0064FF;
+        color: #2e2e2e;
         align-self: center;
         margin-right: 136px;
     }
 
-    /* Change color on hover */
     .top_menu:hover {
         background-color: #ddd;
         color: black;
+    }
+
+    .top_menu:active {
+        color: #0064FF;
     }
 
 
@@ -226,6 +233,7 @@
         color: black;
         text-align: left;
         font-size: 38px;
+        font-family: 'apple_gothic';
         font-weight: bold;
         margin-bottom: 56px;
         display:block;
@@ -269,23 +277,17 @@
     }
     
 </script>
-
 </head>
-
 <body>
-
     <div class="topnav">
         <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
         <div id="menu_text_wrapper">
-            <a class="top_menu" href="/map">Map</a>
-            <a class="top_menu" href="/project">Project</a>
-            <a class="top_menu" href="/about">About</a>
-            <a class="top_menu" href="/contact" style="margin-right: 171px;">Contact</a>
+            <a class="top_menu" href="/map">MAP</a>
+            <a class="top_menu" href="/project">PROJECT</a>
+            <a class="top_menu" href="/about">ABOUT</a>
+            <a class="top_menu" href="/contact">CONTACT</a>
+            <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 171px;">GREENOCEANS</a>
         </div>
-    </div>
-
-    <div style="width:100%; height:195px; background-color:#E5E5E5;display:table;">
-        <span style="margin: auto;color:white;font-weight:bold;font-size:55px;display:table-cell;vertical-align:middle;font-family:'apple_gothic'">About</span>
     </div>
 
     <div class="about_top_wrapper">
@@ -294,16 +296,15 @@
             
             <div style="border-bottom : 1px solid black; width : 40px;"></div>
 
-            <span class="about_content">그린 오션스는 통영에서 발생하는 연간 20만 톤의 굴 껍데기를 친환경 자원화하는 프로젝트를 진행 중에 있습니다.<br>
-                굴 껍데기의 주요성분은 95% 이상이 탄산칼슘으로 우리 생활주변에 빠지지 않는 첨가 소재로 다양하게 쓰이고 있습니다. 우리는 이런 굴 껍데기의처리 장치, 소재의 개발 및 자원화와 지속 가능한 수익창출의 실현을 위해 여러 대학, 연구기관, 전문가들과 함께 검증하고 있습니다.<br> 
-                그린 오션스는 이처럼 버려지는 천연자원과 훼손되는 해양 환경을 보살피기 위해 공학, 화학, AI 등 클린테크를 접목한 우리의 친환경 기술력과 해양의 무한한 생명력을 융복합 하여 로컬의 지속가능성을 고민하고 찾아내어 실현시키는 기업으로 자리매김하고자 합니다.
-                <br><br><br>
-                
+            <span class="about_content">그린오션스는 통영에서 발생하는 연간 20만 톤의 굴 껍데기를 친환경 자원화하는 프로젝트를 진행 중에 있습니다. <br>
+                굴 껍데기의 주요성분은 95% 이상이 탄산칼슘으로 우리 생활주변에 빠지지 않는 첨가 소재로 다양하게 쓰이고 있습니다. 우리는 이런 굴 껍데기의 처리 장치, 소재의 개발 및 자원화와 지속 가능한 수익창출의 실현을 위해 여러 대학, 연구기관, 전문가들과 함께 검증하고 있습니다.<br>
+                그린오션스는 버려지는 천연자원과 훼손되는 해양 환경을 보살피기 위해 공학, 화학, AI 등의 클린테크를 접목한 친환경 기술력과 해양의 무한한 생명력을 융복합하여 로컬의 지속가능성을 고민하고 찾아내어 실현시키는 기업으로 자리매김하고자 합니다.
+                <br><br>
                 그린 오션스의 이런 한 걸음이 나아가, 지구환경을 지키는 첫걸음이라고 우리는 믿고 있습니다.
                 <span style="
                 text-align: right;
                 display:block;
-                margin-top:100px;
+                margin-top:50px;
                 font-family: 'apple_gothic';
                 font-style: normal;
                 font-weight: 400;">그린오션스 대표 문피아</span>
@@ -328,14 +329,15 @@
                     (2022.10)</span>
             </div>
         </div>
-        <div class="about_youtube_wrapper_row" style="flex-direction: row-reverse;">
+        <div class="about_youtube_wrapper_row">
+
             <iframe src="https://www.youtube.com/embed/bUbMdRrZvUc"
-                style="width: 60%; height: 100%;" 
+                style="width: 60%;height: 100%;" 
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
 
-            <div style="width:40%;padding-left:89px;padding-top:130px;position:relative">
+            <div style="width:40%; padding-left:89px;padding-top:130px;position:relative">
                 <span class="youtube_title" >Who we are</span>
                 <div style="border-bottom : 1px solid black; width : 40px;margin:0px;padding:0px;"></div>
                 <span class="youtube_subtitle" style="text-align:left; position:absolute;bottom:96px">[소풍벤처스] IMPACT EARTH INVESTORS DAY (2022.11)</span>
@@ -344,29 +346,61 @@
 
     </div>
 
+    <div class="dummy"></div>
+
+    <div style="background-color: white;">
+        <div style="width:100%; display:table;">
+            <span style="
+            margin: auto;color:black;
+            font-weight:bold;
+            font-size:55px;
+            display:table-cell;
+            vertical-align:middle;
+            font-family: 'apple_gothic';">Press</span>
+        </div>
     
-    <div style="width:100%; height:280px; background-color:#E5E5E5;display:table;">
-        <span style="
-        margin: auto;color:white;
-        font-weight:bold;
-        font-size:55px;
-        display:table-cell;
-        vertical-align:middle;
-        font-family: 'apple_gothic';">Press</span>
+        <span class="press_span" style="margin-top:100px">[매일경제] 굴 껍데기 재활용 스타트업 ‘그린오션스’, 2022 서울디자인페스티벌 참가 (22.12.22)</span>
+        <a href="https://mbnmoney.mbn.co.kr/news/view?news_no=MM1004813749" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
+    
+        <span class="press_span" style="margin-top: 92px;">[Chosun Media] 해양오염 주범 굴 껍데기, 친환경 자원으로 재탄생 (22.10.28)</span>
+        <a href="https://www.smedaily.co.kr/news/articleView.html?idxno=233963" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
+    
+        <span class="press_span" style="margin-top: 92px;">[중소기업신문] '강한 소상공인'에 뽑힌 34개팀 어디? (22.07.01)</span>
+        <a href="https://futurechosun.com/archives/69430" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
+    
+        <span class="press_span" style="margin-top: 92px;">[Venture Square] 농식품 산업 키워드는 ‘운명공동체’… “밸류체인 전반에서 혁신 일어나야” (22.10.24)</span>
+        <a href="https://futurechosun.com/archives/69430" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
+    
+        
     </div>
+    <div class="dummy"></div>
+    <img style="width:100%;" src="{{ my_url_for(request, 'static', path='/images/bottom.png')}}"/>
+    
+    <style>
+        .bottom_span {
+            color: white;
+            text-align: left;
+            display: block;
+            font-family: 'apple_gothic';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 23px;
+        }
+        b {
+            font-family: 'apple_gothic';
+            font-weight:bold;
+            font-size: 25px;
+            margin-right:24px;
+        }
+    </style>
+    <div style="width:100%; background-color:#2E2E2E;padding-top:56px; padding-bottom:56px;padding-left:245px">
+        <span class="bottom_span" style="font-size:29px;font-weight: bold;">주식회사 그린오션스</span>
+        <span class="bottom_span" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:80px">사업자 번호</b>823-86-02292</span>
 
-    <span class="press_span">[Chosun Media] 해양오염 주범 굴 껍데기, 친환경 자원으로 재탄생 (22.10.28)</span>
-    <a href="https://futurechosun.com/archives/69459" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
-
-    <span class="press_span" style="margin-top: 92px;">[중소기업신문] '강한 소상공인'에 뽑힌 34개팀 어디? (22.07.01)</span>
-    <a href="https://www.smedaily.co.kr/news/articleView.html?idxno=233963" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
-
-    <span class="press_span" style="margin-top: 92px;">[Chosun Media] 농식품 산업 키워드는 ‘운명공동체’… “밸류체인 전반에서 혁신 일어나야” (22.10.28)</span>
-    <a href="https://futurechosun.com/archives/69430" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
-
-    <span class="press_span" style="margin-top: 92px;">[Venture Square] 농식품 산업 키워드는 ‘운명공동체’… “밸류체인 전반에서 혁신 일어나야” (22.10.24)</span>
-    <a href="https://futurechosun.com/archives/69430" target="_blank" class="button" style="width: 150px; height: 42px;line-height:42px;font-size:17px;text-decoration: underline;margin-top:33px">Read More</a>
-
-    <img style="width:100%;margin-top:148px" src="{{ my_url_for(request, 'static', path='/images/bottom.png')}}"/>
-
+        <span class="bottom_span" style="margin-top: 50px;"><b>메일</b>piamoon@greenoceanskr.com</span>
+        <span class="bottom_span" style="margin-top: 20px;"><b>팩스</b>0504-140-4267</span>
+        <span class="bottom_span" style="margin-top: 20px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
+        <span class="bottom_span" style="margin-top: 20px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
+        
+    </div>
 </html>

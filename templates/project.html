@@ -77,7 +77,7 @@
     }
 
     * {
-        font-family: 'omni_040';
+        font-family: 'apple_gothic';
         font-style: normal;
         font-weight: 400;
         -webkit-box-sizing: border-box;
@@ -222,17 +222,20 @@
         font-family: 'omni_040';
         font-style: normal;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 20px;
-        color: #0064FF;
+        color: #2e2e2e;
         align-self: center;
         margin-right: 136px;
     }
 
-    /* Change color on hover */
     .top_menu:hover {
         background-color: #ddd;
         color: black;
+    }
+
+    .top_menu:active {
+        color: #0064FF;
     }
 
     a.button{
@@ -271,6 +274,7 @@
         font-size: 22px;
     }
 
+    
 </style>
 </head>
 
@@ -279,10 +283,11 @@
     <div class="topnav">
         <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
         <div id="menu_text_wrapper">
-            <a class="top_menu" href="/map">Map</a>
-            <a class="top_menu" href="/project">Project</a>
-            <a class="top_menu" href="/about">About</a>
-            <a class="top_menu" href="/contact" style="margin-right: 171px;">Contact</a>
+            <a class="top_menu" href="/map">MAP</a>
+            <a class="top_menu" href="/project">PROJECT</a>
+            <a class="top_menu" href="/about">ABOUT</a>
+            <a class="top_menu" href="/contact">CONTACT</a>
+            <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 171px;">GREENOCEANS</a>
         </div>
     </div>
 
@@ -297,10 +302,10 @@
             <div style="border-bottom : 1px solid black; width : 40px;"></div>
 
             <span class="project_content">
-                (주)그린오션스에서는 2022년 굴 껍데기 야적량 계산 AI 알고리즘 개발 프로젝트 ‘The Green ton Project’를 구축하였습니다.<br>
-                한국은 수하식 굴 양식업의 활발한 발달과 성장을 기반으로 세계 2위 규모의 굴생산량을 자랑하고 있습니다.
-                그러나 그 명성의 걸맞지은 않게 선순환적인 굴껍데기 처리방법이 마련되어 있지 않습니다.
-                그에 따른 문제 해결의 첫번째 단추로 굴껍데기 발생량과 야적량의 체계적인 DATA SET의 정량화를 통해 지속적으로 관리하기 위한 알고리즘 ‘The Green ton’을 개발하였습니다.
+(주)그린오션스에서는 2022년 <b>굴 껍데기 야적량 계산 AI 알고리즘 개발 프로젝트 ‘The Green ton Project’</b> 를 구축하였습니다. 
+한국은 수하식 굴 양식업의 활발한 발달과 성장을 기반으로 세계 2위 규모의 굴생산량을 자랑하고 있습니다. 
+그러나 그 명성의 걸맞지 않게 선순환적인 굴껍데기 처리방법이 마련되어 있지 않습니다. 
+그에 따른 문제 해결의 첫번째 단추로 굴껍데기 발생량과 야적량의 체계적인 DATA SET의 정량화를 통한 지속적 관리 알고리즘 ‘The Green ton’ 을 개발하였습니다.
             </span>
 
         </div>
@@ -342,27 +347,27 @@
         data-flickity='{ "lazyLoad": true }'>
         <div class="carousel-cell">
             <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide1.jpg')}}" />
+                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide1.png')}}" />
         </div>
         <div class="carousel-cell">
             <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide2.jpg')}}" />
+                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide2.png')}}" />
         </div>
         <div class="carousel-cell">
             <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide3.jpg')}}" />
+                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide3.png')}}" />
         </div>
         <div class="carousel-cell">
             <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide4.jpg')}}" />
+                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide4.png')}}" />
         </div>
         <div class="carousel-cell">
             <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide5.jpg')}}" />
+                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide5.png')}}" />
         </div>
         <div class="carousel-cell">
             <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide6.jpg')}}" />
+                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide6.png')}}" />
         </div>
     </div>
 
