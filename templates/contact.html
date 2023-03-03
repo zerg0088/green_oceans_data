@@ -45,7 +45,7 @@
 
             const contentString =
                 '<div id="content">' +
-                    '<h3 style="font-family:apple_gothic;font-style: normal;font-weight: 400;" >GREEN OCEANS</h3>' +
+                    '<h3 style="font-family:apple_gothic_b;font-style: normal;" >GREEN OCEANS</h3>' +
                 "</div>";
 
             const infowindow = new google.maps.InfoWindow({
@@ -61,6 +61,37 @@
     </script>
 </head>
 <style>
+    
+    @font-face {
+        font-family: omni_040;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: omni_020;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: apple_gothic_r;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo_r.ttf') }}') format('truetype');
+    }
+
+    @font-face {
+        font-family: apple_gothic_eb;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo_eb.ttf') }}') format('truetype');
+    }
+
+    @font-face {
+        font-family: apple_gothic_sb;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo_sb.ttf') }}') format('truetype');
+    }
+
+    @font-face {
+        font-family: apple_gothic_b;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo_b.ttf') }}') format('truetype');
+    }
+    
     #map {
         height: 455px;
         width: 1320px;
@@ -86,9 +117,9 @@
     }
     
     .topnav a {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_b';
         font-style: normal;
-        font-weight: 700;
+        
 
         font-size: 22px;
         line-height: 26px;
@@ -115,7 +146,7 @@
         text-decoration: none;
         font-family: 'omni_040';
         font-style: normal;
-        font-weight: 400;
+        
         font-size: 18px;
         line-height: 20px;
         color: #2e2e2e;
@@ -133,7 +164,7 @@
     }
 
     a.button{
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_r';
         font-style: normal;
         font-weight: 400;
         font-size: 22px;
@@ -154,10 +185,9 @@
     #contact_title {
         color: black;
         display:block;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_eb';
         margin: 0 auto;
         font-style: normal;
-        font-weight: 800;
         font-size: 90px;
         line-height: 108px;
         margin-top: 127px;
@@ -172,22 +202,30 @@
         margin-bottom:200px;
     }
 
-    .bottom_span {
+    .bottom_span_eb {
         color: white;
         text-align: left;
         display: block;
-        font-family: 'apple_gothic';
-        font-style: normal;
-        font-weight: 400;
+        font-family: 'apple_gothic_eb';
+        font-style: normal;    
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .bottom_span_r {
+        color: white;
+        text-align: left;
+        display: block;
+        font-family: 'apple_gothic_r';
+        font-style: normal;    
         font-size: 16px;
         line-height: 19px;
     }
 
     b {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_b';
         margin-right: 44px;    
         font-style: normal;
-        font-weight: 700;
         font-size: 16px;
         line-height: 19px;
     }
@@ -211,9 +249,9 @@
     }
 
     #contact_wrapper_left span {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_sb';
         font-style: normal;
-        font-weight: 600;
+        
         font-size: 18px;
         line-height: 22px;
         color: #747474;
@@ -229,9 +267,9 @@
     }
 
     .light_span {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_sb';
         font-style: normal;
-        font-weight: 600;
+        
         font-size: 22px;
         line-height: 26px;
         color: #747474;
@@ -268,9 +306,9 @@
     <span id="contact_title">CONTACT</span>
     <div id="contact_wrapper">
         <div style="
-            font-family: 'apple_gothic';
+            font-family: 'apple_gothic_b';
             font-style: normal;
-            font-weight: 700;
+            
             font-size: 51px;
             line-height: 61px;
             color: #2E2E2E;">Green Oceans</div>
@@ -312,12 +350,12 @@
 
     <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px;margin-top:838px">
         <div style="width:1320px; margin:0 auto;">
-            <span class="bottom_span" style="font-weight: 800;font-size: 20px;line-height: 24px;">주식회사 그린오션스</span>
-            <span class="bottom_span" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 67px;">사업자번호</b>823-86-02292</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
+            <span class="bottom_span_eb">주식회사 그린오션스</span>
+            <span class="bottom_span_r" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 67px;">사업자번호</b>823-86-02292</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
         </div>
     </div>
 </body>

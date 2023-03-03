@@ -4,7 +4,7 @@
     <title>Green Oceans</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=1920" />
+    <meta name="viewport" content="width=1920, initial-scale=1.0" />
     
     <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
@@ -17,6 +17,22 @@
 
 </head>
 <style>
+
+    @font-face {
+        font-family: omni_040;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: omni_020;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: apple_gothic;
+        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
+    }
+
     .about_top {
         width: 1320px;
         background-color: white;

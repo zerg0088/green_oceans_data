@@ -1,40 +1,10 @@
 
-@font-face {
-    font-family: omni_040;
-    src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_040.woff") }}') format('woff');
-    src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_040.ttf") }}') format('truetype');
-}
-
-@font-face {
-    font-family: omni_020;
-    src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_020.woff") }}') format('woff');
-    src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_020.ttf") }}') format('truetype');
-}
-
-@font-face {
-    font-family: apple_gothic;
-    src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo.woff.woff") }}') format('woff');
-    src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo.ttf") }}') format('truetype');
-}
-
 body {
     margin: 0;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-    overflow-x: hidden;
-}
-body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-}
-.wv-hide {
-    display: none;
-}
-.no-scroll {
-    overflow: hidden;
+    
 }
 
 * {
-    font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
 }
 
