@@ -510,54 +510,6 @@
 
     </head>
     <style>
-
-    @font-face {
-        font-family: omni_040;
-        src: url("{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.woff') }}") format('woff');
-        src: url("{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}") format('truetype');
-    }
-
-    @font-face {
-        font-family: omni_020;
-        src: url("{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.woff') }}") format('woff');
-        src: url("{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}") format('truetype');
-    }
-
-    @font-face {
-        font-family: apple_gothic;
-        src: url("{{ my_url_for(request, 'static', path='/fonts/applegothicneo.woff.woff') }}") format('woff');
-        src: url("{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}") format('truetype');
-    }
-
-    * {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 400;
-    }
-    body
-    {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 400;
-        margin:0px auto;
-        padding:0px;
-        text-align:center;
-        width:100%;
-        background-color:#A9D0F5;
-    }
-
-    span {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 400;
-    }
-
-    a {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 400;
-    }
-
     .share_img {            
         display: inline-block;
         vertical-align: middle;
@@ -694,24 +646,31 @@
     .topnav {
         overflow: hidden;
         background-color: white;
-        height: 105px;
+        height: 157px;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;;
+        justify-content: space-between;
     }
     
     .topnav a {
         font-family: 'apple_gothic';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
+
+        font-size: 22px;
+        line-height: 26px;
+
+        color: #2E2E2E;
+        margin-right: 153px;
     }
-    
+
     .topnav img {
         margin-left: 5%;
-        width : 189px;
-        height: 71px;
+        width : 280px;
+        height: 106px;
         align-self: center;
     }
+
 
     #menu_text_wrapper {
         inherits: true;
@@ -909,15 +868,15 @@
 
     <body>
         <div class="topnav">
-            <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
-            <div id="menu_text_wrapper">
-                <a class="top_menu" href="/map">MAP</a>
-                <a class="top_menu" href="/project">PROJECT</a>
-                <a class="top_menu" href="/about">ABOUT</a>
-                <a class="top_menu" href="/contact">CONTACT</a>
-                <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 171px;">GREENOCEANS</a>
-            </div>
+        <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
+        <div id="menu_text_wrapper">
+            <a class="top_menu" href="/map">MAP</a>
+            <a class="top_menu" href="/project">PROJECT</a>
+            <a class="top_menu" href="/about">ABOUT</a>
+            <a class="top_menu" href="/contact">CONTACT</a>
+            <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 121px;">GREENOCEANS</a>
         </div>
+    </div>
     <div id="toast">
         <span style="box-sizing: border-box;
             position: absolute;

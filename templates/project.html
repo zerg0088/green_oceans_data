@@ -9,204 +9,108 @@
     
     <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
-    <script src="{{ my_url_for(request, 'static', path='/js/magnific-popup.min.js')}}"></script>
-    <script src="{{ my_url_for(request, 'static', path='/js/custom2.js?v=2022041')}}"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112403815-1"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/flickity.pkgd.min.js')}}"></script>
 
-    <!--   CUSTOM CSS   -->
     <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/style.css?v=2022041')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/responsive.css?v=2022041')}}">
-    <!-- HEADER CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/h-style.css?v=2022056')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/h-responsive.css?v=2022041')}}">
-    <!-- FOOTER CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/f-style.css?v=2022041')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/f-responsive.css?v=2022041')}}">
-    <!-- PLUGIN CSS -->
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/xeicon.min.css')}}">
     <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/flickity.css')}}" media="screen">
 
 
     <script type="text/javascript">
-        $('.main-carousel').flickity({
-            // options
-            cellAlign: 'left',
-            contain: true
-          });
-
         $( window ).resize( function() {
-            init();
+            
         });
         
         $( window ).ready( function() {
-            init();
+            var flky = new Flickity( '.main-carousel', {
+                cellAlign: 'left',
+                contain: true,
+                pageDots: false,
+                draggable: false
+            });
+    
 
             $('#logo_img').click(function() {
                 location.href = "/map"
             });
         });
 
-        function init() {
-            var height = $('#temp_iframe').width() * 3 / 5;
-            $('#youtube_wrapper').height(height);
-        }
         
     </script>
 </head>
 <style>
-
-    @font-face {
-        font-family: omni_040;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+    .carousel-cell {
+        margin-right: 14px;
     }
 
-    @font-face {
-        font-family: omni_020;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
-    }
-
-    @font-face {
-        font-family: apple_gothic;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
-    }
-
-    * {
-        font-family: 'apple_gothic';
-        font-style: normal;
-        font-weight: 400;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    /* cell number */
-    .gallery-cell:before {
+    .carousel-cell img {
         display: block;
-        text-align: center;
-        content: counter(gallery-cell);
-        line-height: 200px;
-        font-size: 80px;
-        color: white;
+        width: 796px;
+        height: 465px;
     }
 
-    body {
-        margin: 0px auto;
-        padding: 0px;
-        text-align: center;
-        width: 100%;
-        font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-        background-color: white;
-    }
-
-    span {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 400;
-    }
-
-    a {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 400;
-    }
-
-    span {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 200;
-    }
-
-    li.active {
-        border: solid;
-        border-color: black;
-        border-width: 1px;
-        padding: 10px;
-    }
-
-    .project_top_wrapper {
-        width: 100%;
-    }
-
-    .about_top {
-        width: 100%;
+    .project_top {
+        width: 1320px;
         background-color: white;
         height: auto;
-        padding-left: 260px;
-        padding-right: 260px;
-        padding-top: 112px;
+        padding-top: 127px;
+        margin: 0 auto;
     }
 
-    .about_title {
-    
-        text-align: left;
-        margin-bottom: 56px;
+    .project_title {
         display:block;
-
-        font-family: 'omni_040';
+        font-family: 'apple_gothic';
         font-style: normal;
-        font-weight: 700;
-        font-size: 38px;
-        line-height: 61px;
-
-        color: #2E2E2E;
+        font-weight: 800;
+        font-size: 90px;
+        line-height: 108px;
+        text-align: center;
+        color: #000000;
     }
 
     .project_content {
-        margin-top: 80px;
-        
+        margin-top: 90px;
         text-align: left;
         display:block;
-        
         font-family: 'apple_gothic';
         font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 20px;
-
+        font-weight: 600;
+        font-size: 21px;
+        line-height: 40px;
+        text-align: justify;
         color: #2E2E2E;
     }
 
-    .about_youtube_wrapper {
-        width: 100%;
-        height: auto;
-        background-color: white;
-        padding-left: 108px;
-        padding-right: 108px;
-    }
-
-    .about_youtube_wrapper_row {
-        width: 100%;
-        display: flex;
-    }
-
     .dummy {
-        height: 70px
+        height: 422px
     }
 
     .topnav {
         overflow: hidden;
         background-color: white;
-        height: 105px;
+        height: 157px;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;;
+        justify-content: space-between;
     }
     
     .topnav a {
         font-family: 'apple_gothic';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
+
+        font-size: 22px;
+        line-height: 26px;
+
+        color: #2E2E2E;
+        margin-right: 153px;
     }
 
     .topnav img {
         margin-left: 5%;
-        width : 189px;
-        height: 71px;
+        width : 280px;
+        height: 106px;
         align-self: center;
     }
 
@@ -237,41 +141,94 @@
     .top_menu:active {
         color: #0064FF;
     }
+  
+    .problem_content {
+        display:block;
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 21px;
+        line-height: 40px;
+        color: #383838;
+    }
 
-    a.button{
-        cursor: pointer;
-        background-color: rgb(99,181,169);
-        color: white;
-        border: 2px solid rgb(99,181,169);
-        text-align: center;
+    .problem_source {
+        display:block;
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 21px;
+        line-height: 25px;
+        text-align: right;
+        color: #747474;
+    }
+    #youtube_wrapper {
+        width:1320px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #youtube_wrapper > iframe {
         display: inline-block;
     }
-    
-    a.button:hover {
-        background-color: white;
-        color: rgb(99,181,169);
-    }
-  
-    .youtube_title {
-        color: black;
-        text-align: left;
-        font-size: 38px;
-        font-weight: bold;
-        margin-bottom: 56px;
-        display:block;
+
+    #youtube_wrapper span {
+        width: 645px;
+        text-align: center;
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 21px;
+        line-height: 25px;
+        color: #747474;
     }
 
-    .youtube_subtitle {
+    #flow_wrapper {
+        width: 1320px;
+        margin: 0 auto;
+    }
+
+    #flow_title {
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 64px;
+        line-height: 77px;
+        text-align: center;
+        color: #000000;
+        display: block;
+    }
+
+    #flow_content {
+        font-family: 'apple_gothic';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 21px;
+        line-height: 40px;
+        color: #2E2E2E;
+        margin-top: 78px;
+        display: block;
+    }
+
+    .bottom_span {
+        color: white;
+        text-align: left;
+        display: block;
         font-family: 'apple_gothic';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
-        display:block;
+        line-height: 19px;
     }
 
-    .press_span {
-        display: block;
-        font-size: 22px;
+    b {
+        font-family: 'apple_gothic';
+        margin-right: 44px;    
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
     }
 
     
@@ -287,246 +244,117 @@
             <a class="top_menu" href="/project">PROJECT</a>
             <a class="top_menu" href="/about">ABOUT</a>
             <a class="top_menu" href="/contact">CONTACT</a>
-            <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 171px;">GREENOCEANS</a>
+            <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 121px;">GREENOCEANS</a>
         </div>
     </div>
-
-    <div style="width:100%; height:195px; background-color:#E5E5E5;display:table;">
-        <span style="margin: auto;color:white;font-weight:bold;font-size:55px;display:table-cell;vertical-align:middle;font-family:'apple_gothic'">Project</span>
+    
+    <div class="project_top">
+        <span class="project_title">The Green ton Project</span>
+        <div style="margin-top: 103px; border-bottom : 1px solid black; width : 31.5px;"></div>
+        <span class="project_content">
+            (주)그린오션스에서는 2022년 굴 껍데기 야적량 계산 AI 알고리즘 개발 프로젝트 ‘The Green ton Project’를 구축하였습니다.<br>
+            한국은 수하식 굴 양식업의 활발한 발달과 성장을 기반으로 세계 2위 규모의 굴생산량을 자랑하고 있습니다. 
+            그러나 그 명성의 걸맞지 않게 선순환적인 굴껍데기 처리방법이 마련되어 있지 않습니다. 
+            그에 따른 문제 해결의 첫번째 단추로 굴껍데기 발생량과 야적량의 체계적인 DATA SET의 정량화를 통한 지속적 관리 알고리즘 ‘The Green ton’ 을 개발하였습니다.
+        </span>
     </div>
-
-    <div class="project_top_wrapper">
-        <div class="about_top">
-            <span class="about_title">The Green ton Project</span>
-            
-            <div style="border-bottom : 1px solid black; width : 40px;"></div>
-
-            <span class="project_content">
-(주)그린오션스에서는 2022년 <b>굴 껍데기 야적량 계산 AI 알고리즘 개발 프로젝트 ‘The Green ton Project’</b> 를 구축하였습니다. 
-한국은 수하식 굴 양식업의 활발한 발달과 성장을 기반으로 세계 2위 규모의 굴생산량을 자랑하고 있습니다. 
-그러나 그 명성의 걸맞지 않게 선순환적인 굴껍데기 처리방법이 마련되어 있지 않습니다. 
-그에 따른 문제 해결의 첫번째 단추로 굴껍데기 발생량과 야적량의 체계적인 DATA SET의 정량화를 통한 지속적 관리 알고리즘 ‘The Green ton’ 을 개발하였습니다.
-            </span>
-
-        </div>
-    </div>
-
-
-    <style>
-       
-    .carousel-cell {
-        width: 66%;
-        height: 600px;
-        margin-right: 10px;
-        background: white;
-    }
-        
-    .carousel-cell-image {
-        display: block;
-        max-height: 100%;
-        margin: 0 auto;
-        max-width: 100%;
-        opacity: 0;
-        -webkit-transition: opacity 0.4s;
-                transition: opacity 0.4s;
-    }
-        
-        /* fade in lazy loaded image */
-    .carousel-cell-image.flickity-lazyloaded,
-    .carousel-cell-image.flickity-lazyerror {
-        opacity: 1;
-    }
-
-    .flickity-page-dots { display:none; bottom: 10px; }
-          
-    </style>
-
+    <div class="dummy"></div>
  
-    <div style="padding-left:108px; padding-right:108px;margin-top:120px">
-        <div class="carousel"
-        data-flickity='{ "lazyLoad": true }'>
-        <div class="carousel-cell">
-            <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide1.png')}}" />
-        </div>
-        <div class="carousel-cell">
-            <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide2.png')}}" />
-        </div>
-        <div class="carousel-cell">
-            <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide3.png')}}" />
-        </div>
-        <div class="carousel-cell">
-            <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide4.png')}}" />
-        </div>
-        <div class="carousel-cell">
-            <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide5.png')}}" />
-        </div>
-        <div class="carousel-cell">
-            <img class="carousel-cell-image"
-                data-flickity-lazyload="{{ my_url_for(request, 'static', path='/images/slide6.png')}}" />
-        </div>
-    </div>
-
-    </div>
-    
-
-
-    <div class="about_youtube_wrapper">
-        <div class="about_youtube_wrapper_row">
-            <img style="width: 852px; height:637px;flex:none" src="{{ my_url_for(request, 'static', path='/images/project_1.png')}}"/>
-            <div style="padding-left:89px;padding-top:130px">
-                <span class="youtube_title">Problem</span>
-                <div style="border-bottom : 1px solid black; width : 40px;margin:0px;padding:0px;margin-bottom:96px"></div>
-                <span class="youtube_subtitle" style="text-align:left">굴 생산량 35만 톤, 세계 2위, 한국...
-                    그 중에서도 ‘통영 굴’은 으뜸으로 치며, 실제로 경남 통영지역에서 전체 생산량 중 80% 이상을 양식하고 있다. 총 35만 톤 생산 시, 알굴 5만 톤에 30만 톤의 굴 껍데기는 동해 '정'에 해양 폐기되고 있다.</span>
-
-                <span class="youtube_subtitle" style="text-align:left;margin-top:22px">경남지역 굴껍데기 발생량 (2017년 기준)</span>
-                <span class="youtube_subtitle" style="text-align:right;margin-top:49px">자료: 해양수산부, 수산정보포털 (www.fips.go.kr)</span>
-
+    <div style="padding-left:108px; padding-right:108px;">
+        <div class="main-carousel">
+            <div class="carousel-cell">
+                <img src="{{ my_url_for(request, 'static', path='/images/slide1.png')}}" />
+            </div>
+            <div class="carousel-cell">
+                <img src="{{ my_url_for(request, 'static', path='/images/slide2.png')}}" />
+            </div>
+            <div class="carousel-cell">
+                <img src="{{ my_url_for(request, 'static', path='/images/slide3.png')}}" />
+            </div>
+            <div class="carousel-cell">
+                <img src="{{ my_url_for(request, 'static', path='/images/slide4.png')}}" />
+            </div>
+            <div class="carousel-cell">
+                <img src="{{ my_url_for(request, 'static', path='/images/slide5.png')}}" />
+            </div>
+            <div class="carousel-cell">
+                <img src="{{ my_url_for(request, 'static', path='/images/slide6.png')}}" />
             </div>
         </div>
-        <div class="about_youtube_wrapper_row" style="flex-direction: row-reverse;justify-content: space-between;">
-            <img style="width: 852px; height:637px;flex:none" src="{{ my_url_for(request, 'static', path='/images/project_2.png')}}"/>
+    </div>
+    <div class="dummy"></div>
+    <div style="width: 1320px;height: 1000px; margin: 0 auto;">
+        <div style="display:flex;flex-direction: row;">
+            <img style="width:645px; height:500px;object-fit: cover;" src="{{ my_url_for(request, 'static', path='/images/project_1.png')}}"/>
+            <div style="width:675px; padding-left:53px;">
+                <span style="
+                    margin-top:87px;
+                    display:block;
+                    font-family: 'apple_gothic';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 51px;
+                    line-height: 61px;">Problem</span>
 
-            <div style="padding-left:89px;padding-top:130px;margin-right:80px">
-                <span class="youtube_title" style="opacity:0;">Who we are</span>
-                <div style="border-bottom : 1px solid black; width : 40px;margin:0px;padding:0px;margin-bottom:36px;opacity:0;"></div>
-                
-
-                <span class="youtube_subtitle" style="text-align:left">
-                    2017년 기준 전체 굴 패각 총 28만 톤 중 약 10만 톤은 비료와 사료의 용도로, 약 8만 5천 톤은 채묘용 등의 용도로 각각 재활용되고, 약 7만 5천 톤은 보관, 나머지 약 2만 3,700톤(전체 약 8.4%)은 미처리·방치되고 있는 것으로 나타났다.
+                <div style="margin-top: 13px; border-bottom : 1px solid black; width : 31.5px;"></div>
+                <span class="problem_content" style="margin-top:40px">
+                    굴 생산량 35만 톤, 세계 2위, 한국...<br>
+                    그 중에서도 ‘통영 굴’은 으뜸으로 치며, 실제로 경남 통영지역에서 전체 생산량 중 80% 이상을 양식하고 있다. 총 35만 톤 생산 시, 알굴 5만 톤에 30만 톤의 굴 껍데기는 동해 '정'에 해양 폐기되고 있다.
                 </span>
-                <span class="youtube_subtitle" style="text-align:right;margin-top:49px">자료: 국회입법조사처, 수산부산물 발생 및 처리 관련 문제점과 개선 방향 (2020.02.20)</span>
+                <span class="problem_source" style="margin-top:55px;">경남지역 굴껍데기 발생량 (2017년 기준)</span>
+                <span class="problem_source" style="margin-top:8px;">자료: 해양수산부, 수산정보포털 (www.fips.go.kr)</span>
+            </div>
+        </div>
 
+        <div style="display:flex;flex-direction: row;">
+            <img style="width:645px; height:500px;object-fit: cover;" src="{{ my_url_for(request, 'static', path='/images/project_2.png')}}"/>
+            <div style="width:675px; padding-left:53px;">
+                
+                <span class="problem_content" style="margin-top:160px">
+                    2017년 기준, 굴 패각 총 28만 톤 중 약 10만 톤은 비료와 사료의 용도로, 약 8만 5천 톤은 채묘용 등의 용도로 각각 재활용되고, 약 7만 5천 톤은 보관, 나머지 약 2만 3,700톤(전체 약 8.4%)은 미처리·방치되고 있는 것으로 나타났다.
+                </span>
+                <span class="problem_source" style="margin-top:62px;">굴 생산량 및 굴 껍데기 발생량 (2015~2019년 기준)</span>
+                <span class="problem_source" style="margin-top:8px;">자료: 국회입법조사처,<br> 수산부산물 발생 및 처리 관련 문제점과 개선 방향 (2020.02.20)</span>
             </div>
         </div>
     </div>
-
-    <div class="project_top_wrapper">
-        <div class="about_top" style="padding-left: 200px;">
-            <span class="about_title">통영의 두 얼굴</span>
-            
-            <span class="project_content" style="margin-right: 139px;margin-left:652px">통영은 박경리, 김춘수, 윤이상과 같은 예술가들에게 영감을 주는 아름다운 해양 관광 도시로 알려져 있으나, 매년 많은 양의 굴껍데기 배출때문에 악취, 환경오염 등으로 바다와 함께 썩어 가고 있는 양면성을 보인다.
-            </span>
-
-        </div>
-    </div>
-
-    <style>
-
-        #image_section {
-            width: 100%;
-            height: 792px;
-            display: block;
-            margin-top: 154px;
-            position: relative;
-        }
-
-        #image_section_left {
-            position:absolute;
-            top : 300px;
-            left: 205px;
-        }
-
-        #image_section_right {
-            position:absolute;
-            top : 0px;
-            right: 893px;
-        }
-
-        .image_section_title {
-            display: block;
-            color: #747474;
-            font-size: 18px;
-        }
-
-        .image_section_img {
-            position:absolute;
-            left: 0px;
-        }
-
-        #youtube_wrapper {
-            margin-top: 172px;
-            padding-left: 108px;
-            padding-right: 108px;
-            width:100%;
-        }
-        #youtube_wrapper > iframe {
-            display: inline-block;
-        }
-
-    </style>
-
-    <div id="image_section">
-        <div id="image_section_left">
-            <span class="image_section_title">잿빛동산, 통영</span>
-            <img class="image_section_img" style="width: 805px; height:471px;z-index:100000" src="{{ my_url_for(request, 'static', path='/images/project_3.jpeg')}}"/>
-        </div>
-        <div id="image_section_right">
-            <span class="image_section_title">동양의 나폴리, 통영</span>
-            <img class="image_section_img" style="width: 843px; height:623px" src="{{ my_url_for(request, 'static', path='/images/project_4.jpg')}}"/>
-        </div>
-    </div>
-
+    <div class="dummy"></div>
     <div id="youtube_wrapper">
-        <iframe id="temp_iframe" src="https://www.youtube.com/embed/0xoEo8il79o" style="width: 47%;height: 100%;"
+        <iframe id="temp_iframe" src="https://www.youtube.com/embed/0xoEo8il79o" style="width: 645px;height: 395px;"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
-            
-        <iframe src="https://www.youtube.com/embed/mE4-fGHAtMg" style="width: 40%;height: 100%;"
+        
+        <iframe src="https://www.youtube.com/embed/mE4-fGHAtMg" style="width: 645px;height: 395px;"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
-    
     </div>
-    <style>
-        #flow_wrapper {
-            margin-top: 262px;
-            background: #ECEBEB;
-            padding-top: 52px;
-            width: 100%;
-            height: 860px;
-        }
-        #flow_title {
-            font-family: 'apple_gothic';
-            font-style: normal;
-            font-weight: 800;
-            font-size: 55px;
-            line-height: 96px;
-            /* identical to box height */
-            color: #FFFFFF;
-            display: block;
-        }
-
-        #flow_content {
-            font-family: 'apple_gothic';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 17px;
-            line-height: 22px;
-            text-align: center;
-            margin-top: 78px;
-            color: #2E2E2E;
-            display: block;
-        }
-
-    </style>
+    <div id="youtube_wrapper" style="margin-top: 27px;">
+        <span>[밀착카메라] '굴 판매 1천억' 통영…'껍데기산' 골치 / JTBC 뉴스룸</span>
+        <span>[Arirang News] In-season oysters selling fast in South Korea</span>
+    </div>
+    <div class="dummy"></div>
     <div id="flow_wrapper">
-        <span id="flow_title">Project</span>
-
+        <span id="flow_title">Process</span>
         <span id="flow_content">
-            통영에 위치한 박신장 120여 개의 리스트를 제공받았으며, 박신 작업이 없는 8월에 촬영을 마감하여 데이터의 신뢰도를 높였다. 드론 촬영을 통해 <br>
-            이미지 DATA를 수집하였으며, 수집된 이미지 DATA의 변환작업을 통해 'The Green ton Project' 적용하여 산적량의 무게 및 부피를 산출했다.            
+            통영에 위치한 박신장 120여 개의 리스트를 제공받았으며, 박신 작업이 없는 8월에 촬영을 마감하여 데이터의 신뢰도를 높였다. <br>
+            드론 촬영을 통해 이미지 DATA를 수집하였으며, 수집된 이미지 DATA의 변환작업을 통해 'The Green ton Project' 적용하여 산적량의 무게 및 부피를 산출했다.
         </span>
 
-        <img style="width:55%;margin-top:85px" src="{{ my_url_for(request, 'static', path='/images/project_main.png')}}"/>
+        <img style="width:1098px; height:489px; margin-left:34px; margin-top:200px" src="{{ my_url_for(request, 'static', path='/images/project_main.png')}}"/>
     </div>
 
-    <img style="width:100%;margin-top:148px" src="{{ my_url_for(request, 'static', path='/images/bottom.png')}}"/>
+    <div class="dummy"></div>
+    <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px">
+        <div style="width:1320px; margin:0 auto;">
+            <span class="bottom_span" style="font-weight: 800;font-size: 20px;line-height: 24px;">주식회사 그린오션스</span>
+            <span class="bottom_span" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 67px;">사업자번호</b>823-86-02292</span>
+            <span class="bottom_span" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
+            <span class="bottom_span" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
+            <span class="bottom_span" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
+            <span class="bottom_span" style="margin-top: 10px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
+        </div>
+    </div>
 </body>
 </html>

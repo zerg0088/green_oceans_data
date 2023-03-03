@@ -13,85 +13,15 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112403815-1"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <!--   CUSTOM CSS   -->
     <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/style.css?v=2022041')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/responsive.css?v=2022041')}}">
-    <!-- HEADER CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/h-style.css?v=2022056')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/h-responsive.css?v=2022041')}}">
-    <!-- FOOTER CUSTOM CSS   -->
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/f-style.css?v=2022041')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/f-responsive.css?v=2022041')}}">
-    <!-- PLUGIN CSS -->
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/xeicon.min.css')}}">
 
-    <script type="text/javascript">
-
-    </script>
 </head>
 <style>
-    @font-face {
-        font-family: omni_040;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
-    }
-
-    @font-face {
-        font-family: omni_020;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
-    }
-
-    @font-face {
-        font-family: apple_gothic;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.woff.woff') }}') format('woff');
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
-    }
-
-    * {
-        
-    }
-
-    body
-    {
-        margin:0px;
-        padding:0px;
-        width:100%;
-        display: block;
-        background-color: white;
-    }
-
-    span {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 400;
-    }
-
-    a {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 400;
-    }
-
-    span {
-        font-family: 'omni_040';
-        font-style: normal;
-        font-weight: 200;
-    }
-
-    li.active {
-        border: solid;
-        border-color: black;
-        border-width: 1px;
-        padding: 10px;
-    }
-
     .about_top {
-        width: 1280px;
+        width: 1320px;
         background-color: white;
         height: auto;
-        padding-top:128px;
+        padding-top:127px;
         margin: 0 auto;
     }
 
@@ -101,10 +31,10 @@
         font-size: 90px;
         line-height: 108px;
         text-align: center;
-        margin-bottom: 80px;
         display:block;
         font-family: 'apple_gothic';
         font-style: normal;
+        margin: 0 auto;
     }
 
     .press_title {
@@ -112,6 +42,7 @@
         font-family: 'apple_gothic';
         font-style: normal;
         font-weight: 800;
+
         font-size: 90px;
         line-height: 108px;
         display: block;
@@ -133,7 +64,7 @@
     }
     
     .about_youtube_wrapper {
-        width: 1280px;
+        width: 1320px;
         background-color: white;
         margin: 0 auto;
     }
@@ -145,7 +76,7 @@
     }
 
     .dummy {
-        height: 425px;
+        height: 426px;
     }
 
     .topnav {
@@ -161,10 +92,8 @@
         font-family: 'apple_gothic';
         font-style: normal;
         font-weight: 700;
-
         font-size: 22px;
         line-height: 26px;
-
         color: #2E2E2E;
         margin-right: 153px;
     }
@@ -181,6 +110,7 @@
         flex: none;
         align-self: center;
     }
+
     .top_menu:hover {
         background-color: #ddd;
         color: black;
@@ -244,17 +174,16 @@
         line-height: 19px;
     }
 
-
     a.button{
-        width: 198px;
-        height: 54px;
+        width: 200px;
+        height: 56px;
         font-family: 'apple_gothic';
         font-style: normal;
         font-weight: 400;
         font-size: 22px;
         line-height: 26px;
         text-decoration-line: underline;
-        padding-top:12px;
+        padding-top:13px;
         cursor: pointer;
         background-color: #62B5A9;
         color: white;
@@ -298,8 +227,8 @@
     <div style="display:block; margin: 0 auto">
         
         <div class="about_top">
-            <span class="about_title" style="margin: 0 auto">The Founder Story</span>
-            <div style="border-bottom : 1px solid black; width : 31.5px;margin-top:131px"></div>
+            <span class="about_title">The Founder Story</span>
+            <div style="border-bottom : 1px solid black; width : 31.5px;margin-top:103px"></div>
 
             <span class="about_content">그린오션스는 통영에서 발생하는 연간 20만 톤의 굴 껍데기를 친환경 자원화하는 프로젝트를 진행 중에 있습니다. <br>
                 굴 껍데기의 주요성분은 95% 이상이 탄산칼슘으로 우리 생활주변에 빠지지 않는 첨가 소재로 다양하게 쓰이고 있습니다. 우리는 이런 굴 껍데기의 처리 장치, 소재의 개발 및 자원화와 지속 가능한 수익창출의 실현을 위해 여러 대학, 연구기관, 전문가들과 함께 검증하고 있습니다.<br>
@@ -312,7 +241,9 @@
                 margin-top:93px;
                 font-family: 'apple_gothic';
                 font-style: normal;
-                font-weight: 400;">그린오션스 대표 문피아</span>
+                font-weight: 700;
+                font-size: 21px;
+                line-height: 25px;">그린오션스 대표 문피아</span>
             </span>
 
         </div>
@@ -356,13 +287,13 @@
         <div style="
             background-color: white;
             margin: 0 auto;
-            width: 1280px;
+            width: 1320px;
             height: auto;
             margin: 0 auto;">
             
             <span class="press_title">Press</span>
         
-            <span class="press_span" style="margin-top:102px">[매일경제] 굴 껍데기 재활용 스타트업 ‘그린오션스’, 2022 서울디자인페스티벌 참가 (22.12.22)</span>
+            <span class="press_span" style="margin-top:110px">[매일경제] 굴 껍데기 재활용 스타트업 ‘그린오션스’, 2022 서울디자인페스티벌 참가 (22.12.22)</span>
             <a href="https://mbnmoney.mbn.co.kr/news/view?news_no=MM1004813749" target="_blank" class="button" >Read More</a>
         
             <span class="press_span" style="margin-top: 92px;">[Chosun Media] 해양오염 주범 굴 껍데기, 친환경 자원으로 재탄생 (22.10.28)</span>
@@ -376,15 +307,15 @@
         
         </div>
         <div class="dummy"></div>
-        <img style="width:1280px;display:block; margin: 0 auto" src="{{ my_url_for(request, 'static', path='/images/about_bottom.png')}}"/>
+        <img style="width:1315px;display:block; margin: 0 auto" src="{{ my_url_for(request, 'static', path='/images/about_bottom.png')}}"/>
         
         
     </div>
 
-    <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px">
-        <div style="width:1280px; margin:0 auto;">
+    <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px;margin-top:144px">
+        <div style="width:1320px; margin:0 auto;">
             <span class="bottom_span" style="font-weight: 800;font-size: 20px;line-height: 24px;">주식회사 그린오션스</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>대표</b>문피아<b style="margin-left:94px">사업자 번호</b>823-86-02292</span>
+            <span class="bottom_span" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 67px;">사업자번호</b>823-86-02292</span>
             <span class="bottom_span" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
             <span class="bottom_span" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
             <span class="bottom_span" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
