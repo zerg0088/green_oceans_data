@@ -1,11 +1,13 @@
-<html>
+<html lang="ko">
     <head>
 
     <title>Green Oceans</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=1920, initial-scale=1.0" />
-    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+
     <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112403815-1"></script>
@@ -15,7 +17,17 @@
     
     <script type="module">
 
+        $( window ).resize( function() {
+            $('body').css({
+                "min-width": window.innerWidth,
+            });
+        });
+
         $(document).ready(function(){
+            $('body').css({
+                "min-width": window.innerWidth,
+            });
+            
             $('#send_email').click(function() {
                 $('#send_email').attr('href', "mailto:" + $('#input_email').val() + "?body=" + "name : " + $('#input_name').val() + ", message : " + $('#input_content').val());
             });
@@ -61,35 +73,34 @@
     </script>
 </head>
 <style>
-    
     @font-face {
         font-family: omni_040;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_040.ttf") }}') format('truetype');
     }
     
     @font-face {
         font-family: omni_020;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_020.ttf") }}') format('truetype');
     }
     
     @font-face {
         font-family: apple_gothic_r;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo_r.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_r.ttf") }}') format('truetype');
     }
-
+    
     @font-face {
         font-family: apple_gothic_eb;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo_eb.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_eb.ttf") }}') format('truetype');
     }
-
+    
     @font-face {
         font-family: apple_gothic_sb;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo_sb.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_sb.ttf") }}') format('truetype');
     }
-
+    
     @font-face {
         font-family: apple_gothic_b;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo_b.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_b.ttf") }}') format('truetype');
     }
     
     #map {
@@ -108,7 +119,7 @@
     }
 
     .topnav {
-        overflow: hidden;
+        overflow: auto; 
         background-color: white;
         height: 157px;
         display: flex;
@@ -119,11 +130,8 @@
     .topnav a {
         font-family: 'apple_gothic_b';
         font-style: normal;
-        
-
         font-size: 22px;
         line-height: 26px;
-
         color: #2E2E2E;
         margin-right: 153px;
     }
@@ -190,7 +198,7 @@
         font-style: normal;
         font-size: 90px;
         line-height: 108px;
-        margin-top: 127px;
+        margin-top: 119px;
         text-align: center;
     }
 
@@ -198,7 +206,7 @@
         width: 1320px;
         margin: 0 auto;
         background-color: white;
-        margin-top:173px;
+        margin-top:177px;
         margin-bottom:200px;
     }
 
@@ -289,6 +297,8 @@
         box-sizing: border-box;
         border: 2px solid black;
     }
+
+
 </style>
 </head>
 
@@ -312,7 +322,7 @@
             font-size: 51px;
             line-height: 61px;
             color: #2E2E2E;">Green Oceans</div>
-        <div style="border-bottom : 1px solid black; width : 31.5px; margin-top:28px"></div>
+        <div style="border-bottom : 1px solid black; width : 31.5px; margin-top:33px"></div>
 
         <div style="display:flex; flex-direction: row;margin-top:87px">
             <div id="contact_wrapper_left">
@@ -322,10 +332,10 @@
                 <span><img src="{{ my_url_for(request, 'static', path='/images/icon_mail.png') }}"/>piamoon@greenoceanskr.com</span>
                 <div>
                     <img src="{{ my_url_for(request, 'static', path='/images/icon_thumb_up.png') }}"/>
-                    <a><img style="width: 29px; height: 29px; margin-right: 11px;" src="{{ my_url_for(request, 'static', path='/images/icon_facebook.png') }}"/></a>
-                    <a><img style="width: 29px; height: 29px; margin-right: 11px;" src="{{ my_url_for(request, 'static', path='/images/icon_twitter.png') }}"/></a>
-                    <a><img style="width: 29px; height: 29px; margin-right: 11px;" src="{{ my_url_for(request, 'static', path='/images/icon_linkedin.png') }}"/></a>
-                    <a><img style="width: 29px; height: 29px; margin-right: 11px;" src="{{ my_url_for(request, 'static', path='/images/icon_instagram.png') }}"/></a>
+                    <a><img style="width: 29px; height: 29px; margin-right: 8px;" src="{{ my_url_for(request, 'static', path='/images/icon_facebook.png') }}"/></a>
+                    <a><img style="width: 29px; height: 29px; margin-right: 8px;" src="{{ my_url_for(request, 'static', path='/images/icon_twitter.png') }}"/></a>
+                    <a><img style="width: 29px; height: 29px; margin-right: 8px;" src="{{ my_url_for(request, 'static', path='/images/icon_linkedin.png') }}"/></a>
+                    <a><img style="width: 29px; height: 29px; margin-right: 8px;" src="{{ my_url_for(request, 'static', path='/images/icon_instagram.png') }}"/></a>
                 </div>
     
             </div>
@@ -351,7 +361,7 @@
     <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px;margin-top:838px">
         <div style="width:1320px; margin:0 auto;">
             <span class="bottom_span_eb">주식회사 그린오션스</span>
-            <span class="bottom_span_r" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 67px;">사업자번호</b>823-86-02292</span>
+            <span class="bottom_span_r" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 70px;">사업자번호</b>823-86-02292</span>
             <span class="bottom_span_r" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
             <span class="bottom_span_r" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
             <span class="bottom_span_r" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>

@@ -2,9 +2,12 @@
 
 <head>
     <title>Green Oceans</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=1920, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+
     
     <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
@@ -17,48 +20,59 @@
 
 </head>
 <style>
-
     @font-face {
         font-family: omni_040;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_040.ttf") }}') format('truetype');
     }
     
     @font-face {
         font-family: omni_020;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_020.ttf") }}') format('truetype');
     }
     
     @font-face {
-        font-family: apple_gothic;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
+        font-family: apple_gothic_r;
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_r.ttf") }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: apple_gothic_eb;
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_eb.ttf") }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: apple_gothic_sb;
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_sb.ttf") }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: apple_gothic_b;
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_b.ttf") }}') format('truetype');
     }
 
     .about_top {
         width: 1320px;
         background-color: white;
         height: auto;
-        padding-top:127px;
+        padding-top:119px;
         margin: 0 auto;
     }
 
     .about_title {
         color: black;
-        font-weight: 800;
         font-size: 90px;
         line-height: 108px;
         text-align: center;
         display:block;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_eb';
         font-style: normal;
         margin: 0 auto;
     }
 
     .press_title {
         color:black;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_eb';
         font-style: normal;
-        font-weight: 800;
-
         font-size: 90px;
         line-height: 108px;
         display: block;
@@ -66,13 +80,11 @@
     }
 
     .about_content {
-        font-family: 'apple_gothic';
-        margin-top: 93px;
+        font-family: 'apple_gothic_sb';
+        margin-top: 90px;
         text-align: left;
         display:block;
         line-height: 40px;
-        font-style: normal;
-        font-weight: 600;
         font-size: 21px;
         line-height: 40px;
         text-align: justify;
@@ -96,7 +108,7 @@
     }
 
     .topnav {
-        overflow: hidden;
+        overflow: auto; 
         background-color: white;
         height: 157px;
         display: flex;
@@ -105,9 +117,8 @@
     }
     
     .topnav a {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_b';
         font-style: normal;
-        font-weight: 700;
         font-size: 22px;
         line-height: 26px;
         color: #2E2E2E;
@@ -139,20 +150,18 @@
     .youtube_title {
         color: black;
         text-align: left;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_b';
         margin-bottom: 27px;
         display:block;    
         font-style: normal;
-        font-weight: 700;
         font-size: 46px;
         line-height: 55px;
     }
 
     .youtube_subtitle {
         display:block;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_sb';
         font-style: normal;
-        font-weight: 600;
         font-size: 21px;
         line-height: 36px;
         color: #383838;
@@ -160,32 +169,39 @@
 
     .press_span {
         display: block;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_r';
         text-align: center;
         font-style: normal;
-        font-weight: 400;
         font-size: 21px;
         line-height: 25px;
         text-align: center;
         color: #2E2E2E;
     }
 
-    .bottom_span {
+    .bottom_span_eb {
         color: white;
         text-align: left;
         display: block;
-        font-family: 'apple_gothic';
-        font-style: normal;
-        font-weight: 400;
+        font-family: 'apple_gothic_eb';
+        font-style: normal;    
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .bottom_span_r {
+        color: white;
+        text-align: left;
+        display: block;
+        font-family: 'apple_gothic_r';
+        font-style: normal;    
         font-size: 16px;
         line-height: 19px;
     }
-
+    
     b {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_b';
         margin-right: 44px;    
         font-style: normal;
-        font-weight: 700;
         font-size: 16px;
         line-height: 19px;
     }
@@ -193,9 +209,8 @@
     a.button{
         width: 200px;
         height: 56px;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_r';
         font-style: normal;
-        font-weight: 400;
         font-size: 22px;
         line-height: 26px;
         text-decoration-line: underline;
@@ -219,7 +234,17 @@
 
 <script type="text/javascript">
     
+    $( window ).resize( function() {
+        $('body').css({
+            "min-width": window.innerWidth,
+        });
+    });
+
     $( window ).ready( function() {
+        $('body').css({
+            "min-width": window.innerWidth,
+        });
+
         $('#logo_img').click(function() {
             location.href = "/map"
         });
@@ -244,7 +269,7 @@
         
         <div class="about_top">
             <span class="about_title">The Founder Story</span>
-            <div style="border-bottom : 1px solid black; width : 31.5px;margin-top:103px"></div>
+            <div style="border-bottom : 1px solid black; width : 31.5px;margin-top:114px"></div>
 
             <span class="about_content">그린오션스는 통영에서 발생하는 연간 20만 톤의 굴 껍데기를 친환경 자원화하는 프로젝트를 진행 중에 있습니다. <br>
                 굴 껍데기의 주요성분은 95% 이상이 탄산칼슘으로 우리 생활주변에 빠지지 않는 첨가 소재로 다양하게 쓰이고 있습니다. 우리는 이런 굴 껍데기의 처리 장치, 소재의 개발 및 자원화와 지속 가능한 수익창출의 실현을 위해 여러 대학, 연구기관, 전문가들과 함께 검증하고 있습니다.<br>
@@ -255,9 +280,8 @@
                 text-align: right;
                 display:block;
                 margin-top:93px;
-                font-family: 'apple_gothic';
+                font-family: 'apple_gothic_b';
                 font-style: normal;
-                font-weight: 700;
                 font-size: 21px;
                 line-height: 25px;">그린오션스 대표 문피아</span>
             </span>
@@ -324,18 +348,17 @@
         </div>
         <div class="dummy"></div>
         <img style="width:1315px;display:block; margin: 0 auto" src="{{ my_url_for(request, 'static', path='/images/about_bottom.png')}}"/>
-        
-        
+    
     </div>
 
     <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px;margin-top:144px">
         <div style="width:1320px; margin:0 auto;">
-            <span class="bottom_span" style="font-weight: 800;font-size: 20px;line-height: 24px;">주식회사 그린오션스</span>
-            <span class="bottom_span" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 67px;">사업자번호</b>823-86-02292</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
+            <span class="bottom_span_eb">주식회사 그린오션스</span>
+            <span class="bottom_span_r" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 70px;">사업자번호</b>823-86-02292</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
         </div>
     </div>
 </html>

@@ -1,18 +1,44 @@
 
+@font-face {
+    font-family: omni_040;
+    src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_040.ttf") }}') format('truetype');
+}
+
+@font-face {
+    font-family: omni_020;
+    src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_020.ttf") }}') format('truetype');
+}
+
+@font-face {
+    font-family: apple_gothic_r;
+    src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_r.ttf") }}') format('truetype');
+}
+
+@font-face {
+    font-family: apple_gothic_eb;
+    src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_eb.ttf") }}') format('truetype');
+}
+
+@font-face {
+    font-family: apple_gothic_sb;
+    src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_sb.ttf") }}') format('truetype');
+}
+
+@font-face {
+    font-family: apple_gothic_b;
+    src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_b.ttf") }}') format('truetype');
+}
+
 body {
     margin: 0;
-    
+    overflow: scroll;
+    white-space: nowrap;
 }
 
 * {
     box-sizing: border-box;
 }
 
-/* Reset CSS */
-body {
-    margin: 0;
-    color: #333;
-}
 a {
     text-decoration: none;
     color: #333;
@@ -39,8 +65,10 @@ body
 {
     margin:0px;
     padding:0px;
-    width:100%;
+    min-width: 1320px;
+    max-width: 1920px;
     display: block;
     background-color: white;
 }
+
 

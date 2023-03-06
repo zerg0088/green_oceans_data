@@ -1,11 +1,12 @@
 <html>
 
 <head>
-
     <title>Green Oceans</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
     
     <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
@@ -19,40 +20,59 @@
 
     <script type="text/javascript">
         $( window ).resize( function() {
-            
+            $('body').css({
+                "min-width": window.innerWidth,
+            });
         });
         
         $( window ).ready( function() {
+            $('body').css({
+                "min-width": window.innerWidth,
+            });
+
             var flky = new Flickity( '.main-carousel', {
                 cellAlign: 'left',
                 contain: true,
                 pageDots: false,
                 draggable: false
             });
-    
 
             $('#logo_img').click(function() {
                 location.href = "/map"
             });
         });
 
-        
     </script>
 </head>
 <style>
     @font-face {
         font-family: omni_040;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_040.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_040.ttf") }}') format('truetype');
     }
     
     @font-face {
         font-family: omni_020;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/omnigothic_020.ttf') }}') format('truetype');
+        src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_020.ttf") }}') format('truetype');
     }
     
     @font-face {
-        font-family: apple_gothic;
-        src: url('{{ my_url_for(request, 'static', path='/fonts/applegothicneo.ttf') }}') format('truetype');
+        font-family: apple_gothic_r;
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_r.ttf") }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: apple_gothic_eb;
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_eb.ttf") }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: apple_gothic_sb;
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_sb.ttf") }}') format('truetype');
+    }
+    
+    @font-face {
+        font-family: apple_gothic_b;
+        src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_b.ttf") }}') format('truetype');
     }
 
     .carousel-cell {
@@ -69,15 +89,14 @@
         width: 1320px;
         background-color: white;
         height: auto;
-        padding-top: 127px;
+        padding-top: 119px;
         margin: 0 auto;
     }
 
     .project_title {
         display:block;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_eb';
         font-style: normal;
-        font-weight: 800;
         font-size: 90px;
         line-height: 108px;
         text-align: center;
@@ -88,9 +107,8 @@
         margin-top: 90px;
         text-align: left;
         display:block;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_sb';
         font-style: normal;
-        font-weight: 600;
         font-size: 21px;
         line-height: 40px;
         text-align: justify;
@@ -102,7 +120,7 @@
     }
 
     .topnav {
-        overflow: hidden;
+        overflow: auto; 
         background-color: white;
         height: 157px;
         display: flex;
@@ -111,13 +129,10 @@
     }
     
     .topnav a {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_b';
         font-style: normal;
-        font-weight: 700;
-
         font-size: 22px;
         line-height: 26px;
-
         color: #2E2E2E;
         margin-right: 153px;
     }
@@ -140,7 +155,6 @@
         text-decoration: none;
         font-family: 'omni_040';
         font-style: normal;
-        font-weight: 400;
         font-size: 18px;
         line-height: 20px;
         color: #2e2e2e;
@@ -159,9 +173,8 @@
   
     .problem_content {
         display:block;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_sb';
         font-style: normal;
-        font-weight: 600;
         font-size: 21px;
         line-height: 40px;
         color: #383838;
@@ -169,9 +182,8 @@
 
     .problem_source {
         display:block;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_sb';
         font-style: normal;
-        font-weight: 600;
         font-size: 21px;
         line-height: 25px;
         text-align: right;
@@ -191,9 +203,8 @@
     #youtube_wrapper span {
         width: 645px;
         text-align: center;
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_sb';
         font-style: normal;
-        font-weight: 600;
         font-size: 21px;
         line-height: 25px;
         color: #747474;
@@ -205,9 +216,8 @@
     }
 
     #flow_title {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_eb';
         font-style: normal;
-        font-weight: 800;
         font-size: 64px;
         line-height: 77px;
         text-align: center;
@@ -216,9 +226,8 @@
     }
 
     #flow_content {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_sb';
         font-style: normal;
-        font-weight: 600;
         font-size: 21px;
         line-height: 40px;
         color: #2E2E2E;
@@ -226,27 +235,34 @@
         display: block;
     }
 
-    .bottom_span {
+    .bottom_span_eb {
         color: white;
         text-align: left;
         display: block;
-        font-family: 'apple_gothic';
-        font-style: normal;
-        font-weight: 400;
+        font-family: 'apple_gothic_eb';
+        font-style: normal;    
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .bottom_span_r {
+        color: white;
+        text-align: left;
+        display: block;
+        font-family: 'apple_gothic_r';
+        font-style: normal;    
         font-size: 16px;
         line-height: 19px;
     }
 
     b {
-        font-family: 'apple_gothic';
+        font-family: 'apple_gothic_b';
         margin-right: 44px;    
         font-style: normal;
-        font-weight: 700;
         font-size: 16px;
         line-height: 19px;
     }
 
-    
 </style>
 </head>
 
@@ -265,7 +281,7 @@
     
     <div class="project_top">
         <span class="project_title">The Green ton Project</span>
-        <div style="margin-top: 103px; border-bottom : 1px solid black; width : 31.5px;"></div>
+        <div style="margin-top: 114px; border-bottom : 1px solid black; width : 31.5px;"></div>
         <span class="project_content">
             (주)그린오션스에서는 2022년 굴 껍데기 야적량 계산 AI 알고리즘 개발 프로젝트 ‘The Green ton Project’를 구축하였습니다.<br>
             한국은 수하식 굴 양식업의 활발한 발달과 성장을 기반으로 세계 2위 규모의 굴생산량을 자랑하고 있습니다. 
@@ -305,7 +321,7 @@
                 <span style="
                     margin-top:87px;
                     display:block;
-                    font-family: 'apple_gothic';
+                    font-family: 'apple_gothic_b';
                     font-style: normal;
                     font-weight: 700;
                     font-size: 51px;
@@ -361,14 +377,14 @@
     </div>
 
     <div class="dummy"></div>
-    <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px">
+    <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px;">
         <div style="width:1320px; margin:0 auto;">
-            <span class="bottom_span" style="font-weight: 800;font-size: 20px;line-height: 24px;">주식회사 그린오션스</span>
-            <span class="bottom_span" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 67px;">사업자번호</b>823-86-02292</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
-            <span class="bottom_span" style="margin-top: 10px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
+            <span class="bottom_span_eb">주식회사 그린오션스</span>
+            <span class="bottom_span_r" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 70px;">사업자번호</b>823-86-02292</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>팩스</b>0504-140-4267</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
+            <span class="bottom_span_r" style="margin-top: 10px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
         </div>
     </div>
 </body>
