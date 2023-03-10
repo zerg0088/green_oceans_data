@@ -636,12 +636,22 @@
         var directIndex = "null";
         {% endif %}
 
+        const ORDER_HIGH = 0;
+        const ORDER_LOW = 1;
+        const ORDER_INDEX = 2;
+
+        const MARKER_HIGH_ZINDEX = 3;
+        const MARKER_NORMAL_ZINDEX = 2;
         var map;
         var selectedOister;
-        var listOrder = 0; // 0 : 오름, 1 : 내림
+        var selectedListOrder = ORDER_INDEX;
+        
         var listRangeStart = 0;
         var listRangeEnd = 1;
         var firstOister;
+
+        var isFirstLoad = true;
+        var markers;
 
         const allList = [
             {% for result in list %}
@@ -729,8 +739,8 @@
                     $("#volume_sort_high").show();
                     $("#dsv_home").hide();
 
-                    listOrder = 1;
-                    oisterListDisplay(listRangeStart,listRangeEnd,listOrder);
+                    selectedListOrder = ORDER_INDEX;
+                    oisterListDisplay(listRangeStart,listRangeEnd,selectedListOrder);
                 } else if(tab_id == 'tab-2') { // 오름
                     // to init
                     $('.area_select').removeClass('area_select');
@@ -741,8 +751,8 @@
 
                     $('ul.tabs li.current img').attr("src","{{ my_url_for(request, 'static', path='/images/vv_sel.svg') }}");
 
-                    listOrder = 0;
-                    oisterListDisplay(listRangeStart,listRangeEnd,listOrder);
+                    selectedListOrder = ORDER_HIGH;
+                    oisterListDisplay(listRangeStart,listRangeEnd,selectedListOrder);
                 } else if(tab_id == 'tab-3') { // 내림
                     // to init
                     $('.area_select').removeClass('area_select');
@@ -752,8 +762,8 @@
                     $("#dsv_home").hide();
 
                     $('ul.tabs li.current img').attr("src","{{ my_url_for(request, 'static', path='/images/vv2_sel.svg') }}");
-                    listOrder = 1;
-                    oisterListDisplay(listRangeStart,listRangeEnd,listOrder);
+                    selectedListOrder = ORDER_LOW;
+                    oisterListDisplay(listRangeStart,listRangeEnd,selectedListOrder);
                 }
             });
 
@@ -812,7 +822,10 @@
         }
 
         function homeDisplay(oister) {
+
             $('#home_single_wrapper').show();
+            $('#dsv_container').scrollTop(0);
+
             $('#home_list_wrapper').hide();
             
             selectedOister = oister;
@@ -821,14 +834,15 @@
             $("#home_position_image").css({'background-image': "url(" + oister.positionPath + ")"});
             $("#home_3d_image").css({'background-image': "url(" + oister.threePath + ")" });
             
+            $("#home_index").text("순번 " + oister.index);
             $("#home_name").text("사업자 " + oister.name);
+
             $("#home_address").text(oister.address);
             $("#home_index_cell_share_button").attr("index",oister.index);
 
             $("#home_volume_22").text(makeCommaString(oister.year22 + "") + " (t)");
             $("#home_volume_21").text(makeCommaString(oister.year21 + "") + " (t)");
         }
-
         function oisterListDisplay(start, end, order) {
             var index = 1;
             var total21 = 0;
@@ -836,19 +850,27 @@
             
             listRangeStart = start;
             listRangeEnd = end;
-            listOrder = order;
+            selectedListOrder = order;
 
             $('#oister_list').html("");
             
-            if(order == 0) {
+            if(order == ORDER_HIGH) {
                 allList.sort(function(a, b) {
                     return a.year22 - b.year22;
                 });
             }
 
-            if(order == 1) {
+            if(order == ORDER_LOW) {
                 allList.sort(function(a, b) {
                     return b.year22 - a.year22;
+                });
+            }
+
+            if(order == ORDER_INDEX) {
+                allList.sort(function(a, b) {
+                    if(a.index < b.index) {return -1;}
+                    if(a.index > b.index) {return 1;}
+                    if(a.index === b.index) {return 0;}
                 });
             }
             
@@ -904,6 +926,23 @@
                 $("#dsv_home").show();
                 $("#volume_sort_high").hide();
                 $('#home_back_button').css('visibility','visible');
+
+                if(map != null) {
+                    map.setCenter({
+                        lat : oister.lat,
+                        lng : oister.lng
+                    });
+                    markers.forEach(marker => marker.zIndex = MARKER_NORMAL_ZINDEX); 
+
+                    if (markers.filter(marker => marker.content.id == ("area_tag_" + oister.index)).length != 0) {
+                        markers.filter(marker => marker.content.id == ("area_tag_" + oister.index))[0].zIndex = MARKER_HIGH_ZINDEX
+                    }
+                }
+
+                var selectedMarkerContent = document.getElementById("area_tag_" + index);
+                selectedMarkerContent.className = "area_tag area_select";
+                selectedMarkerContent.getElementsByClassName('area_index')[0].className = "area_index area_select";
+                selectedMarkerContent.getElementsByClassName('area_index')[1].className = "area_index area_select";
             });
             $(".index_cell_share_button").off("click");
 
@@ -1035,7 +1074,7 @@
 
             $('#map_style').css('left','32px');
         }
-        var isFirstLoad = true;
+        
         function initMap() {
             const tong = { lat: 34.8544269, lng: 128.4331799 };
             
@@ -1051,7 +1090,7 @@
                 var endLo = bounds.getNorthEast();
                 var startLo = bounds.getSouthWest();
 
-                oisterListDisplay(startLo,endLo,listOrder);
+                oisterListDisplay(startLo,endLo,selectedListOrder);
             });
 
             google.maps.event.addListener(map, 'tilesloaded', function () {
@@ -1080,7 +1119,7 @@
                 var endLo = bounds.getNorthEast();
                 var startLo = bounds.getSouthWest();
 
-                oisterListDisplay(startLo,endLo,listOrder);
+                oisterListDisplay(startLo,endLo,selectedListOrder);
             });
             
             google.maps.event.addListener(map, 'dragend', function(evt){
@@ -1088,14 +1127,14 @@
                 var endLo = bounds.getNorthEast();
                 var startLo = bounds.getSouthWest();
                 
-                oisterListDisplay(startLo,endLo,listOrder);
+                oisterListDisplay(startLo,endLo,selectedListOrder);
             });
 
             const pin = {
                 url: "{{ my_url_for(request, 'static', path='/images/popup.svg')}}",
             };
 
-            const markers = oisterList.map((position, i) => {
+            markers = oisterList.map((position, i) => {
 
                 const areaTag = document.createElement("div");
                 //areaTag.className = "area_tag area_select";
@@ -1108,7 +1147,7 @@
                                     "<span class='area_ton'>" + (allList[i].year22 == 0 ? "적재량 없음" : makeCommaString(allList[i].year22 + "") + " t") + "</span>";
             
                 if(directIndex != "null") 
-                var zindex = (directIndex == allList[i].index) ? 3 : 2;
+                var zindex = (directIndex == allList[i].index) ? MARKER_HIGH_ZINDEX : MARKER_NORMAL_ZINDEX;
 
                 const marker = new google.maps.marker.AdvancedMarkerView({
                     map,
@@ -1268,7 +1307,7 @@
                     <div id="home_single_wrapper" style="padding-bottom: 100px;">
                         <div style="border-top: 2px solid #D6D6D6;padding-top:50px;">
                             <div>
-                                <span class="index_cell_top_span" style="margin-right: 6px;">순번 01</span>
+                                <span id="home_index" class="index_cell_top_span" style="margin-right: 6px;">순번 01</span>
                                 <span id="home_name" class="index_cell_top_span" style="margin-right: 6px;">사업자 전상수</span>
                                 <span index="0" id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ my_url_for(request, 'static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>
                             </div>
