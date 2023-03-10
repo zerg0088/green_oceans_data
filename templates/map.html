@@ -96,7 +96,6 @@
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
             border-top: 8px solid #ffffff;
-
             filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
         }
         
@@ -162,7 +161,7 @@
             display: inline;
             float: left;
             width: 27%;
-            min-width: 340px;
+            min-width: 420px;
             height: calc(100%);
             overflow: scroll;
             z-index: 1025;
@@ -1145,7 +1144,7 @@
                                         "<span class='area_index' style='margin-right:7px'>" + allList[i].index + "</span>" +
                                     "</div>" +
                                     "<span class='area_ton'>" + (allList[i].year22 == 0 ? "적재량 없음" : makeCommaString(allList[i].year22 + "") + " t") + "</span>";
-            
+        
                 if(directIndex != "null") 
                 var zindex = (directIndex == allList[i].index) ? MARKER_HIGH_ZINDEX : MARKER_NORMAL_ZINDEX;
 
@@ -1160,13 +1159,16 @@
                     
                     $('.area_select').removeClass('area_select');
                     
+                    //markers.forEach(marker => marker.zIndex = MARKER_NORMAL_ZINDEX); 
+                    //marker.zIndex = MARKER_HIGH_ZINDEX;
+
                     // marker select 효과 주는 부분.
                     marker.content.className = "area_tag area_select";
                     marker.content.getElementsByClassName('area_index')[0].className = "area_index area_select";
                     marker.content.getElementsByClassName('area_index')[1].className = "area_index area_select";
-
-                    const oister = allList.filter(v => v.lat == marker.position.lat && v.lng == marker.position.lng)[0];
-                
+                    
+                    const oister = allList.filter(o => marker.content.id == ("area_tag_" + o.index))[0];
+            
                     drawerOpen();
                     $('ul.tabs li:first').trigger("click");
                     
