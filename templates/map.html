@@ -162,6 +162,7 @@
             display: inline;
             float: left;
             width: 27%;
+            min-width: 340px;
             height: calc(100%);
             overflow: scroll;
             z-index: 1025;
@@ -396,6 +397,7 @@
             background: #000000;
             border-radius: 0px 12px 12px 0px;   
             cursor: pointer;
+            left: 27%;
         }
     
         #toast_wrapper {
@@ -653,12 +655,18 @@
         const oisterList = [{% for result in list %}{lat: {{ result[3] }}, lng: {{ result[4] }}},{% endfor %}];
         
         function init() {
-            $('body').css({
-                "min-width": window.innerWidth,
-            });
-
-            var arrowLeft = $('#dsv_container').width();
-            $('#drawer_arrow_div').css('left',arrowLeft);
+            $('body').css("min-width", window.innerWidth);
+            
+            if($('#drawer_arrow_div').css('left') != '0px') {
+                $('#dsv_container').css('width','27%') ;
+                var drawerWidth = Math.max($('#dsv_container').width());
+            
+                $('#map_style').css('left','calc('+ drawerWidth +'px + 32px)');
+                $('#map_image_wrapper').css('width','calc(100% - ' + drawerWidth + 'px)');
+                $('#map').css('width','calc(100% - ' + drawerWidth + 'px)');
+                $('#drawer_arrow_div').css('left', drawerWidth +'px');
+                $('#toast_wrapper span').css('margin-left', 'calc(' + drawerWidth + 'px + 36% - 292px )')    
+            }
         }
         $( window ).resize( function() {
             init();
@@ -1005,14 +1013,16 @@
             requestAnimationFrame(render);
         }
         function drawerOpen() {
-            $('#map').css('width','calc(100% - 27%)');
-            $('#dsv_container').css('width','27%');
-            $('#drawer_arrow_div').css('left','27%');
+            var drawerWidth = Math.max($('#dsv_container').width(), window.innerWidth * 0.27);
+
+            $('#map').css('width','calc(100% - '+drawerWidth+'px)');
+            $('#drawer_arrow_div').css('left', drawerWidth+'px');
+            $('#dsv_container').css('width',drawerWidth) ;
+
+            $('#map_style').css('left','calc('+drawerWidth+'px + 32px)');
 
             $('#drawer_arrow_div_arrow_left').show();
             $('#drawer_arrow_div_arrow_right').hide();
-
-            $('#map_style').css('left','calc(27% + 32px)');
         }
 
         function drawerClose() {
@@ -1154,7 +1164,7 @@
     </script>
 
     </head>
-    <body>
+    <body> 
         <div class="topnav">
             <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
             <div id="menu_text_wrapper">
