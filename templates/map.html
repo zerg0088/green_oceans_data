@@ -181,7 +181,7 @@
             height: 104px;
             display: flex;
             flex-direction: row;
-            
+            position: relative;
             z-index: 5;
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
         }
@@ -651,6 +651,7 @@
 
         var isFirstLoad = true;
         var markers;
+        var tabScrollTop = 0;
 
         const allList = [
             {% for result in list %}
@@ -772,6 +773,7 @@
                 $('#home_back_button').css('visibility','hidden');
 
                 $('.area_select').removeClass('area_select');
+                $('#dsv_container').scrollTop(tabScrollTop);
             });
 
             $('.image_plus_button_wrapper').click(function() {
@@ -820,6 +822,7 @@
             return num.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
         }
 
+    
         function homeDisplay(oister) {
 
             $('#home_single_wrapper').show();
@@ -919,6 +922,8 @@
             }
 
             $('.index_cell').click(function() {
+                tabScrollTop = $('#dsv_container').scrollTop();
+
                 var index = $(this).attr("index");
                 const oister = allList.filter(v => v.index == index)[0];
                 homeDisplay(oister);
@@ -1079,7 +1084,7 @@
             const tong = { lat: 34.8544269, lng: 128.4331799 };
             
             map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 13,
+                zoom: 11,
                 center: tong,
                 disableDefaultUI: true,
                 mapId: "4504f8b37365c3d0",
@@ -1173,12 +1178,12 @@
                     drawerOpen();
                     $('ul.tabs li:first').trigger("click");
                     
+                    tabScrollTop = $('#dsv_container').scrollTop();
                     homeDisplay(oister);
                     
                     $("#dsv_home").show();
                     $("#volume_sort_high").hide();
-                    $('#home_back_button').css('visibility','visible');
-                    
+                    $('#home_back_button').css('visibility','visible');            
                 });            
                 return marker;
             });
@@ -1269,12 +1274,12 @@
                     <img id="drawer_arrow_div_arrow_right" src="{{ my_url_for(request, 'static', path='/images/right_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px; display:none"/>
                 </div>    
                 <div class="dsv-top-ui">
-                    <div style="width: 104px;height: 104px;display:flex; justify-content: center;">
-                        <img id="home_back_button" src="{{ my_url_for(request, 'static', path='/images/home_back.svg') }}" style="width: 32px; height:32px; cursor: pointer;align-self: center; visibility: hidden;"/>
-                    </div> 
-                    <div style="display: flex; justify-content: center;width:calc(100% - 104px)">
+                    <div style="position:absolute; display: flex; justify-content: center;width:calc(100%);height:104px">
                         <img src="{{ my_url_for(request, 'static', path='/images/left_logo.png') }}" style="width: 258px; height:33px;align-self: center;"/>
                     </div>
+                    <div style="width: 104px;height: 104px;display:flex; justify-content: center;">
+                        <img id="home_back_button" src="{{ my_url_for(request, 'static', path='/images/home_back.svg') }}" style="width: 32px; height:32px; cursor: pointer;align-self: center; visibility: hidden;z-index: 1000;"/>
+                    </div> 
                 </div>
 
                 <ul class="tabs">
