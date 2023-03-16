@@ -655,7 +655,7 @@
 
         const allList = [
             {% for result in list %}
-                {index: "{{ result[0] }}",name: "{{ result[1] }}", address: "{{ result[2] }}", lat: {{ result[3] }}, lng: {{ result[4] }}, year21 : {{ result[5] }}, year22 : {{ result[6] }}, file_name : "{{ result[7] }}"
+                {index: "{{ result[0] }}",name: "{{ result[1] }}", address: "{{ result[2] }}", lat: {{ result[3] }}, lng: {{ result[4] }}, year21 : {{ result[5] }}, year22 : {{ result[6] }}, file_name : "{{ result[7] }}", note : "{{ result[8]}}"
                 , loadPath : "{{ my_url_for(request, 'static', path='/data/load_image/')}}{{ result[7] }}.png" 
                 , threePath : "{{ my_url_for(request, 'static', path='/data/3d_image/')}}{{ result[0] }}.png" 
                 , positionPath : "{{ my_url_for(request, 'static', path='/data/position_image/')}}{{ result[0] }}.png" },
@@ -844,6 +844,8 @@
 
             $("#home_volume_22").text(makeCommaString(oister.year22 + "") + " (t)");
             $("#home_volume_21").text(makeCommaString(oister.year21 + "") + " (t)");
+
+            $("#home_note").text(oister.note);
         }
         function oisterListDisplay(start, end, order) {
             var index = 1;
@@ -910,7 +912,15 @@
                                 "<td style='padding-left:54px'>" + zeroTextCheck(makeCommaString(oister.year21 + "")) + "</td>"+
                             "</tr>"+
                         "</table>"+
+
+                        "<table class='index_cell_table'>"+
+                            "<tr>"+
+                                "<td style='width:127px;padding-left:35px;color:#595959'>비고</td>"+
+                                "<td class='oister_note' style='padding-left:54px;padding-top:12px;padding-bottom:12px'>" + oister.note+ "</td>"+
+                            "</tr>"+
+                        "</table>"+
                     "</div>";
+
 
                     total22 += oister.year22;
                     total21 += oister.year21;
@@ -1343,6 +1353,13 @@
                                 <tr>
                                     <td style="width:127px;padding-left:35px">2021</td>
                                     <td style="padding-left: 55px;" id="home_volume_21">2349.6 (t)</td>
+                                </tr>
+                            </table>
+
+                            <table class='index_cell_table'>
+                                <tr>
+                                    <td style='width:127px;padding-left:35px;color:#595959'>비고</td>
+                                    <td class='oister_note' style='padding-left:54px;padding-top:12px;padding-bottom:12px' id="home_note"></td>
                                 </tr>
                             </table>
         
