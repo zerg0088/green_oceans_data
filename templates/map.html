@@ -10,20 +10,13 @@
     
     <script src="{{ my_url_for(request, 'static', path='/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{ my_url_for(request, 'static', path='/js/jquery.easing.min.js')}}"></script>
-    <script src="{{ my_url_for(request, 'static', path='/js/magnific-popup.min.js')}}"></script>
-    <script src="{{ my_url_for(request, 'static', path='/js/custom2.js?v=2022041')}}"></script>
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112403815-1"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/normalize.css')}}">
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/style.css')}}">
 
-    <!-- <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/three.min.js"></script>
-    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
-    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/LoaderSupport.js"></script>
-    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/OBJLoader2.js"></script>
-    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/MTLLoader.js"></script> -->
-    
     <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
     <script type="importmap">
         {
@@ -34,8 +27,7 @@
         }
     </script>
 
-    <style>
-        
+    <style>        
         @font-face {
             font-family: omni_040;
             src: url('{{ my_url_for(request, "static", path="/fonts/omnigothic_040.ttf") }}') format('truetype');
@@ -66,581 +58,34 @@
             src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_b.ttf") }}') format('truetype');
         }
     
-        .share_img {            
-            display: inline-block;
-            vertical-align: middle;
-            width: 20px;
-            height : 21px;
-        }
-
-        .area_tag {
-            background-color: #ffffff;
-            border-radius: 60px;
-            color: #FFFFFF;
-            width: 65px;
-            font-size: 10px;
-            position: relative;
-            padding-top: 7px;
-            padding-bottom: 7px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-          
-        .area_tag::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 100%;
-            transform: translate(-50%, 0);
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #ffffff;
-            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
-        }
-        
-        .area_tag:hover, .area_tag.area_select {
-            background-color: #18263A;
-        }
-
-        .area_tag span.area_index {
-            color:black;
-            display:block;
-            font-size: 10px;
-            line-height: 11px;
-
-            font-family: 'omni_040';
-            text-align: center;
-        }
-
-        .area_tag span.area_ton {
-            color:#0064FF;
-            display:block;
-            font-size: 10px;
-            line-height: 11px;
-            margin-top: 2px;
-            font-family: 'omni_040';
-            text-align: center;
-        }
-        
-        .area_tag:hover span.area_index, .area_tag span.area_index.area_select {
-            color:white;
-        }
-
-        .area_tag.area_select::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 100%;
-            transform: translate(-50%, 0);
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #18263A;
-            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
-        }
-        
-        .area_tag:hover::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 100%;
-            transform: translate(-50%, 0);
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #18263A;
-            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
-        }
-        
-        
-        #dsv_container {
-            background: #fff;
-            display: inline;
-            float: left;
-            width: 27%;
-            min-width: 420px;
-            height: calc(100%);
-            overflow: scroll;
-            z-index: 1025;
-            text-align: center;
-        }
-    
-        .dsv-content-section {
-            width: 100%;
-            height: calc(100% - 8px);
-            position: relative;
-            margin-top: 0;
-        }
-    
-        .dsv-top-ui {
-            left: 0;
-            width: 100%;
-            height: 104px;
-            display: flex;
-            flex-direction: row;
-            position: relative;
-            z-index: 5;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
-        }
-        
-        .dsc-visible-scrollbar {
-            overflow-y: auto;
-            overflow-y: overlay;
-        }
-        .dsv-scroll-section {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow-x: visible;
-            display: flex;
-            flex-direction: column;
-        }
-    
-        #map_title 
-        {
-            margin-left: 396px;
-            width: calc(100% - 396px);
-            height:40px;
-            background-color: #00000077;
-            position: absolute;
-        }
-    
-        #map_wrapper {
-            height: calc(100% - 157px);
-            width: 100%;
-            margin : 0px;
-            padding : 0px;
-        }
-    
-        #map {
-            height:100%;
-            width: calc(100% - 27%);
-            margin : 0px;
-            padding : 0px;
-            display: inline;
-            float: right;
-        }
-    
-        .left_oister_house_cell {
-            width: 100%;
-            background-color:white
-        }
-    
-        .left_oister_house_cell_header {
-            width: 100%;
-            height: 40px;
-            background-color:#0066f9
-        }
-    
-        .left_oister_house_cell_header_title {
-            color: white;
-            display: block;
-            padding-top: 10px;
-        }
-    
-        .left_oister_house_cell_content {
-            width: 100%;
-        }
-    
-        .left_oister_house_cell_dummy {
-            height: 20px;
-        }
-    
-        .topnav {
-            overflow: auto; 
-            background-color: white;
-            height: 157px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        
-        .topnav a {
-            font-family: 'apple_gothic_b';
-            font-style: normal;
-            font-size: 22px;
-            line-height: 26px;
-            color: #2E2E2E;
-            margin-right: 153px;
-        }
-    
-        .topnav img {
-            margin-left: 5%;
-            width : 280px;
-            height: 106px;
-            align-self: center;
-        }
-    
-    
-        #menu_text_wrapper {
-            inherits: true;
-            flex: none;
-            align-self: center;
-        }
-    
-        .top_menu {
-            text-align: center;
-            text-decoration: none;
-            font-family: 'omni_040';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 20px;
-            color: #2e2e2e;
-            align-self: center;
-            margin-right: 136px;
-        }
-    
-        .top_menu:hover {
-            background-color: #ddd;
-            color: black;
-        }
-    
-        .top_menu:active {
-            color: #0064FF;
-        }
-    
-        ul.tabs{
-            margin: 0px;
-            padding: 0px;
-            list-style: none;
-            height: 74px;
-            display:flex;
-            justify-content: space-around;
-        }
-    
-        ul.tabs li{
-            width: 33%;
-            height: 74px;
-            background: none;
-            color: #595959;
-            cursor: pointer;
-            font-family: 'omni_040';
-            font-size: 18px;
-            line-height: 74px;
-            align-self: center;
-        }
-        
-        ul.tabs li.current{
-            color: #0064FF;
-            background-color: #F4F7FE;
-            align-self: center;
-            line-height: 74px;
-            border-bottom: 2px solid #0064FF;
-        }
-
-        .ton_table {
-            width: calc(100% - 80px);
-            margin-left:40px;
-            margin-top: 50px;
-            font-size: 18px;
-            font-family: 'omni_040';
-            
-            border-collapse: collapse;
-            border-style: hidden;
-
-            border-top: 2px solid #D6D6D6;
-            border-bottom: 2px solid #D6D6D6;
-        }
-    
-        .ton_table th {
-            color: #595959;
-            text-align: left;
-            height: 43px;
-            border: 2px solid #D6D6D6;
-        }
-    
-        .ton_table td {
-            text-align: left;
-            height: 43px;
-            border: 2px solid #D6D6D6;
-        }
-    
-        .index_cell_share_button {
-            cursor:pointer;
-        }
-    
-        #zoom_wrapper {
-            width: 59px;
-            height: 117px;
-            border: 1px solid black;  
-            position:absolute;
-            top : 50%;
-            right : 32px;
-            background-color: white;
-            box-sizing: border-box;
-            border: 1.6px solid #B2B2B2;
-            border-radius: 4px;
-        }
-    
-        #map_style {
-            width: 59px;
-            height: 59px;
-            top : 50%;            
-            position: absolute;
-            left: calc(27% + 32px);
-            background: #FFFFFF;
-            border: 1.6px solid #B2B2B2;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    
-        #drawer_arrow_div {
-            position: absolute;
-            width: 22px;
-            height: 51px;
-            top: calc(116px + 157px);
-            background: #000000;
-            border-radius: 0px 12px 12px 0px;   
-            cursor: pointer;
-            left: 27%;
-        }
-    
-        #toast_wrapper {
-            width: 100%;
-            height: calc(100% - 157px);
-            position: fixed;
-            background-color: rgba(0, 0, 0, .6);
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-    
-        #toast_wrapper span {
-            margin-left: calc(27% + 36% - 292px );
-            display:block;
-            box-sizing: border-box;
-            width: 584px;
-            height: 56px;
-            color : #ffffff;
-            font-size: 18px;
-            font-family: 'omni_020';
-            background: rgba(0, 0, 0, 1);
-            border: 1.2px solid #E8E6E6;
-            line-height:56px;
-            text-align: center;
-            border-radius: 10px;
-        }
-        
-        #map_image_wrapper {
-            display:none;
-            height: calc(100% - 141px);
-            width: calc(100% - 27%);
-            position: absolute;
-            right: 0px;
-            bottom: 0px;
-            z-index: 10002;
-            padding-left: 33px;
-            padding-right: 33px;
-            padding-top: 5%;
-            padding-bottom: 5%;
-        }
-    
-        #map_image_title {
-            font-size: 22px;
-            line-height: 25px;
-            padding-top: 30px;
-            color: #000000;
-            font-family: 'omni_040';
-            display: block;
-            text-align: center;
-            width: calc(100%);
-        }
-    
-        #map_image_x {
-            position: absolute;
-            right: calc(33px + 28px);
-            margin-top: 30px;
-            width : 24px;
-            height : 24px;
-            cursor: pointer;
-            content: url("{{ my_url_for(request, 'static', path='/images/x.svg') }}");
-        }
-    
-        #map_image_dialog {
-            width: 100%; 
-            height: 100%; 
-            background-color:white;
-            display:flex;
-            flex-direction: column;
-        }
-    
-        #map_image {
-            flex: 1;
-            margin: 20px;
-            object-fit: cover;
-            height: 0;
-        }
-    
-    
-        #map_image {
-            flex: 1;
-            margin: 20px;
-            object-fit: cover;
-            height: 0;
-        }
-    
-        #canvas_3d {
-            flex: 1;
-            padding:20px;
-            width:100%; 
-            height:70%;
-            display:block;
-        }
-    
-        .index_cell {
-            padding-top:50px;
-            padding-bottom:43px;
-            border-bottom: 4px solid #D6D6D6;
-        }
-
-        .header {
-            background-color: #F5F5F5;
-            padding-bottom:50px;
-            padding-top:50px;
-            border-bottom: 4px solid #D6D6D6;
-        }
-
-        .index_cell_header_span {
-            text-align: left;
-
-            font-size: 22px;
-            line-height: 25px;
-            font-family: 'omni_040';
-        }
-
-        .index_cell_top_span {
-            padding-left: 24px;
-            padding-right: 24px;
-            font-family: 'omni_040';
-            font-size: 16px;
-            color:#595959;
-            height: 50px;
-            border: 1.2px solid #E8E6E6;
-            border-radius: 10px;
-            line-height: 50px;
-            display: inline-block;
-            box-sizing: border-box;
-            vertical-align: middle;
-        }
-    
-        .index_cell_title {
-            display: block;
-            font-family: 'omni_040';
-            font-size: 22px;
-            margin-top:42px;
-            color: #000000;
-            text-align: left;
-            margin-left: 40px;
-        }
-    
-        .index_cell_table_title {
-            font-size: 22px;
-            font-family: 'omni_040';
-            color: #000000;
-            margin-top: 40px;
-            display: block;
-            text-align: left;
-            padding-left: 40px;
-        }
-        
-        .index_cell_table {
-            width: calc(100% - 80px);
-            margin-left:40px;
-            margin-top: 20px;
-            
-            font-size: 18px;
-            font-family: 'omni_040';
-            border-collapse: collapse;
-            border-style: hidden;
-            border-top: 2px solid #D6D6D6;
-            border-bottom: 2px solid #D6D6D6;
-        }
-
-        .index_cell_table td {
-            text-align: left;
-            height: 43px;
-            border: 2px solid #D6D6D6;
-        }
-    
-        .index_cell_table th {
-            text-align: left;
-            height: 43px;
-            color: #595959;
-            border: 2px solid #D6D6D6;
-        }
-
-        .image_plus_button_wrapper {
-            cursor: pointer;
-            margin: 8px;
-            align-self: flex-end;
-            box-sizing: border-box;
-            left:0px;
-            top:0px;
-            width: 45px;
-            height: 45px;
-            padding-top: 10px;
-            background: #FFFFFF;
-            border: 1.6px solid #B2B2B2;
-            border-radius: 4px; 
-        }
-    
-        .image_plus_button_image {
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-            width : 21px;
-            height : 21px;
-            content: url("{{ my_url_for(request, 'static', path='/images/plus.svg') }}");
-        }
-    
-        .home_span {
-            margin-left:40px;
-            margin-top:40px;
-            text-align: left;
-            display:block;
-            font-family: 'omni_040';
-            font-size: 22px;
-            line-height: 25px;
-            color: #595959;
-        }
-    
-        .home_image_wrapper {
-            margin-top:23px;
-            margin-left: 40px;
-            background-size: cover;
-            background-position: center;
-            width:calc(100% - 80px); 
-            height: 32%;
-            display:flex; 
-            justify-content: flex-end;
-        }
-    
     </style>
 
     <script type="module">
         
+        // using for 3d load
         import * as THREE from 'three';
         import { OrbitControls } from 'https://unpkg.com/three@0.149.0/examples/jsm/controls/OrbitControls.js';
         import { OBJLoader } from 'https://unpkg.com/three@0.149.0/examples/jsm/loaders/OBJLoader.js';
         import { MTLLoader } from 'https://unpkg.com/three@0.149.0/examples/jsm/loaders/MTLLoader.js';
 
+        // http://greenoceansdata.kr/map/(directShowIndex)
+        // ex : http://greenoceansdata.kr/map/001 
+
         {% if index|length %}
-        var directIndex = "{{ index }}";
+        var directShowIndex = "{{ index }}";
         {% else %}
-        var directIndex = "null";
+        var directShowIndex = "null";
         {% endif %}
 
-        const ORDER_HIGH = 0;
-        const ORDER_LOW = 1;
-        const ORDER_INDEX = 2;
+        // oister array sort
+        const ORDER_HIGH = 0; // Sort by ton
+        const ORDER_LOW = 1; // Sort by ton
+        const ORDER_INDEX = 2; // Sort by index
 
+        // for marker z index
         const MARKER_HIGH_ZINDEX = 3;
         const MARKER_NORMAL_ZINDEX = 2;
+
         var map;
         var selectedOister;
         var selectedListOrder = ORDER_INDEX;
@@ -667,17 +112,18 @@
         function init() {
             $('body').css("min-width", window.innerWidth);
             
-            if($('#drawer_arrow_div').css('left') != '0px') {
-                $('#dsv_container').css('width','27%') ;
-                var drawerWidth = Math.max($('#dsv_container').width());
+            if($('#drawer_arrow_wrapper').css('left') != '0px') {
+                $('#drawer_wrapper').css('width','27%') ;
+                var drawerWidth = Math.max($('#drawer_wrapper').width());
             
                 $('#map_style').css('left','calc('+ drawerWidth +'px + 32px)');
-                $('#map_image_wrapper').css('width','calc(100% - ' + drawerWidth + 'px)');
+                $('#map_dialog').css('width','calc(100% - ' + drawerWidth + 'px)');
                 $('#map').css('width','calc(100% - ' + drawerWidth + 'px)');
-                $('#drawer_arrow_div').css('left', drawerWidth +'px');
+                $('#drawer_arrow_wrapper').css('left', drawerWidth +'px');
                 $('#toast_wrapper span').css('margin-left', 'calc(' + drawerWidth + 'px + 36% - 292px )')    
             }
         }
+        
         $( window ).resize( function() {
             init();
         });
@@ -688,14 +134,13 @@
                 initMap();
             }
             $('#menu_btn').click(function() {
-                $('#dsv_container').hide();
+                $('#drawer_wrapper').hide();
                 $('#map').css('width','100%');
                 $('#map').css('float','left');
             });
-
-            $('#drawer_arrow_div').click(function() {
-                
-                if ($('#drawer_arrow_div').offset().left == 0) {
+            
+            $('#drawer_arrow_wrapper').click(function() {    
+                if ($('#drawer_arrow_wrapper').offset().left == 0) { // drawer close
                     drawerOpen();
                 } else {
                     drawerClose();
@@ -703,26 +148,29 @@
             });
 
             $('#map_image_x').click(function() {
-                $('#map_image_wrapper').hide();
+                $('#map_dialog').hide();
             });
 
             $('#logo_img').click(function() {
                 location.href = "/map"
             });
 
-            if(directIndex != "null") {                    
-                const oister = allList.filter(v => v.index == directIndex)[0];
+            // directShowIndex 값이 있을때
+            // When there is a directShowIndex value.
+            if(directShowIndex != "null") {                    
+                const oister = allList.filter(v => v.index == directShowIndex)[0];
                 if(oister != null) {
                     homeDisplay(oister);
                 }
             
                 drawerOpen();
 
-                $("#dsv_home").show();
+                $("#home").show();
                 $("#volume_sort_high").hide();
-                $('#home_back_button').css('visibility','visible');
+                $('#drawer_back_button').css('visibility','visible');
             }
 
+            // drawer tab click event
             $('ul.tabs li').click(function(){
                 var tab_id = $(this).attr('data-tab');
 
@@ -730,50 +178,47 @@
                 $('.tab-content').removeClass('current');
 
                 $(this).addClass('current');
-                $("#"+tab_id).addClass('current');
+                $("#" + tab_id).addClass('current');
 
-                $('ul.tabs li img:eq(0)').attr("src","{{ my_url_for(request, 'static', path='/images/vv.svg') }}");
-                $('ul.tabs li img:eq(1)').attr("src","{{ my_url_for(request, 'static', path='/images/vv2.svg') }}");
-                
+                $('ul.tabs li img:eq(0)').attr("src","{{ my_url_for(request, 'static', path='/images/sort_left.svg') }}");
+                $('ul.tabs li img:eq(1)').attr("src","{{ my_url_for(request, 'static', path='/images/sort_right.svg') }}");
+            
                 if (tab_id == 'tab-1') {
                     $("#volume_sort_high").show();
-                    $("#dsv_home").hide();
+                    $("#home").hide();
 
                     selectedListOrder = ORDER_INDEX;
                     oisterListDisplay(listRangeStart,listRangeEnd,selectedListOrder);
-                } else if(tab_id == 'tab-2') { // 오름
-                    // to init
+                } else if(tab_id == 'tab-2') { // ascending order
                     $('.area_select').removeClass('area_select');
-                    $('#home_back_button').css('visibility','hidden');
+                    $('#drawer_back_button').css('visibility','hidden');
 
                     $("#volume_sort_high").show();
-                    $("#dsv_home").hide();
-
-                    $('ul.tabs li.current img').attr("src","{{ my_url_for(request, 'static', path='/images/vv_sel.svg') }}");
+                    $("#home").hide();
+                    $('ul.tabs li.current img').attr("src","{{ my_url_for(request, 'static', path='/images/sort_left_sel.svg') }}");
 
                     selectedListOrder = ORDER_HIGH;
                     oisterListDisplay(listRangeStart,listRangeEnd,selectedListOrder);
-                } else if(tab_id == 'tab-3') { // 내림
-                    // to init
+                } else if(tab_id == 'tab-3') { // descending order
                     $('.area_select').removeClass('area_select');
-                    $('#home_back_button').css('visibility','hidden');
+                    $('#drawer_back_button').css('visibility','hidden');
 
                     $("#volume_sort_high").show();
-                    $("#dsv_home").hide();
+                    $("#home").hide();
+                    $('ul.tabs li.current img').attr("src","{{ my_url_for(request, 'static', path='/images/sort_right_sel.svg') }}");
 
-                    $('ul.tabs li.current img').attr("src","{{ my_url_for(request, 'static', path='/images/vv2_sel.svg') }}");
                     selectedListOrder = ORDER_LOW;
                     oisterListDisplay(listRangeStart,listRangeEnd,selectedListOrder);
                 }
             });
 
-            $('#home_back_button').click(function() {
-                $("#dsv_home").hide();
+            $('#drawer_back_button').click(function() {
+                $("#home").hide();
                 $("#volume_sort_high").show();
-                $('#home_back_button').css('visibility','hidden');
+                $('#drawer_back_button').css('visibility','hidden');
 
                 $('.area_select').removeClass('area_select');
-                $('#dsv_container').scrollTop(tabScrollTop);
+                $('#drawer_wrapper').scrollTop(tabScrollTop);
             });
 
             $('.image_plus_button_wrapper').click(function() {
@@ -785,7 +230,7 @@
                     $("#map_image_title").text("로드뷰(3D 맵핑)");
                 }
                 $('#map_image').css('content',$(this).parent().css("background-image"))
-                $('#map_image_wrapper').show();
+                $('#map_dialog').show();
                 $('#map_image').show();
                 $('#canvas_3d').hide();
             });
@@ -793,7 +238,9 @@
             $('.plus_button_3d').click(function() {
                 if(selectedOister == null) return;
                 
-                load3D("{{ my_url_for(request, 'static', path='/data/obj/obj/')}}" + selectedOister.file_name + "-mesh.obj", "{{ my_url_for(request, 'static', path='/data/obj/obj/')}}" + selectedOister.file_name + "-mesh.mtl");
+                load3D(
+                    "{{ my_url_for(request, 'static', path='/data/obj/obj/')}}" + selectedOister.file_name + "-mesh.obj",
+                    "{{ my_url_for(request, 'static', path='/data/obj/obj/')}}" + selectedOister.file_name + "-mesh.mtl");
                 $('#map_image').hide();
                 $('#canvas_3d').show();
             });
@@ -803,11 +250,6 @@
             if (map != null) {
                 map.setMapTypeId(type);
             }
-        }
-
-        function makeIndex(num) {
-            if (num < 10) return "0" + num;
-            else return num.toString();
         }
 
         function zeroTextCheck(num) {
@@ -822,13 +264,9 @@
             return num.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
         }
 
-    
         function homeDisplay(oister) {
-
-            $('#home_single_wrapper').show();
-            $('#dsv_container').scrollTop(0);
-
-            $('#home_list_wrapper').hide();
+            $('#home_wrapper').show();
+            $('#drawer_wrapper').scrollTop(0);
             
             selectedOister = oister;
         
@@ -840,13 +278,15 @@
             $("#home_name").text("사업자 " + oister.name);
 
             $("#home_address").text(oister.address);
-            $("#home_index_cell_share_button").attr("index",oister.index);
+            $("#home_share_button").attr("index",oister.index);
 
             $("#home_volume_22").text(makeCommaString(oister.year22 + "") + " (t)");
             $("#home_volume_21").text(makeCommaString(oister.year21 + "") + " (t)");
 
             $("#home_note").text(oister.note);
         }
+
+        // show oister house list.
         function oisterListDisplay(start, end, order) {
             var index = 1;
             var total21 = 0;
@@ -870,7 +310,7 @@
                 });
             }
 
-            if(order == ORDER_INDEX) {
+            if(order == ORDER_INDEX) { 
                 allList.sort(function(a, b) {
                     if(a.index < b.index) {return -1;}
                     if(a.index > b.index) {return 1;}
@@ -879,48 +319,44 @@
             }
             
             var isFirst = true;
-
             for(const oister of allList) {
-
-                if((start.lat() < oister.lat && end.lat() > oister.lat) && 
-                    (start.lng() < oister.lng && end.lng() > oister.lng)) {
-                        if(isFirst) {
-                            isFirst = false;
-                            firstOister = oister;
-                        }
-                    
+                var isInnerMap = (start.lat() < oister.lat && end.lat() > oister.lat) && (start.lng() < oister.lng && end.lng() > oister.lng); // foroister list in map range
+                if(isInnerMap) {
+                    if(isFirst) {
+                        isFirst = false;
+                        firstOister = oister;
+                    }
+                
                     var child = 
                     "<div index='" + oister.index + "' class='index_cell'>"+
                         "<div>"+
-                            "<span class='index_cell_top_span' style='margin-right: 6px;'>순번 " + oister.index + "</span>" +
-                            "<span class='index_cell_top_span' style='margin-right: 6px;'>사업자 " + oister.name + "</span>" +
-                            "<span index='" + oister.index + "' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ my_url_for(request, 'static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>"+
+                            "<span class='cell_top_span' style='margin-right: 6px;'>순번 " + oister.index + "</span>" +
+                            "<span class='cell_top_span' style='margin-right: 6px;'>사업자 " + oister.name + "</span>" +
+                            "<span index='" + oister.index + "' class='cell_top_span share_button'><img class='share_img' src='{{ my_url_for(request, 'static', path='/images/share.svg') }}'/>공유하기</span>"+
                         "</div>"+
-                        "<span class='index_cell_title'>" + oister.address + "</span>"+
-                        "<div style='width:calc(100% - 80px);margin-top:9px; margin-left: 40px; border-bottom: 2px solid #2C2C2C;'></div>" +
-                        //<div style="width:calc(100% - 80px); margin-left: 40px; border: 1px solid #2C2C2C;margin-top:9px"></div>
-                        "<span class='index_cell_table_title'>굴 껍데기 야적 물량</span>"+
-                        "<table class='index_cell_table'>"+
-                            "<th style='width:127px;padding-left:35px'>연도</th>"+
-                            "<th style='padding-left:54px'>야적량 (t)</th>"+
+                        "<span class='cell_title'>" + oister.address + "</span>"+
+                        "<div class='cell_line'></div>" + 
+                        "<span class='cell_table_title'>굴 껍데기 야적 물량</span>"+
+                        "<table class='cell_table'>"+
+                            "<th class='th_year'>연도</th>"+
+                            "<th class='th_ton' style='padding-left:54px'>야적량 (t)</th>"+
                             "<tr>"+
-                                "<td style='width:127px;padding-left:35px'>2022</td>"+
-                                "<td style='padding-left:54px'>" + zeroTextCheck(makeCommaString(oister.year22 + "")) + "</td>"+
+                                "<td class='td_year'>2022</td>"+
+                                "<td class='td_ton'>" + zeroTextCheck(makeCommaString(oister.year22 + "")) + "</td>"+
                             "</tr>"+
                             "<tr>"+
-                                "<td style='width:127px;padding-left:35px'>2021</td>"+
-                                "<td style='padding-left:54px'>" + zeroTextCheck(makeCommaString(oister.year21 + "")) + "</td>"+
+                                "<td class='td_year'>2021</td>"+
+                                "<td class='td_ton'>" + zeroTextCheck(makeCommaString(oister.year21 + "")) + "</td>"+
                             "</tr>"+
                         "</table>"+
 
-                        "<table class='index_cell_table'>"+
+                        "<table class='cell_table'>"+
                             "<tr>"+
-                                "<td style='width:127px;padding-left:35px;color:#595959'>비고</td>"+
-                                "<td class='oister_note' style='padding-left:54px;padding-top:12px;padding-bottom:12px'>" + oister.note+ "</td>"+
+                                "<td class='td_note'>비고</td>"+
+                                "<td class='td_note_message'>" + oister.note+ "</td>"+
                             "</tr>"+
                         "</table>"+
                     "</div>";
-
 
                     total22 += oister.year22;
                     total21 += oister.year21;
@@ -932,14 +368,14 @@
             }
 
             $('.index_cell').click(function() {
-                tabScrollTop = $('#dsv_container').scrollTop();
+                tabScrollTop = $('#drawer_wrapper').scrollTop();
 
                 var index = $(this).attr("index");
                 const oister = allList.filter(v => v.index == index)[0];
                 homeDisplay(oister);
-                $("#dsv_home").show();
+                $("#home").show();
                 $("#volume_sort_high").hide();
-                $('#home_back_button').css('visibility','visible');
+                $('#drawer_back_button').css('visibility','visible');
 
                 $('.area_select').removeClass('area_select');
                 if(map != null) {
@@ -959,9 +395,9 @@
                 selectedMarkerContent.getElementsByClassName('area_index')[0].className = "area_index area_select";
                 selectedMarkerContent.getElementsByClassName('area_index')[1].className = "area_index area_select";
             });
-            $(".index_cell_share_button").off("click");
 
-            $(".index_cell_share_button").click(function() {
+            $(".share_button").off("click");
+            $(".share_button").click(function() {
                 var index = $(this).attr("index");
                 $('#toast_wrapper').show();
                 $('#toast_wrapper').delay(2000).hide(0);
@@ -1003,8 +439,8 @@
             scene.background = new THREE.Color('black');
           
             {
-                const skyColor = 0xB1E1FF;  // light blue
-                const groundColor = 0xB97A20;  // brownish orange
+                const skyColor = 0xB1E1FF;
+                const groundColor = 0xB97A20;
                 const intensity = 1;
                 const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
                 scene.add(light);
@@ -1033,10 +469,10 @@
                             scene.add(object)
                         },
                         (xhr) => {
+                            // show 3d load %
                             console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
                         },
                         (error) => {
-                            //console.log('An error happened')
                         }
                     )
                 });
@@ -1067,31 +503,31 @@
             requestAnimationFrame(render);
         }
         function drawerOpen() {
-            var drawerWidth = Math.max($('#dsv_container').width(), window.innerWidth * 0.27);
+            var drawerWidth = Math.max($('#drawer_wrapper').width(), window.innerWidth * 0.27);
 
             $('#map').css('width','calc(100% - '+drawerWidth+'px)');
-            $('#drawer_arrow_div').css('left', drawerWidth+'px');
-            $('#dsv_container').css('width',drawerWidth) ;
+            $('#drawer_arrow_wrapper').css('left', drawerWidth+'px');
+            $('#drawer_wrapper').css('width',drawerWidth) ;
 
             $('#map_style').css('left','calc('+drawerWidth+'px + 32px)');
 
-            $('#drawer_arrow_div_arrow_left').show();
-            $('#drawer_arrow_div_arrow_right').hide();
+            $('#arrow_left').show();
+            $('#arrow_right').hide();
         }
 
         function drawerClose() {
             $('#map').css('width','100%');
-            $('#dsv_container').css('width','0px');
-            $('#drawer_arrow_div').css('left','0px');
+            $('#drawer_wrapper').css('width','0px');
+            $('#drawer_arrow_wrapper').css('left','0px');
             
-            $('#drawer_arrow_div_arrow_left').hide();
-            $('#drawer_arrow_div_arrow_right').show();
+            $('#arrow_left').hide();
+            $('#arrow_right').show();
 
             $('#map_style').css('left','32px');
         }
         
         function initMap() {
-            const tong = { lat: 34.8544269, lng: 128.4331799 };
+            const tong = { lat: 34.8544269, lng: 128.4331799 }; // Tongyoung lat lng
             
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 11,
@@ -1100,6 +536,8 @@
                 mapId: "4504f8b37365c3d0",
             });
 
+
+            // google map event
             google.maps.event.addListenerOnce(map, 'idle', function(){
                 var bounds =  map.getBounds();
                 var endLo = bounds.getNorthEast();
@@ -1109,20 +547,19 @@
             });
 
             google.maps.event.addListener(map, 'tilesloaded', function () {
-                // google map load complete
                 if(!isFirstLoad) return;
                 
                 isFirstLoad = false;
-                if(directIndex == "null") return;
+                if(directShowIndex == "null") return;
                
-                const oister = allList.filter(v => v.index == directIndex)[0];
+                const oister = allList.filter(v => v.index == directShowIndex)[0];
 
                 map.setCenter({
                     lat : oister.lat,
                     lng : oister.lng
                 });
 
-                var selectedMarkerContent = document.getElementById("area_tag_" + directIndex);
+                var selectedMarkerContent = document.getElementById("area_tag_" + directShowIndex);
                 selectedMarkerContent.className = "area_tag area_select";
                 selectedMarkerContent.getElementsByClassName('area_index')[0].className = "area_index area_select";
                 selectedMarkerContent.getElementsByClassName('area_index')[1].className = "area_index area_select";
@@ -1145,24 +582,21 @@
                 oisterListDisplay(startLo,endLo,selectedListOrder);
             });
 
-            const pin = {
-                url: "{{ my_url_for(request, 'static', path='/images/popup.svg')}}",
-            };
-
             markers = oisterList.map((position, i) => {
-
                 const areaTag = document.createElement("div");
-                //areaTag.className = "area_tag area_select";
                 areaTag.className = "area_tag";
                 areaTag.id = "area_tag_" + allList[i].index;
-                areaTag.innerHTML = "<div style='display:flex;flex-direction:row;justify-content:space-around;'>" +
+                areaTag.innerHTML = "<div class='area_index_wrapper'>" +
                                         "<span class='area_index' style='margin-left:7px'>순번</span>" +
                                         "<span class='area_index' style='margin-right:7px'>" + allList[i].index + "</span>" +
                                     "</div>" +
-                                    "<span class='area_ton'>" + (allList[i].year22 == 0 ? "적재량 없음" : makeCommaString(allList[i].year22 + "") + " t") + "</span>";
+                                    "<span class='area_ton'>" + 
+                                        (allList[i].year22 == 0 ? "적재량 없음" : makeCommaString(allList[i].year22 + "") + " t") + 
+                                    "</span>";
         
-                if(directIndex != "null") 
-                var zindex = (directIndex == allList[i].index) ? MARKER_HIGH_ZINDEX : MARKER_NORMAL_ZINDEX;
+                if(directShowIndex != "null") {
+                    var zindex = (directShowIndex == allList[i].index) ? MARKER_HIGH_ZINDEX : MARKER_NORMAL_ZINDEX;
+                }
 
                 const marker = new google.maps.marker.AdvancedMarkerView({
                     map,
@@ -1171,14 +605,10 @@
                     zIndex: zindex
                 });
 
-                marker.addListener("click", () => {  
-                    
+                marker.addListener( "click", () => {  
                     $('.area_select').removeClass('area_select');
                     
-                    //markers.forEach(marker => marker.zIndex = MARKER_NORMAL_ZINDEX); 
-                    //marker.zIndex = MARKER_HIGH_ZINDEX;
-
-                    // marker select 효과 주는 부분.
+                    // marker select effect.
                     marker.content.className = "area_tag area_select";
                     marker.content.getElementsByClassName('area_index')[0].className = "area_index area_select";
                     marker.content.getElementsByClassName('area_index')[1].className = "area_index area_select";
@@ -1188,17 +618,16 @@
                     drawerOpen();
                     $('ul.tabs li:first').trigger("click");
                     
-                    tabScrollTop = $('#dsv_container').scrollTop();
+                    tabScrollTop = $('#drawer_wrapper').scrollTop();
                     homeDisplay(oister);
                     
-                    $("#dsv_home").show();
+                    $("#home").show();
                     $("#volume_sort_high").hide();
-                    $('#home_back_button').css('visibility','visible');            
+                    $('#drawer_back_button').css('visibility','visible');            
                 });            
                 return marker;
             });
 
-                        
             $('#map_style').click(function() {
                 if(map.getMapTypeId() == "satellite") {
                     changeMapType("roadmap");
@@ -1220,172 +649,156 @@
         window.initMap = initMap;
     </script>
 
-    </head>
-    <body> 
-        <div class="topnav">
-            <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
-            <div id="menu_text_wrapper">
-                <a class="top_menu" href="/map">MAP</a>
-                <a class="top_menu" href="/project">PROJECT</a>
-                <a class="top_menu" href="/about">ABOUT</a>
-                <a class="top_menu" href="/contact">CONTACT</a>
-                <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 121px;">GREENOCEANS</a>
-            </div>
+</head>
+<body> 
+    <div class="topnav">
+        <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}"/>
+        <div id="menu_text_wrapper">
+            <a class="top_menu" href="/map">MAP</a>
+            <a class="top_menu" href="/project">PROJECT</a>
+            <a class="top_menu" href="/about">ABOUT</a>
+            <a class="top_menu" href="/contact">CONTACT</a>
+            <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 121px;">GREENOCEANS</a>
         </div>
+    </div>
 
-        <div id="toast_wrapper" style="display: none;">
-            <span>주소가 복사되었습니다. 원하는 곳에 붙여넣기를 하십시오.</div>
-        </div>
+    <div id="toast_wrapper" style="display: none;">
+        <span>주소가 복사되었습니다. 원하는 곳에 붙여넣기를 하십시오.</div>
+    </div>
 
-        <div id="map_wrapper">  
-            <div id="map"></div>   
+    <div id="map_wrapper">  
+        <div id="map"></div>   
 
-            <script defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCj_fxHTdVdYjCl6udpP_GbWUGfW9SVV8&callback=initMap&libraries=marker&v=beta"></script>
+        <!-- Use google map beta version. -->
+        <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCj_fxHTdVdYjCl6udpP_GbWUGfW9SVV8&callback=initMap&libraries=marker&v=beta"></script>
 
-            <div id="map_image_wrapper">
-                <div id="map_image_dialog">
-                    <div style="display: flex;flex-direction: row;">
-                        <span id="map_image_title">로드뷰</span>
-                        <img id="map_image_x"/>
-                    </div>
-                
-                    <img id="map_image"/>
-                    <canvas id="canvas_3d"></canvas>
+        <div id="map_dialog">
+            <div id="map_dialog_wrapper">
+                <div id="map_dialog_top">
+                    <span id="map_image_title">로드뷰</span>
+                    <img id="map_image_x" src="{{ my_url_for(request, 'static', path='/images/x.svg') }}"/>
                 </div>
-            </div> 
-        
-            <div id="zoom_wrapper">
-                <div id="zoom_plus" style="height: 50%;border-bottom: 1.6px solid #B2B2B2;cursor:pointer;padding-top:16px">
-                    <img src="{{ my_url_for(request, 'static', path='/images/plus.svg') }}" style="
-                        margin: 0 auto;
-                        width : 24px;
-                        height : 24px;
-                        display: block;"/>
-                </div>
-                <div id="zoom_minus" style="height: 50%;cursor:pointer;padding-top:27px">
-                    <div style="
-                        background-color: black;
-                        width : 27px;
-                        height : 3px;
-                        margin: 0 auto;
-                        display: block;"></div>
-                    
-                </div>
+                <img id="map_image"/>
+                <canvas id="canvas_3d"></canvas>
             </div>
-
-            <div id="map_style">
-                <span style="display: block;font-size:15px;line-height:59px; text-align: center;">지도</span>
-            </div>
-
-            <div id="dsv_container" >
-                <div id="drawer_arrow_div">
-                    <img id="drawer_arrow_div_arrow_left" src="{{ my_url_for(request, 'static', path='/images/left_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px"/>
-                    <img id="drawer_arrow_div_arrow_right" src="{{ my_url_for(request, 'static', path='/images/right_arrow.svg') }}" style="position:absolute; left: 6px; top: 17px; display:none"/>
-                </div>    
-                <div class="dsv-top-ui">
-                    <div style="position:absolute; display: flex; justify-content: center;width:calc(100%);height:104px">
-                        <img src="{{ my_url_for(request, 'static', path='/images/left_logo.png') }}" style="width: 258px; height:33px;align-self: center;"/>
-                    </div>
-                    <div style="width: 104px;height: 104px;display:flex; justify-content: center;">
-                        <img id="home_back_button" src="{{ my_url_for(request, 'static', path='/images/home_back.svg') }}" style="width: 32px; height:32px; cursor: pointer;align-self: center; visibility: hidden;z-index: 1000;"/>
-                    </div> 
-                </div>
-
-                <ul class="tabs">
-                    <li class="tab-link current" data-tab="tab-1">홈</li>
-                    <li class="tab-link" data-tab="tab-2" style="padding-top: 5px;"><img src="{{ my_url_for(request, 'static', path='/images/vv.svg') }}"/></li>
-                    <li class="tab-link" data-tab="tab-3" style="padding-top: 5px;"><img src="{{ my_url_for(request, 'static', path='/images/vv2.svg') }}"/></li>
-                </ul>
-                
-                <div id="volume_sort_high" class="dsv-content-section"> 
-                    <div class="header">
-                        <div style="padding-left:40px;padding-right:40px; text-align: left;display:flex;flex-direction: row;justify-content: space-between;">
-                            <span class="index_cell_header_span">굴 껍데기 야적 물량</span>
-                            <span id="total_ton" class="index_cell_header_span" style="color: #0064FF;">4.114 ton</span>
-                        </div>
-                        <table class="ton_table">
-                            <th style="width:126px;padding-left:35px">연도</th>
-                            <th style="padding-left:55px">총 조사 야적량 (t)</th>
-                            <tr>
-                                <td style="width:126px;padding-left:35px">2022</td>
-                                <td style="padding-left:55px; color:#0064FF" id="total_22_ton">1763.9 (t)</td>
-                            </tr>
-                            <tr>
-                                <td style="width:126px;padding-left:35px">2021</td>
-                                <td style="padding-left:55px; color:#0064FF" id="total_21_ton">2349.6 (t)</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="oister_list"></div>
-                </div>
-
-                <div id="dsv_home" class="dsv-content-section" style="display:none" > 
-
-                    <div id="home_single_wrapper" style="padding-bottom: 100px;">
-                        <div style="border-top: 2px solid #D6D6D6;padding-top:50px;">
-                            <div>
-                                <span id="home_index" class="index_cell_top_span" style="margin-right: 6px;">순번 01</span>
-                                <span id="home_name" class="index_cell_top_span" style="margin-right: 6px;">사업자 전상수</span>
-                                <span index="0" id='home_index_cell_share_button' class='index_cell_top_span index_cell_share_button' style='cursor:pointer;'><img class='share_img' src='{{ my_url_for(request, 'static', path='/images/share.svg') }}' style='margin-right:10px;'/>공유하기</span>
-                            </div>
-                            <span class='index_cell_title' id="home_address">통영시 평인 일주로 1093-26번지 일대</span>
-                            
-                            
-                            <div style="width:calc(100% - 80px); margin-left: 40px; border: 1px solid #2C2C2C;margin-top:9px"></div>
-
-                            <span class='home_span'>로드뷰(3D 맵핑)</span>
-        
-                            <div id="home_load_image" class="home_image_wrapper">
-                                <div class="image_plus_button_wrapper plus_button_3d">
-                                    <img class="image_plus_button_image"/>
-                                </div>    
-                            </div>
-                            <span class="index_cell_table_title">굴 껍데기 야적 물량</span>
-        
-                            <table class="index_cell_table">
-                                <th style="width:127px;padding-left:35px">연도</th>
-                                <th style="padding-left: 55px;">야적량 (t)</th>
-                                <tr>
-                                    <td style="width:127px;padding-left:35px">2022</td>
-                                    <td style="padding-left: 55px;" id="home_volume_22">1763.9 (t)</td>
-                                </tr>
-                                <tr>
-                                    <td style="width:127px;padding-left:35px">2021</td>
-                                    <td style="padding-left: 55px;" id="home_volume_21">2349.6 (t)</td>
-                                </tr>
-                            </table>
-
-                            <table class='index_cell_table'>
-                                <tr>
-                                    <td style='width:127px;padding-left:35px;color:#595959'>비고</td>
-                                    <td class='oister_note' style='padding-left:54px;padding-top:12px;padding-bottom:12px' id="home_note"></td>
-                                </tr>
-                            </table>
-        
-                            <span class="home_span">야적지 위치</span>
-        
-                            <div id="home_position_image" class="home_image_wrapper">
-                                <div class="image_plus_button_wrapper image_position">
-                                    <img class="image_plus_button_image"/>
-                                </div>    
-                            </div>
-        
-                            <span class="home_span">부피측정</span>
-        
-                            <div id="home_3d_image" class="home_image_wrapper">
-                                <div class="image_plus_button_wrapper image_volume">
-                                    <img class="image_plus_button_image"/>
-                                </div>    
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="home_list_wrapper" style="padding-bottom: 100px;"></div>         
-
-                </div>
-            </div>   
         </div> 
-        
-    </body>
+
+        <div id="zoom_wrapper">
+            <div id="zoom_plus">
+                <img id="plus" src="{{ my_url_for(request, 'static', path='/images/plus.svg') }}"/>
+            </div>
+            <div id="zoom_minus">
+                <div id="minus"></div>
+            </div>
+        </div>
+
+        <div id="map_style">
+            <span id="map_text">지도</span>
+        </div>
+
+        <div id="drawer_wrapper" >
+            <div id="drawer_arrow_wrapper">
+                <img id="arrow_left" src="{{ my_url_for(request, 'static', path='/images/left_arrow.svg') }}"/>
+                <img id="arrow_right" src="{{ my_url_for(request, 'static', path='/images/right_arrow.svg') }}"/>
+            </div>    
+
+            <div id="drawer_header">
+                <div id="drawer_header_logo">
+                    <img src="{{ my_url_for(request, 'static', path='/images/left_logo.png') }}"/>
+                </div>
+                <div id="drawer_header_back">
+                    <img id="drawer_back_button" src="{{ my_url_for(request, 'static', path='/images/home_back.svg') }}"/>
+                </div> 
+            </div>
+
+            <ul class="tabs">
+                <li class="tab-link current" data-tab="tab-1">홈</li>
+                <li class="tab-link" data-tab="tab-2" style="padding-top: 5px;"><img src="{{ my_url_for(request, 'static', path='/images/sort_left.svg') }}"/></li>
+                <li class="tab-link" data-tab="tab-3" style="padding-top: 5px;"><img src="{{ my_url_for(request, 'static', path='/images/sort_right.svg') }}"/></li>
+            </ul>
+
+            <div id="volume_sort_high" class="drawer_content_section"> 
+                <div class="total_cell_header">
+                    <div class="total_cell_header_top">
+                        <span class="total_cell_header_span">굴 껍데기 야적 물량</span>
+                        <span class="total_cell_header_span" id="total_ton" style="color: #0064FF;">0 ton</span>
+                    </div>
+                    <table class="total_cell_ton_table">
+                        <th class="th_year">연도</th>
+                        <th class="th_ton">총 조사 야적량 (t)</th>
+                        <tr>
+                            <td class="td_year">2022</td>
+                            <td class="td_ton" id="total_22_ton">1763.9 (t)</td>
+                        </tr>
+                        <tr>
+                            <td class="td_year">2021</td>
+                            <td class="td_ton" id="total_21_ton">2349.6 (t)</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="oister_list"></div>
+            </div>
+            <div id="home" class="drawer_content_section" style="display:none">
+                <div id="home_wrapper">
+                    <div>
+                        <span id="home_index" class="cell_top_span">순번 01</span>
+                        <span id="home_name" class="cell_top_span">사업자 전상수</span>
+                        <span index="0" id='home_share_button' class='cell_top_span share_button'>
+                            <img class='share_img' src=' {{ my_url_for(request, "static", path="/images/share.svg") }}' />
+                            공유하기
+                        </span>
+                    </div>
+                    <span class='cell_title' id="home_address">주소</span>
+                    <div class="cell_line"></div>
+                    <span class='home_title'>로드뷰(3D 맵핑)</span>
+
+                    <div id="home_load_image" class="home_image_wrapper">
+                        <div class="image_plus_button_wrapper plus_button_3d">
+                            <img class="image_plus_button_image" src=' {{ my_url_for(request, "static", path="/images/plus.svg") }}' />
+                        </div>    
+                    </div>
+                    <span class="home_title" style="color:black">굴 껍데기 야적 물량</span>
+
+                    <table class="cell_table">
+                        <th class="th_year">연도</th>
+                        <th class="th_ton">야적량 (t)</th>
+                        <tr>
+                            <td class="td_year">2022</td>
+                            <td class="td_ton" id="home_volume_22">1763.9 (t)</td>
+                        </tr>
+                        <tr>
+                            <td class="td_year">2021</td>
+                            <td class="td_ton" id="home_volume_21">2349.6 (t)</td>
+                        </tr>
+                    </table>
+
+                    <table class='cell_table'>
+                        <tr>
+                            <td class="td_note">비고</td>
+                            <td class="td_note_message" id="home_note"></td>
+                        </tr>
+                    </table>
+
+                    <span class="home_title">야적지 위치</span>
+
+                    <div id="home_position_image" class="home_image_wrapper">
+                        <div class="image_plus_button_wrapper image_position">
+                            <img class="image_plus_button_image" src=' {{ my_url_for(request, "static", path="/images/plus.svg") }}' />
+                        </div>    
+                    </div>
+
+                    <span class="home_title">부피측정</span>
+
+                    <div id="home_3d_image" class="home_image_wrapper">
+                        <div class="image_plus_button_wrapper image_volume">
+                            <img class="image_plus_button_image" src=' {{ my_url_for(request, "static", path="/images/plus.svg") }}' />
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div> 
+    
+</body>
 </html>

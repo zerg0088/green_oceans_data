@@ -13,7 +13,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112403815-1"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/style.css?v=2022041')}}">
+    <link rel="stylesheet" href="{{ my_url_for(request, 'static', path='/css/style.css')}}">
     
     <script type="module">
 
@@ -40,7 +40,7 @@
         function initMap() {
             const tong = { lat: 37.5698001 , lng: 126.9780682 };
         
-            var map = new google.maps.Map(document.getElementById("map"), {
+            var map = new google.maps.Map(document.getElementById("contact_map"), {
                 zoom: 15,
                 center: tong,
                 mapTypeControl: true,
@@ -58,7 +58,7 @@
 
             const contentString =
                 '<div id="content">' +
-                    '<h3 style="font-family:apple_gothic_b;font-style: normal;" >GREEN OCEANS</h3>' +
+                    '<h3 style="font-family:apple_gothic_b;font-style: normal;">GREEN OCEANS</h3>' +
                 "</div>";
 
             const infowindow = new google.maps.InfoWindow({
@@ -103,209 +103,12 @@
         font-family: apple_gothic_b;
         src: url('{{ my_url_for(request, "static", path="/fonts/applegothicneo_b.ttf") }}') format('truetype');
     }
-    
-    #map {
-        height: 455px;
-        width: 1320px;
-        margin: 0 auto;
-        padding: 0px;
-    }
-
-    svg {
-        width: 24px;
-        height: 24px;
-        padding: 0px;
-        margin: auto;
-        margin-right: 30px;
-    }
-
-    .topnav {
-        overflow: auto; 
-        background-color: white;
-        height: 157px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    
-    .topnav a {
-        font-family: 'apple_gothic_b';
-        font-style: normal;
-        font-size: 22px;
-        line-height: 26px;
-        color: #2E2E2E;
-        margin-right: 153px;
-    }
-
-    .topnav img {
-        margin-left: 5%;
-        width : 280px;
-        height: 106px;
-        align-self: center;
-    }
-
-    #menu_text_wrapper {
-        inherits: true;
-        flex: none;
-        align-self: center;
-    }
-
-    .top_menu {
-        text-align: center;
-        text-decoration: none;
-        font-family: 'omni_040';
-        font-style: normal;
-        
-        font-size: 18px;
-        line-height: 20px;
-        color: #2e2e2e;
-        align-self: center;
-        margin-right: 136px;
-    }
-
-    .top_menu:hover {
-        background-color: #ddd;
-        color: black;
-    }
-
-    .top_menu:active {
-        color: #0064FF;
-    }
-
-    a.button{
-        font-family: 'apple_gothic_r';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 22px;
-        line-height: 26px;
-        cursor: pointer;
-        background-color: rgb(99,181,169);
-        border: 2px solid rgb(99,181,169);
-        color: white;
-        text-align: center;
-        display: inline-block;
-    }
-    
-    a.button:hover {
-        background-color: white;
-        color: rgb(99,181,169);
-    }
-  
-    #contact_title {
-        color: black;
-        display:block;
-        font-family: 'apple_gothic_eb';
-        margin: 0 auto;
-        font-style: normal;
-        font-size: 90px;
-        line-height: 108px;
-        margin-top: 119px;
-        text-align: center;
-    }
-
-    #contact_wrapper {
-        width: 1320px;
-        margin: 0 auto;
-        background-color: white;
-        margin-top:177px;
-        margin-bottom:200px;
-    }
-
-    .bottom_span_eb {
-        color: white;
-        text-align: left;
-        display: block;
-        font-family: 'apple_gothic_eb';
-        font-style: normal;    
-        font-size: 20px;
-        line-height: 24px;
-    }
-
-    .bottom_span_r {
-        color: white;
-        text-align: left;
-        display: block;
-        font-family: 'apple_gothic_r';
-        font-style: normal;    
-        font-size: 16px;
-        line-height: 19px;
-    }
-
-    b {
-        font-family: 'apple_gothic_b';
-        margin-right: 44px;    
-        font-style: normal;
-        font-size: 16px;
-        line-height: 19px;
-    }
-
-    #contact_wrapper_left {
-        width:50%;
-        height:411px;
-        display:flex; 
-        justify-content: space-between;
-        flex-direction: column;
-    }
-
-    #contact_wrapper_right {
-        width:50%;
-        height:401px;
-        display:flex; 
-        justify-content: space-between;
-        flex-direction: column;
-        padding-left:40px;
-        margin-top:10px;
-    }
-
-    #contact_wrapper_left span {
-        font-family: 'apple_gothic_sb';
-        font-style: normal;
-        
-        font-size: 18px;
-        line-height: 22px;
-        color: #747474;
-        display: block;
-    }
-
-    #contact_wrapper_left img {
-        width: 35px; 
-        height: 35px;
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 47px;
-    }
-
-    .light_span {
-        font-family: 'apple_gothic_sb';
-        font-style: normal;
-        
-        font-size: 22px;
-        line-height: 26px;
-        color: #747474;
-    }
-
-    textarea,input {
-        resize: none;
-        width:100%;
-        background-color: rgb(232,230,230);
-        box-sizing: border-box;
-        border: 2px solid rgb(232,230,230);
-    }
-
-    textarea:hover,input:hover {
-        resize: none;
-        background-color: white;
-        box-sizing: border-box;
-        border: 2px solid black;
-    }
-
-
 </style>
 </head>
 
 <body>
     <div class="topnav">
-        <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}" style="cursor: pointer;"/>
+        <img id="logo_img" alt="Logo" src="{{ my_url_for(request, 'static', path='/images/green_logo.png') }}"/>
         <div id="menu_text_wrapper">
             <a class="top_menu" href="/map">MAP</a>
             <a class="top_menu" href="/project">PROJECT</a>
@@ -314,53 +117,45 @@
             <a class="top_menu" href="http://greenoceans.kr" style="margin-right: 121px;">GREENOCEANS</a>
         </div>
     </div>
-    <span id="contact_title">CONTACT</span>
+    <span class="title contact_title">CONTACT</span>
     <div id="contact_wrapper">
-        <div style="
-            font-family: 'apple_gothic_b';
-            font-style: normal;
-            
-            font-size: 51px;
-            line-height: 61px;
-            color: #2E2E2E;">Green Oceans</div>
-        <div style="border-bottom : 1px solid black; width : 31.5px; margin-top:33px"></div>
-
-        <div style="display:flex; flex-direction: row;margin-top:87px">
-            <div id="contact_wrapper_left">
+        <div id="contact_wrapper_title">Green Oceans</div>
+        <div id="contact_wrapper_line"></div>
+        <div id="contact_wrapper_message">
+            <div id="contact_wrapper_message_left">
                 <span><img src="{{ my_url_for(request, 'static', path='/images/icon_map.png') }}"/>서울특별시 종로구 종로 6 광화문 우체국 5층 그린오션스</span>
                 <span><img src="{{ my_url_for(request, 'static', path='/images/icon_phone.png') }}"/>0504-140-4267</span>
                 <span><img src="{{ my_url_for(request, 'static', path='/images/icon_building.png') }}"/>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
                 <span><img src="{{ my_url_for(request, 'static', path='/images/icon_mail.png') }}"/>piamoon@greenoceanskr.com</span>
                 <div>
                     <img src="{{ my_url_for(request, 'static', path='/images/icon_thumb_up.png') }}"/>
-                    <a><img style="width: 29px; height: 29px; margin-right: 8px;" src="{{ my_url_for(request, 'static', path='/images/icon_facebook.png') }}"/></a>
-                    <a><img style="width: 29px; height: 29px; margin-right: 8px;" src="{{ my_url_for(request, 'static', path='/images/icon_twitter.png') }}"/></a>
-                    <a><img style="width: 29px; height: 29px; margin-right: 8px;" src="{{ my_url_for(request, 'static', path='/images/icon_linkedin.png') }}"/></a>
-                    <a href="https://www.instagram.com/greenoceans.kr/?igshid=YmMyMTA2M2Y%3D" target="_blank"><img style="width: 29px; height: 29px; margin-right: 8px;" src="{{ my_url_for(request, 'static', path='/images/icon_instagram.png') }}"/></a>
+                    <a><img class="sns_img" src="{{ my_url_for(request, 'static', path='/images/icon_facebook.png') }}"/></a>
+                    <a><img class="sns_img" src="{{ my_url_for(request, 'static', path='/images/icon_twitter.png') }}"/></a>
+                    <a><img class="sns_img" src="{{ my_url_for(request, 'static', path='/images/icon_linkedin.png') }}"/></a>
+                    <a href="https://www.instagram.com/greenoceans.kr/?igshid=YmMyMTA2M2Y%3D" target="_blank"><img class="sns_img" src="{{ my_url_for(request, 'static', path='/images/icon_instagram.png') }}"/></a>
                 </div>
     
             </div>
-            <div id="contact_wrapper_right">
+            <div id="contact_wrapper_message_right">
                 <span class="light_span">Name</span>
-                <input id="input_name" type="text" name="name" style="width: 298px;height: 47px; margin-bottom:10px;margin-top:6px" value="" placeholder="" aria-required="false" maxlength="100">
+                <input id="input_name" type="text" name="name" aria-required="false" maxlength="100">
                 <span class="light_span">Email *</span>
-                <input id="input_email" type="email" name="email" style="height: 55px; margin-bottom:10px;margin-top:6px" value="" placeholder="" required="" aria-required="true" pattern="^.+@.+\.[a-zA-Z]{2,63}$" maxlength="250" aria-invalid="false">
+                <input id="input_email" type="email" name="email" aria-required="true" pattern="^.+@.+\.[a-zA-Z]{2,63}$" maxlength="250" aria-invalid="false">
                 <span class="light_span">Message</span>
-                <textarea id="input_content" style="height: 132px; margin-bottom:10px;margin-top:6px" placeholder="" aria-required="false" aria-invalid="true" ></textarea>
-                <a id="send_email" class="button" style="width: 154px;height: 43px;line-height:36px;margin-top:30px;align-self: end;">Send</a>
+                <textarea id="input_content" aria-required="false" aria-invalid="true" ></textarea>
+                <a id="send_email">Send</a>
             </div>
         </div>
 
     </div>
-    <div id="map"></div>
+    <div id="contact_map"></div>
     
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCj_fxHTdVdYjCl6udpP_GbWUGfW9SVV8&callback=initMap&v=weekly"
         defer></script>
 
-
-    <div style="width:100%;height:355px; background-color:#2E2E2E;padding-top:87px;margin-top:838px">
-        <div style="width:1320px; margin:0 auto;">
+    <footer>
+        <div class="footer_text_wrapper">
             <span class="bottom_span_eb">주식회사 그린오션스</span>
             <span class="bottom_span_r" style="margin-top: 27px;"><b>대표</b>문피아<b style="margin-left:94px;margin-right: 70px;">사업자번호</b>823-86-02292</span>
             <span class="bottom_span_r" style="margin-top: 10px;"><b>메일</b>piamoon@greenoceanskr.com</span>
@@ -368,7 +163,7 @@
             <span class="bottom_span_r" style="margin-top: 10px;"><b>주소</b>서울특별시 종로구 종로 6 광화문 우체국 5층</span>
             <span class="bottom_span_r" style="margin-top: 10px;"><b style="visibility: hidden;">주소</b>경남 통영시 도남로 195 리스타트플랫폼 4층 5호</span>
         </div>
-    </div>
+    </footer>
 </body>
 
 </html>
